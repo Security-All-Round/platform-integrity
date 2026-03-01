@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guides | SecurityAllround</title>
+  <meta name="description" content="Practical access and safety guides for online casino platforms: redirects, ISP blocks, device differences, and troubleshooting." />
+  <link rel="icon" type="image/png" href="/assets/New-logo.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/assets/nav.js" defer></script>
+
+  <style>
+    body { 
+      background:#020617; 
+      color:#f8fafc; 
+      background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.89), rgba(2, 6, 23, 0.89)), url('/assets/background4.png');
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased bg-slate-950">
+
+  <!-- Standard NAV -->
+  <nav class="border-b border-slate-800 bg-slate-900/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <a href="/index.html" class="flex items-center gap-3 min-w-0">
+        <img src="/assets/New-logo.png" class="w-8 h-8 rounded-full" alt="SecurityAllround logo">
+        <span class="font-black text-white tracking-tight truncate">SecurityAllround</span>
+      </a>
+
+    <div class="hidden md:flex items-center gap-6">
+      <a href="/money/" class="text-slate-300 hover:text-emerald-400">Casino Comparisons</a>
+      <a href="/guides/toolkit.html" class="text-slate-300 hover:text-emerald-400">Security Toolkit</a>
+      <a href="/guides/" class="text-slate-300 hover:text-emerald-400">Guides</a>
+      <a href="/about.html" class="text-slate-300 hover:text-emerald-400">About</a>
+      <a href="/contact.html" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-lg">Contact</a>
+    </div>
+
+      <button
+        id="menuBtn"
+        class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        type="button"
+      >☰</button>
+    </div>
+
+  <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800">
+    <a href="/money/" class="block text-slate-300 hover:text-emerald-400">Casino Comparisons</a>
+    <a href="/guides/toolkit.html" class="block text-slate-300 hover:text-emerald-400">Security Toolkit</a>
+    <a href="/guides/" class="block text-slate-300 hover:text-emerald-400">Guides</a>
+    <a href="/about.html" class="block text-slate-300 hover:text-emerald-400">About</a>
+    <a href="/contact.html" class="block text-emerald-400 font-bold hover:text-emerald-300">Contact</a>
+  </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto py-16 px-6">
+    <header class="mb-10">
+      <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Guides
+      </h1>
+      <p class="text-slate-300 max-w-3xl">
+        Short, practical guides for access issues (ISP blocks, redirects, Cloudflare challenges), plus general safety notes.
+      </p>
+    </header>
+
+      <a href="/money/" class="block bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-6 hover:border-emerald-500 transition-all hover:-translate-y-1">
+        <h2 class="text-xl font-black text-white mb-2 text-emerald-400">Casino Comparisons</h2>
+        <p class="text-slate-300">See current tested options and routes.</p>
+      </a>
+
+      <a href="/guides/toolkit.html" class="block bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-6 hover:border-emerald-500 transition-all hover:-translate-y-1">
+        <h2 class="text-xl font-black text-white mb-2 text-emerald-400">Security Toolkit</h2>
+        <p class="text-slate-300">Essential VPNs, wallets, and privacy tools.</p>
+      </a>
+
+      <a href="/guides/ledger-setup-guide.html" class="block bg-slate-900/80 backdrop-blur border border-blue-900/50 rounded-2xl p-6 hover:border-blue-500 transition-all hover:-translate-y-1">
+        <h2 class="text-xl font-black text-white mb-2 text-blue-400">Ledger Setup Guide</h2>
+        <p class="text-slate-300">Step-by-step: Move crypto winnings to cold storage.</p>
+      </a>
+
+      <a href="/contact.html" class="block bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-6 hover:border-emerald-500 transition-all hover:-translate-y-1">
+        <h2 class="text-xl font-black text-white mb-2 text-emerald-400">Request a test</h2>
+        <p class="text-slate-300">Send a domain + device/ISP details and we’ll try to reproduce the access path.</p>
+      </a>
+    </section>
+
+    <section class="mt-10 bg-slate-900 border border-slate-800 rounded-2xl p-8">
+      <h2 class="text-2xl font-black text-white mb-4">Infrastructure & Connectivity</h2>
+      <div class="space-y-6 text-slate-300">
+        <div>
+          <h3 class="text-lg font-bold text-emerald-400 mb-2">Mirror Domains & ACMA Blocks</h3>
+          <p class="leading-relaxed">
+            Many online casinos use "mirrors" (alternative URLs) to maintain access when primary domains are blocked by the ACMA. These URLs often look like <code>brand-99.com</code> or <code>play-brand.xyz</code>. We document these in our audits to help you find a working path.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-emerald-400 mb-2">VPN Usage</h3>
+          <p class="leading-relaxed">
+            If a site doesn't load on your AU home network, a VPN can often bypass local ISP filtering. However, always check the casino's terms; some platforms restrict play from certain VPN locations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="security-alert" class="mt-10 bg-slate-900 border-2 border-amber-500/30 rounded-2xl p-8 shadow-lg shadow-amber-500/5">
+      <h2 class="text-2xl font-black text-amber-400 mb-4 flex items-center gap-2">
+        ⚠️ Security Alert: Phishing & Fake Sites
+      </h2>
+      <div class="space-y-4 text-slate-300">
+        <p class="leading-relaxed">
+          Because casinos frequently rotate domains, "credential harvesting" sites often pop up. These are fake sites designed to look like the real casino to steal your login and password.
+        </p>
+        
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-5">
+          <h3 class="text-white font-bold mb-2">Current Investigation: Kingmaker-au.com</h3>
+          <p class="text-sm leading-relaxed mb-3">
+            We have received multiple reports and conducted testing on <span class="text-amber-300 font-mono">kingmaker-au.com</span>. 
+          </p>
+          <ul class="text-xs space-y-2 list-disc pl-5 text-slate-400">
+            <li>Reports of unresponsive support and "bot loops" that avoid technical questions.</li>
+            <li>Inconsistent branding assets compared to official mirrors.</li>
+            <li>Multiple user reports of withdrawal withholding and ignored requests.</li>
+          </ul>
+          
+          <div class="mt-4 p-3 bg-emerald-500/5 border border-emerald-500/20 rounded-lg">
+            <p class="text-xs text-slate-300">
+              <span class="text-emerald-400 font-bold">Community-Reported Mirror:</span> Some users have reported consistent access via <span class="text-emerald-400 font-mono">kingmaker-1313.com</span>. Note: This specific domain appears to enforce a mobile-only policy and may require a mobile user-agent to load correctly.
+            </p>
+          </div>
+
+          <p class="text-sm font-bold text-amber-400 mt-3">
+            Recommendation: Avoid entering credentials or depositing funds on the suspected phishing domain. Use only verified mirrors.
+          </p>
+          
+          <p class="text-[10px] text-slate-500 mt-4 italic">
+            Disclaimer: Our investigations are based on community reports and infrastructure snapshots at the time of testing. If you represent Kingmaker and believe this investigation contains inaccuracies, please <a href="/contact.html" class="underline">contact our audit team</a> with technical verification.
+          </p>
+        </div>
+
+        <h3 class="text-lg font-bold text-white mt-6">How to spot a fake site:</h3>
+        <ul class="grid md:grid-cols-2 gap-4 text-sm">
+          <li class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+            <span class="text-emerald-400 font-black mr-2">01.</span> 
+            <b>Check the URL:</b> Look for extra hyphens, misspellings, or weird TLDs (like .top, .win, .fun) that don't match known mirrors.
+          </li>
+          <li class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+            <span class="text-emerald-400 font-black mr-2">02.</span> 
+            <b>Broken Links:</b> Fake sites often only have a working Login and Register button. Check if 'Privacy Policy' or 'About' links work.
+          </li>
+          <li class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+            <span class="text-emerald-400 font-black mr-2">03.</span> 
+            <b>Live Chat:</b> Real support should be able to verify account details. Scam sites often use generic bots that dodge specific account questions.
+          </li>
+          <li class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+            <span class="text-emerald-400 font-black mr-2">04.</span> 
+            <b>SSL Certificate:</b> While fake sites have HTTPS, check the 'Issued to' info if available.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="mt-10 bg-slate-900 border border-slate-800 rounded-2xl p-8">
+      <h2 class="text-2xl font-black text-white mb-4">Common problems</h2>
+      <ul class="space-y-3 text-slate-300">
+        <li><b>Redirect blocked:</b> Some ad blockers or DNS filters can block intermediate redirect pages. Try disabling the blocker for that page.</li>
+        <li><b>Cloudflare / 403 challenge:</b> Some pages behave differently on CLI tools vs a normal browser. Test in a standard mobile browser.</li>
+        <li><b>ISP restriction:</b> Availability can differ by ISP and region. Switching networks (Wi‑Fi vs mobile data) can confirm.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="py-10 text-center text-slate-500 text-xs border-t border-slate-800 bg-slate-950 px-6">
+    <div class="mb-4 space-x-4">
+      <a href="/privacy.html" class="hover:text-emerald-400 transition">Privacy Policy</a>
+      <a href="/terms.html" class="hover:text-emerald-400 transition">Terms</a>
+      <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition">Responsible Gambling</a>
+      <a href="/contact.html" class="text-emerald-500 font-bold hover:text-emerald-400 transition">Contact</a>
+    </div>
+    <p>© 2026 SecurityAllround</p>
+    <p class="text-[10px] text-slate-500 mt-4">Disclosure: Some links may be affiliate links.</p>
+  </footer>
+
+</body>
+</html>

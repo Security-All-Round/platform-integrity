@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tactical & Physical | SecurityAllround</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/New-logo.png">
+    <style>
+        body { 
+          font-family: 'Space Grotesk', sans-serif;
+          background:#020617; 
+          color:#f8fafc;
+          background-image: radial-gradient(circle at 10% 20%, rgba(239, 68, 68, 0.05) 0%, transparent 40%);
+          background-attachment: fixed;
+          background-size: cover;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <nav class="border-b border-slate-800 bg-slate-900/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-3 min-w-0">
+      <img src="/assets/New-logo.png" class="w-8 h-8 rounded-full" alt="SecurityAllround logo">
+      <span class="font-black text-white tracking-tight truncate">SecurityAllround Agency</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-4 uppercase text-[10px] tracking-widest font-bold">
+      <a href="/play/" class="text-slate-300 hover:text-sky-400">S-01</a>
+      <a href="/custody/" class="text-slate-300 hover:text-emerald-400">S-02</a>
+      <a href="/fortress/" class="text-slate-300 hover:text-violet-400">S-03</a>
+      <a href="/shield/" class="text-slate-300 hover:text-amber-400">S-04</a>
+      <a href="/tactical/" class="text-slate-300 hover:text-red-500">S-05</a>
+      <a href="/armory/" class="text-slate-300 hover:text-slate-400">S-06</a>
+      <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2">Uplink</a>
+    </div>
+
+    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">☰</button>
+  </div>
+
+  <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800 text-xs uppercase font-bold tracking-widest">
+    <a href="/play/" class="block text-slate-300 hover:text-sky-400">Sector 01: Play</a>
+    <a href="/custody/" class="block text-slate-300 hover:text-emerald-400">Sector 02: Custody</a>
+    <a href="/fortress/" class="block text-slate-300 hover:text-violet-400">Sector 03: Fortress</a>
+    <a href="/shield/" class="block text-slate-300 hover:text-amber-400">Sector 04: Shield</a>
+    <a href="/tactical/" class="block text-slate-300 hover:text-red-500">Sector 05: Tactical</a>
+    <a href="/armory/" class="block text-slate-300 hover:text-slate-400">Sector 06: Armory</a>
+    <a href="/contact/" class="block text-sky-400 font-black pt-2">Communications Uplink</a>
+  </div>
+</nav>
+
+
+    <header class="py-24 px-6 text-center">
+        <span class="block font-mono text-red-500 tracking-[0.3em] text-sm mb-4 uppercase">SYSTEM SECTOR // 05</span>
+        <h1 class="text-5xl md:text-7xl font-bold uppercase mb-6 tracking-tight italic">Tactical <span class="text-red-500">& Physical</span></h1>
+        <p class="max-w-2xl mx-auto text-lg text-slate-400">Evaluating defensive hardware, situational awareness tools, and physical infrastructure hardening.</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-24 grid md:grid-cols-2 gap-8">
+        <!-- Olight -->
+        <section class="glass p-8 rounded-3xl border-l-4 border-l-red-500 flex flex-col">
+            <h2 class="text-2xl font-bold mb-4 uppercase text-white tracking-tight italic">Olight Warrior Audit</h2>
+            <p class="text-slate-400 text-sm mb-6 flex-grow">Technical evaluation of high-output tactical lighting and field redundancy systems.</p>
+            <a href="/tactical/olight-review.html" class="inline-block bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-xl font-bold uppercase text-xs tracking-widest transition text-center">
+                Read Audit Briefing
+            </a>
+        </section>
+        
+        <!-- Surveillance -->
+        <section class="glass p-8 rounded-3xl border-l-4 border-l-red-500 flex flex-col">
+            <h2 class="text-2xl font-bold mb-4 uppercase text-white tracking-tight italic">Surveillance Node Audit</h2>
+            <p class="text-slate-400 text-sm mb-6 flex-grow">Evaluation of 4K PoE infrastructure and local NVR encryption protocols.</p>
+            <a href="/tactical/surveillance-audit.html" class="inline-block bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-xl font-bold uppercase text-xs tracking-widest transition text-center">
+                Read Audit Briefing
+            </a>
+        </section>
+    </main>
+
+    <footer class="mt-auto py-24 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
+    <div class="flex flex-wrap justify-center gap-10 mb-10 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
+        <a href="/about/" class="hover:text-white transition">The Agency</a>
+        <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
+        <a href="/privacy.html" class="hover:text-white transition">Privacy Protocol</a>
+        <a href="/terms.html" class="hover:text-white transition">Terms of Service</a>
+    </div>
+    <img src="/assets/trimmed-logo.png" alt="Logo" class="h-10 mx-auto mb-8 opacity-20 grayscale">
+    <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-slate-600">
+        &copy; 2026 SecurityAllround Organisation. AU Technical Standards.
+    </p>
+</footer>
+
+
+</body>
+</html>

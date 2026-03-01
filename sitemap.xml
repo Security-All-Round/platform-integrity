@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://securityallround.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://securityallround.com/about/</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/contact/</loc><priority>0.5</priority></url>
+
+  <!-- Sector 01: Digital Play -->
+  <url><loc>https://securityallround.com/play/</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/play/bitstarz.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/bitkingz.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/casinoly.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/crocoslots.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/quickwin.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/spingranny.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/spinmama.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/spinwinera.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/vegasino.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/vincispin.html</loc><priority>0.8</priority></url>
+
+  <!-- Sector 02: Asset Custody -->
+  <url><loc>https://securityallround.com/custody/</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/custody/ledger-audit.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/custody/setup-guide.html</loc><priority>0.8</priority></url>
+
+  <!-- Sector 03: Network Fortress -->
+  <url><loc>https://securityallround.com/fortress/</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/fortress/protonvpn-audit.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/fortress/surfshark-audit.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/fortress/nordvpn-audit.html</loc><priority>0.8</priority></url>
+
+  <!-- Sector 04: Shield & Logic -->
+  <url><loc>https://securityallround.com/shield/</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/shield/nordpass-audit.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/shield/protonpass-audit.html</loc><priority>0.8</priority></url>
+
+  <!-- Sector 05: Tactical Gear -->
+  <url><loc>https://securityallround.com/tactical/</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/tactical/olight-review.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/tactical/surveillance-audit.html</loc><priority>0.8</priority></url>
+
+  <!-- Technical Audits (Casino) -->
+  <url><loc>https://securityallround.com/bitkingz-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/bitstarz-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/casinoly-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/crocoslots-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/quickwin-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/spingranny-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/spinmama-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/spinwinera-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/vegasino-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/vincispin-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/zet-audit.html</loc><priority>0.7</priority></url>
+
+  <!-- Compliance & Legal -->
+  <url><loc>https://securityallround.com/privacy.html</loc><priority>0.3</priority></url>
+  <url><loc>https://securityallround.com/terms.html</loc><priority>0.3</priority></url>
+  <url><loc>https://securityallround.com/responsible-gambling.html</loc><priority>0.3</priority></url>
+</urlset>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Security Hub | SecurityAllround Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/New-logo.png">
+    <style>
+        :root {
+            --bg: #020617;
+            --play: #38bdf8;
+            --custody: #10b981;
+            --fortress: #8b5cf6;
+            --shield: #f59e0b;
+            --tactical: #ef4444;
+            --armory: #64748b;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #f8fafc;
+            font-family: 'Space Grotesk', sans-serif;
+            background-image: 
+                linear-gradient(rgba(2, 6, 23, 0.98), rgba(2, 6, 23, 0.98)),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2338bdf8' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass:hover {
+            background: rgba(15, 23, 42, 0.6);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .accent-tab {
+            width: 30px;
+            height: 3px;
+            background: var(--glow-color);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Agency Header -->
+    <header class="pt-24 pb-20 px-6 text-center border-b border-white/5 bg-slate-950/50 backdrop-blur-sm">
+        <img src="/assets/New-logo.png" alt="Agency Logo" class="h-16 mx-auto mb-8 drop-shadow-[0_0_20px_rgba(56,189,248,0.4)]">
+        <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none italic">
+            Universal <span class="text-sky-400">Security</span> Hub
+        </h1>
+        <p class="max-w-3xl mx-auto text-lg md:text-2xl text-slate-400 font-light leading-relaxed">
+            Total Security & Infrastructure Agency. A centralised technical portal for digital entertainment, asset custody, and defensive hardware.
+        </p>
+    </header>
+
+    <!-- Operational Grid -->
+    <main class="max-w-7xl mx-auto px-6 py-20 w-full grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        
+        <!-- Sector 01: Digital Play -->
+        <a href="/play/" class="glass p-10 rounded-[2.5rem] flex flex-col relative group overflow-hidden" style="--glow-color: var(--play);">
+            <div class="accent-tab"></div>
+            <span class="font-mono text-[10px] tracking-[0.4em] text-sky-400 mb-4 uppercase font-bold">SYSTEM SECTOR // 01</span>
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-sky-400 transition">Digital Play</h2>
+            <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
+                Verified casino audits and access routes. Features our tested portfolio of 7 high-stakes platforms including Bitstarz, Spinmama, and VinciSpin.
+            </p>
+            <div class="text-sky-400 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
+                Launch Audit Hub &rarr;
+            </div>
+        </a>
+
+        <!-- Sector 02: Asset Custody -->
+        <a href="/custody/" class="glass p-10 rounded-[2.5rem] flex flex-col relative group overflow-hidden" style="--glow-color: var(--custody);">
+            <div class="accent-tab"></div>
+            <span class="font-mono text-[10px] tracking-[0.4em] text-emerald-400 mb-4 uppercase font-bold">SYSTEM SECTOR // 02</span>
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-emerald-400 transition text-white">Asset Custody</h2>
+            <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
+                Institutional-grade cold storage. Technical reviews of Ledger and Trezor hardware wallets for verified asset protection.
+            </p>
+            <div class="text-emerald-400 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
+                Verify Assets &rarr;
+            </div>
+        </a>
+
+        <!-- Sector 03: Network Fortress -->
+        <a href="/fortress/" class="glass p-10 rounded-[2.5rem] flex flex-col relative group overflow-hidden" style="--glow-color: var(--fortress);">
+            <div class="accent-tab"></div>
+            <span class="font-mono text-[10px] tracking-[0.4em] text-violet-400 mb-4 uppercase font-bold">SYSTEM SECTOR // 03</span>
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-violet-400 transition text-white">Network Fortress</h2>
+            <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
+                VPN hardening and encrypted communication. Technical audits on the Proton Ecosystem, Surfshark, and ExpressVPN.
+            </p>
+            <div class="text-violet-400 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
+                Secure Perimeter &rarr;
+            </div>
+        </a>
+
+        <!-- Sector 04: Shield & Logic -->
+        <a href="/shield/" class="glass p-10 rounded-[2.5rem] flex flex-col relative group overflow-hidden" style="--glow-color: var(--shield);">
+            <div class="accent-tab"></div>
+            <span class="font-mono text-[10px] tracking-[0.4em] text-amber-500 mb-4 uppercase font-bold">SYSTEM SECTOR // 04</span>
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-amber-500 transition text-white">Shield & Logic</h2>
+            <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
+                Credential security and digital hygiene. Auditing NordPass and ProtonPass for resilient password management.
+            </p>
+            <div class="text-amber-500 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
+                Deploy Shield &rarr;
+            </div>
+        </a>
+
+        <!-- Sector 05: Tactical Gear -->
+        <a href="/tactical/" class="glass p-10 rounded-[2.5rem] flex flex-col relative group overflow-hidden" style="--glow-color: var(--tactical);">
+            <div class="accent-tab"></div>
+            <span class="font-mono text-[10px] tracking-[0.4em] text-red-500 mb-4 uppercase font-bold">SYSTEM SECTOR // 05</span>
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-red-500 transition text-white">Tactical Gear</h2>
+            <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
+                Defensive hardware and situational awareness. Performance audits on high-output torches (Olight), tasers, and field tools.
+            </p>
+            <div class="text-red-500 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
+                Operational View &rarr;
+            </div>
+        </a>
+
+        <!-- Sector 06: The Armory -->
+        <a href="/armory/" class="glass p-10 rounded-[2.5rem] flex flex-col relative group overflow-hidden" style="--glow-color: var(--armory);">
+            <div class="accent-tab"></div>
+            <span class="font-mono text-[10px] tracking-[0.4em] text-slate-500 mb-4 uppercase font-bold">PROCUREMENT // ARMORY</span>
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-slate-300 transition text-white">The Armory</h2>
+            <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
+                The Agency's official procurement channel. Vetted security gear, tactical infrastructure, and hardware inventory.
+            </p>
+            <div class="text-slate-400 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
+                Browse Inventory &rarr;
+            </div>
+        </a>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="mt-auto py-24 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
+    <div class="flex flex-wrap justify-center gap-10 mb-10 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
+        <a href="/about/" class="hover:text-white transition">The Agency</a>
+        <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
+        <a href="/privacy.html" class="hover:text-white transition">Privacy Protocol</a>
+        <a href="/terms.html" class="hover:text-white transition">Terms of Service</a>
+    </div>
+    <img src="/assets/trimmed-logo.png" alt="Logo" class="h-10 mx-auto mb-8 opacity-20 grayscale">
+    <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-slate-600">
+        &copy; 2026 SecurityAllround Organisation. AU Technical Standards.
+    </p>
+</footer>
+
+
+
+</body>
+</html>

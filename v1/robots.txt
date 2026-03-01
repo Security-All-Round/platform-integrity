@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /go/
+Disallow: /links/
+Disallow: /.links/
+
+Sitemap: https://securityallround.com/sitemap.xml

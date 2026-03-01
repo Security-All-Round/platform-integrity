@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BitStarz Casino Review (AU Testing Notes) | SecurityAllround</title>
+<meta name="description" content="BitStarz casino review with AU network testing notes, observed redirect routing, access troubleshooting, bonus snapshot notes, and a verified route link.">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MBPGLSNQYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MBPGLSNQYD');
+</script>
+
+<script src="/assets/analytics.js" defer></script>
+
+<!-- FAQ structured data (informational) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is BitStarz accessible in Australia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "During testing on an AU Vodafone 5G connection, BitStarz was accessible in a browser. Command-line tools (curl/whatweb) encountered Cloudflare challenge protection on the current landing domain. Availability can vary by ISP, device, location, and time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does BitStarz support crypto and card payments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BitStarz is crypto-friendly and may also offer fiat options. Payment methods can vary by region, currency, and eligibility at the time of signup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do some casinos open on mobile but not desktop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some platforms use multiple entry domains and device-based routing. Depending on ISP filtering, device type, network policy, or region, one domain may load while another is unavailable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the BitStarz link on SecurityAllround an affiliate link?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "SoftwareApplication",
+    "name": "BitStarz Casino",
+    "applicationCategory": "Game"
+  },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "4.8",
+    "bestRating": "5"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "SecurityAllround"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SecurityAllround"
+  }
+}
+</script>
+
+<link rel="canonical" href="https://securityallround.com/money/bitstarz.html">
+<link rel="icon" type="image/png" href="../assets/New-logo.png">
+
+<style>
+body { background:#020617; color:#f8fafc; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+</style>
+  <script src="/assets/nav.js" defer></script>
+</head>
+
+<body class="font-sans antialiased bg-slate-950">
+
+<!-- NAV -->
+<nav class="border-b border-slate-800 bg-slate-900/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+    <a href="/index.html" class="flex items-center gap-3 min-w-0">
+      <img src="/assets/New-logo.png" class="w-8 h-8 rounded-full" alt="SecurityAllround logo">
+      <span class="font-black text-white tracking-tight truncate">SecurityAllround</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-6">
+      <a href="/money/" class="text-slate-300 hover:text-emerald-400">Casino Comparisons</a>
+      <a href="/guides/toolkit.html" class="text-slate-300 hover:text-emerald-400">Security Toolkit</a>
+      <a href="/guides/" class="text-slate-300 hover:text-emerald-400">Guides</a>
+      <a href="/about.html" class="text-slate-300 hover:text-emerald-400">About</a>
+      <a href="/contact.html" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-lg">Contact</a>
+    </div>
+
+    <button
+      id="menuBtn"
+      class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+      type="button"
+    >☰</button>
+  </div>
+
+  <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800">
+    <a href="/money/" class="block text-slate-300 hover:text-emerald-400">Casino Comparisons</a>
+    <a href="/guides/toolkit.html" class="block text-slate-300 hover:text-emerald-400">Security Toolkit</a>
+    <a href="/guides/" class="block text-slate-300 hover:text-emerald-400">Guides</a>
+    <a href="/about.html" class="block text-slate-300 hover:text-emerald-400">About</a>
+    <a href="/contact.html" class="block text-emerald-400 font-bold hover:text-emerald-300">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="py-16 px-6 border-b border-slate-800 bg-gradient-to-b from-slate-950 to-slate-900">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col gap-6">
+      <div>
+        <p class="text-xs text-slate-500 mb-2">
+          Review + access notes • Tested on AU network • Redirect / mirror observations
+        </p>
+
+        <h1 class="text-4xl md:text-5xl font-black tracking-tight text-emerald-400">
+          BitStarz Casino Review (AU testing notes)
+        </h1>
+
+        <p class="text-slate-400 mt-4 max-w-3xl">
+          This page documents what we observed when accessing BitStarz from an AU Vodafone 5G connection.
+          Access can vary by ISP/device and the entry domains can rotate. We publish what we saw,
+          when we saw it, and what route we recommend trying first.
+        </p>
+      </div>
+
+      <div class="bg-slate-900 border border-emerald-600 rounded-xl p-8">
+        <h2 class="text-2xl font-bold mb-3 text-white">Welcome Offer Snapshot (can change)</h2>
+
+        <p class="text-slate-200 font-bold mb-2">
+          300% up to <span class="text-white">AUD 10,000</span> / <span class="text-white">5 BTC</span> + <span class="text-white">180 Free Spins</span>
+        </p>
+
+        <p class="text-slate-400 text-sm mb-6">
+          Offers can vary by region, currency, and eligibility. Always confirm the current terms on the casino site.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="/go/bitstarz/" rel="nofollow sponsored"
+             class="inline-block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-black px-8 py-4 rounded-xl">
+             Play at BitStarz (via verified route)
+          </a>
+
+          <a href="/bitstarz-audit.html"
+             class="inline-block text-center bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-8 py-4 rounded-xl">
+             Read the Technical Audit
+          </a>
+        </div>
+
+        <p class="text-xs text-slate-500 mt-5">
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTENT -->
+<main class="max-w-5xl mx-auto py-16 px-6 space-y-14">
+
+  <!-- Quick facts -->
+  <section class="bg-slate-900 border border-slate-800 rounded-xl p-8">
+    <h2 class="text-2xl font-black mb-6 text-white">Quick Facts (observed)</h2>
+    <div class="grid md:grid-cols-3 gap-6 text-sm">
+      <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+        <p class="text-slate-400 mb-1">Testing scope</p>
+        <p class="font-bold text-slate-100">AU Vodafone 5G • desktop + mobile</p>
+      </div>
+      <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+        <p class="text-slate-400 mb-1">Affiliate redirect</p>
+        <p class="font-bold text-slate-100"><code>/go/bitstarz/</code></p>
+      </div>
+      <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+        <p class="text-slate-400 mb-1">WAF observed</p>
+        <p class="font-bold text-slate-100">Cloudflare challenge on landing</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Access testing (REAL DATA) -->
+  <section class="bg-slate-900 border border-slate-800 rounded-xl p-8">
+    <h2 class="text-2xl font-black mb-4 text-white">Access testing (observed)</h2>
+
+    <div class="space-y-4 text-slate-300 leading-relaxed text-sm">
+      <p>
+        <b>Last tested:</b> 2026-02-22<br>
+        <b>Network:</b> Vodafone 5G home internet (AU). Desktop (Kali) + mobile device (Wi‑Fi on/off).<br>
+        <b>Summary:</b> BitStarz was accessible in a browser. Command-line tooling (curl/whatweb) encountered Cloudflare protection on the current landing domain.
+      </p>
+
+      <p>
+        <b>Observed affiliate chain:</b><br>
+        <code>https://bzstarz1.com/bybxoueoz</code> → <code>302</code> → <code>https://bitstarz1235.com/a/?stag=…</code> → <code>403</code> (Cloudflare challenge via CLI)
+      </p>
+
+      <p>
+        <b>DNS observed at test time:</b><br>
+        <code>bitstarz1235.com</code> → <code>104.21.32.195</code>, <code>172.67.154.112</code>
+      </p>
+
+      <p class="text-xs text-slate-500">
+        Notes: entry domains can rotate and challenge behavior can differ between browser and automated tools.
+        Availability may vary by ISP, device type, and location.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why mobile works -->
+  <section class="bg-slate-900 border border-slate-800 rounded-xl p-8">
+    <h2 class="text-2xl font-black mb-4 text-white">Why mobile can work when desktop doesn’t</h2>
+    <div class="space-y-4 text-slate-400 leading-relaxed">
+      <p>
+        Some casinos operate multiple domains and apply routing rules. You might see:
+      </p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><span class="text-slate-200 font-semibold">Different entry domains</span> for different regions or devices</li>
+        <li><span class="text-slate-200 font-semibold">Mobile-first redirects</span> when mirrors are used</li>
+        <li><span class="text-slate-200 font-semibold">ISP/DNS filtering</span> and/or WAF challenges that vary by network</li>
+      </ul>
+      <p>
+        If you’re comparing casinos, start from the comparisons hub:
+        <a href="/index.html" class="text-emerald-400 font-bold hover:underline">SecurityAllround Comparisons</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Payments -->
+  <section>
+    <h2 class="text-2xl font-black mb-4 text-white">Crypto + fiat support (time-sensitive)</h2>
+    <div class="space-y-4 text-slate-400 leading-relaxed">
+      <p>
+        BitStarz is widely described as crypto-friendly. Fiat options may also be available, depending on region/currency and eligibility.
+        Treat payment method lists as time-sensitive and confirm inside the cashier.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <h2 class="text-2xl font-black mb-6 text-white">FAQ</h2>
+    <div class="space-y-4">
+      <details class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <summary class="cursor-pointer font-bold text-slate-100">Is BitStarz accessible in Australia?</summary>
+        <p class="text-slate-400 mt-3 leading-relaxed">
+          During testing on an AU Vodafone 5G connection, BitStarz was accessible in a browser.
+          CLI tools hit Cloudflare protection on the current landing domain. Availability can vary by ISP/device/location/time.
+        </p>
+      </details>
+
+      <details class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <summary class="cursor-pointer font-bold text-slate-100">Is the BitStarz link on SecurityAllround an affiliate link?</summary>
+        <p class="text-slate-400 mt-3 leading-relaxed">
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-xl p-10 text-center">
+    <h2 class="text-3xl font-black text-white mb-4">Try the verified route</h2>
+    <p class="text-slate-400 mb-8 max-w-2xl mx-auto">
+      If you hit access issues, start from the verified route and test on your device/network.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="/go/bitstarz/" rel="nofollow sponsored"
+         class="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-black px-10 py-4 rounded-xl">
+        Play BitStarz Now
+      </a>
+      <a href="/index.html" class="inline-block bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-10 py-4 rounded-xl">
+        Back to Comparisons
+      </a>
+    </div>
+
+    <p class="text-xs text-slate-500 mt-6">
+      Responsible gambling: only wager what you can afford to lose. If gambling stops being fun, take a break and seek support.
+    </p>
+
+    <p class="text-xs text-slate-500 mt-2">
+      Last tested: 2026-02-22 (Vodafone 5G AU)
+    </p>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="py-10 text-center text-slate-500 text-xs border-t border-slate-800 bg-slate-950">
+  <div class="mb-4 space-x-4">
+    <a href="/privacy.html" class="hover:text-emerald-400 transition">Privacy Policy</a>
+    <a href="/terms.html" class="hover:text-emerald-400 transition">Terms of Use</a>
+    <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition">Responsible Gambling</a>
+    <a href="/contact.html" class="text-emerald-500 font-bold hover:text-emerald-400 transition">Contact</a>
+  </div>
+
+  <p class="max-w-4xl mx-auto mb-3">
+    Casino bonuses and access availability may vary by region or device.
+  </p>
+  <p>© 2026 SecurityAllround</p>
+    <p class="text-[10px] text-slate-500 mt-4">Disclosure: Some links may be affiliate links.</p>
+</footer>
+
+</body>
+</html>

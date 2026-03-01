@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://securityallround.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://securityallround.com/about.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/contact.html</loc><priority>0.5</priority></url>
+
+  <!-- Money layer (commercial reviews) -->
+  <url><loc>https://securityallround.com/money/</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/money/bitstarz.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/money/bitkingz.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/money/casinoly.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/money/crocoslots.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/money/quickwin.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/money/spingranny.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/money/spinmama.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/money/spinwinera.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/money/vegasino.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/money/vincispin.html</loc><priority>0.8</priority></url>
+
+  <!-- Guides & Security Toolkit -->
+  <url><loc>https://securityallround.com/guides/</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/guides/toolkit.html</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/guides/proton-privacy-review.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/guides/nordpass-technical-review.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/guides/surfshark-technical-review.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/guides/ledger-technical-review.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/guides/ledger-setup-guide.html</loc><priority>0.8</priority></url>
+
+  <!-- Technical Audits -->
+  <url><loc>https://securityallround.com/bitkingz-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/bitstarz-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/casinoly-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/crocoslots-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/quickwin-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/spingranny-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/spinmama-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/spinwinera-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/vegasino-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/vincispin-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/zet-audit.html</loc><priority>0.7</priority></url>
+
+  <!-- Compliance & Legal -->
+  <url><loc>https://securityallround.com/privacy.html</loc><priority>0.3</priority></url>
+  <url><loc>https://securityallround.com/terms.html</loc><priority>0.3</priority></url>
+  <url><loc>https://securityallround.com/responsible-gambling.html</loc><priority>0.3</priority></url>
+</urlset>

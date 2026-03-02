@@ -2,183 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Spinmama Review (Access Notes + Bonus Snapshot) | SecurityAllround</title>
-  <meta name="description" content="Spinmama review with observed access notes and bonus snapshots. Not ranked: verify current terms on-site." />
-
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://securityallround.com/play/spinmama.html" />
-  <link rel="icon" type="image/png" href="../assets/New-logo.png" />
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MBPGLSNQYD"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-MBPGLSNQYD');
-  </script>
-  <script src="/assets/analytics.js" defer></script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "Review",
-    "itemReviewed": {
-      "@type": "SoftwareApplication",
-      "name": "Spinmama Casino",
-      "applicationCategory": "Game"
-    },
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": "4.7",
-      "bestRating": "5"
-    },
-    "author": {
-      "@type": "Organization",
-      "name": "SecurityAllround"
-    }
-  }
-  </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spinmama Review | SecurityAllround</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/New-logo.png">
   <style>
-    body { background:#020617; color:#f8fafc; }
+    body { 
+      font-family: 'Space Grotesk', sans-serif; background:#020617; color:#f8fafc; 
+      background-image: linear-gradient(rgba(2, 6, 23, 0.98), rgba(2, 6, 23, 0.98)),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2338bdf8' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .glass-overlay {
+        background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 2.5rem; position: relative; overflow: hidden;
+    }
   </style>
   <script src="/assets/nav.js" defer></script>
 </head>
-
-<body class="font-sans antialiased bg-slate-950">
-
-  <nav class="border-b border-slate-800 bg-slate-900/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
+<body class="min-h-screen flex flex-col">
+  <nav class="border-b border-white/10 bg-slate-950/80 backdrop-blur py-4 px-6 sticky top-0 z-50">
   <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
     <a href="/" class="flex items-center gap-3 min-w-0">
       <img src="/assets/New-logo.png" class="w-8 h-8 rounded-full" alt="SecurityAllround logo">
-      <span class="font-black text-white tracking-tight truncate">SecurityAllround Agency</span>
+      <span class="font-black text-white tracking-tight truncate uppercase italic">SecurityAllround Agency</span>
     </a>
-
     <div class="hidden md:flex items-center gap-4 uppercase text-[10px] tracking-widest font-bold">
-      <a href="/play/" class="text-slate-300 hover:text-sky-400">S-01</a>
-      <a href="/custody/" class="text-slate-300 hover:text-emerald-400">S-02</a>
-      <a href="/fortress/" class="text-slate-300 hover:text-violet-400">S-03</a>
-      <a href="/shield/" class="text-slate-300 hover:text-amber-400">S-04</a>
-      <a href="/tactical/" class="text-slate-300 hover:text-red-500">S-05</a>
-      <a href="/armory/" class="text-slate-300 hover:text-slate-400">S-06</a>
-      <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2">Uplink</a>
+      <a href="/play/" class="text-sky-400 font-black">S-01</a>
+      <a href="/custody/" class="text-slate-300 hover:text-emerald-400 transition">S-02</a>
+      <a href="/fortress/" class="text-slate-300 hover:text-violet-400 transition">S-03</a>
+      <a href="/shield/" class="text-slate-300 hover:text-amber-400 transition">S-04</a>
+      <a href="/tactical/" class="text-slate-300 hover:text-red-500 transition">S-05</a>
+      <a href="/armory/" class="text-slate-300 hover:text-slate-400 transition">S-06</a>
+      <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2 transition">Uplink</a>
     </div>
-
-    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">☰</button>
-  </div>
-
-  <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800 text-xs uppercase font-bold tracking-widest">
-    <a href="/play/" class="block text-slate-300 hover:text-sky-400">Sector 01: Play</a>
-    <a href="/custody/" class="block text-slate-300 hover:text-emerald-400">Sector 02: Custody</a>
-    <a href="/fortress/" class="block text-slate-300 hover:text-violet-400">Sector 03: Fortress</a>
-    <a href="/shield/" class="block text-slate-300 hover:text-amber-400">Sector 04: Shield</a>
-    <a href="/tactical/" class="block text-slate-300 hover:text-red-500">Sector 05: Tactical</a>
-    <a href="/armory/" class="block text-slate-300 hover:text-slate-400">Sector 06: Armory</a>
-    <a href="/contact/" class="block text-sky-400 font-black pt-2">Communications Uplink</a>
+    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800">☰</button>
   </div>
 </nav>
 
-
-<header class="py-12 px-6 border-b border-slate-800 bg-slate-900 relative overflow-hidden">
-    <!-- Header Background Overlay -->
-    <div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background1.png');"></div>
-    
+  <header class="py-12 px-6 relative overflow-hidden bg-slate-900 border-b border-white/10">
+    <div class="absolute inset-0 opacity-25 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background1.png');"></div>
     <div class="max-w-4xl mx-auto relative z-10">
-      <div class="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-3xl overflow-hidden shadow-2xl">
-        <img src="/assets/spinmama-bonus-header.png" alt="Spinmama welcome bonus header snapshot" class="w-full h-auto border-b border-slate-800">
-
-        <div class="p-8 md:p-12">
+      <div class="glass-overlay overflow-hidden shadow-2xl">
+        <img src="/assets/spinmama-bonus-header.png" alt="Spinmama header" class="w-full h-auto border-b border-white/10">
+        <div class="p-8 md:p-12 text-center md:text-left">
           <h1 class="text-4xl md:text-6xl font-black mb-4 uppercase italic tracking-tighter text-white">Spinmama</h1>
           <p class="text-xl text-slate-300 mb-8 font-light leading-relaxed">
-            Independent infrastructure review featuring observed access notes and high-fidelity bonus snapshots. 
+            Independent infrastructure review featuring observed access notes and high-fidelity bonus snapshots for AU network users.
           </p>
-
           <div class="flex flex-col sm:flex-row gap-4">
             <a href="/go/spinmama/" rel="nofollow sponsored"
-               class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-10 py-4 rounded-2xl text-center transition-all shadow-lg shadow-emerald-900/40 uppercase tracking-widest text-sm">
+               class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-10 py-4 rounded-2xl text-center shadow-lg transition-all uppercase text-sm tracking-widest">
               Play Spinmama
             </a>
-            <a href="/play/" class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-10 py-4 rounded-2xl text-center transition uppercase tracking-widest text-sm border border-slate-600">
-              Back to Comparisons
+            <a href="/play/" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-10 py-4 rounded-2xl text-center border border-slate-600 transition uppercase text-sm tracking-widest">
+              Back to Hub
             </a>
           </div>
-
-          <p class="text-[10px] text-slate-500 mt-6 uppercase tracking-[0.2em] font-bold">
-            Project Status: Verified Audit // Access may vary by region
-          </p>
         </div>
       </div>
     </div>
   </header>
 
   <main class="max-w-6xl mx-auto py-12 px-6 space-y-10">
-    <section class="relative overflow-hidden bg-slate-800/40 border border-slate-700/50 rounded-[2.5rem] p-10 md:p-16 shadow-2xl">
-      <!-- Brighter casino-themed background overlay -->
+    <section class="glass-overlay p-10 md:p-16 shadow-2xl">
       <div class="absolute inset-0 opacity-25 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background3.png');"></div>
-      
       <div class="relative z-10">
         <h2 class="text-4xl font-black mb-8 uppercase tracking-tighter italic text-white drop-shadow-md">Observed Testing Notes</h2>
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <ul class="text-lg text-slate-100 space-y-5 font-bold">
-            <li class="flex items-center gap-4 bg-black/30 p-4 rounded-xl border border-white/5 backdrop-blur-sm">
+            <li class="flex items-center gap-4 bg-black/30 p-4 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl">
               <span class="w-3 h-3 bg-emerald-400 rounded-full shadow-[0_0_15px_#34d399]"></span>
-              Entry: <span class="text-emerald-400 font-mono">14spinmama74.com</span>
+              Entry domain: <span class="text-emerald-400 font-mono">14spinmama74.com</span>
             </li>
-            <li class="flex items-center gap-4 bg-black/30 p-4 rounded-xl border border-white/5 backdrop-blur-sm">
+            <li class="flex items-center gap-4 bg-black/30 p-4 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl">
               <span class="w-3 h-3 bg-emerald-400 rounded-full shadow-[0_0_15px_#34d399]"></span>
-              Bonus: <span class="text-slate-100 italic">Multi-day split delivery</span>
+              Bonus Node: <span class="text-slate-100 italic">Multi-day split delivery observed</span>
             </li>
-            <li class="flex items-center gap-4 bg-black/30 p-4 rounded-xl border border-white/5 backdrop-blur-sm">
+            <li class="flex items-center gap-4 bg-black/30 p-4 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl">
               <span class="w-3 h-3 bg-emerald-400 rounded-full shadow-[0_0_15px_#34d399]"></span>
-              Status: <span class="text-slate-100 italic font-medium">Variable Access (ISP dependent)</span>
+              Access: <span class="text-slate-100 italic font-medium uppercase text-xs tracking-widest">Variable (ISP dependent)</span>
             </li>
           </ul>
-          <div class="bg-emerald-500/10 p-8 rounded-3xl border border-emerald-500/30 backdrop-blur-md">
-            <p class="text-xs text-emerald-400 uppercase tracking-widest mb-3 font-black">Audit Verdict</p>
+          <div class="bg-emerald-500/10 p-8 rounded-3xl border border-emerald-500/30 backdrop-blur-md shadow-2xl">
+            <p class="text-xs text-emerald-400 uppercase tracking-widest mb-3 font-black underline decoration-white underline-offset-4">Audit Verdict</p>
             <p class="text-lg text-slate-200 leading-relaxed font-medium italic">"Infrastructure stability rated high. Optimal performance observed on AU mobile hardware deployments."</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Brightened Middle Section with Background -->
-    <section class="relative overflow-hidden bg-slate-800/60 border border-slate-700 rounded-[2.5rem] p-10 md:p-16 shadow-inner">
+    <section class="glass-overlay p-10 md:p-12 shadow-inner">
       <div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background2.png');"></div>
-      
       <div class="relative z-10">
         <h2 class="text-3xl font-black mb-6 uppercase tracking-tight text-white italic">Welcome Bonus Snapshot</h2>
-        <p class="text-sm text-slate-400 mb-8 font-medium">
-          High-fidelity capture during independent verification. Confirm active terms inside the platform portal.
-        </p>
+        <p class="text-sm text-slate-400 mb-8 font-medium">High-fidelity capture during independent verification. Confirm active terms inside the platform.</p>
         <div class="flex justify-center group">
-          <img src="/assets/spinmama-welcome-bonus.png" alt="Spinmama welcome bonus full screenshot" class="max-w-full rounded-3xl border-2 border-slate-600 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] transition duration-700 group-hover:scale-[1.02] group-hover:border-emerald-500/50">
+          <img src="/assets/spinmama-welcome-bonus.png" alt="Spinmama welcome bonus full screenshot" class="max-w-full rounded-3xl border-2 border-slate-600 shadow-2xl transition duration-700 group-hover:scale-[1.01] group-hover:border-emerald-500/50">
         </div>
       </div>
     </section>
 
-    <section class="relative overflow-hidden bg-slate-800/80 border border-emerald-500/30 rounded-[3rem] p-12 md:p-20 text-center shadow-[0_0_50px_rgba(16,185,129,0.1)]">
+    <section class="glass-overlay p-12 md:p-20 text-center border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.1)]">
       <div class="absolute inset-0 opacity-30 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background4.png');"></div>
-      
       <div class="relative z-10 max-w-3xl mx-auto">
-        <h2 class="text-5xl font-black mb-10 uppercase tracking-tighter italic text-white drop-shadow-lg">Action & Infrastructure</h2>
+        <h2 class="text-5xl font-black mb-10 uppercase tracking-tighter italic text-white drop-shadow-lg">Execution Hub</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <a href="/go/spinmama/" rel="nofollow sponsored" 
-             class="flex items-center justify-center gap-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-6 rounded-2xl transition-all shadow-2xl shadow-emerald-900/50 uppercase text-base tracking-widest hover:-translate-y-1">
+             class="flex items-center justify-center gap-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-6 rounded-2xl transition-all shadow-2xl uppercase tracking-widest text-sm">
             <span>Play Spinmama</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
           <a href="/spinmama-audit.html" 
-             class="flex items-center justify-center gap-4 bg-slate-900 hover:bg-slate-800 text-emerald-400 font-black py-6 rounded-2xl transition-all border-2 border-emerald-500/30 uppercase text-base tracking-widest hover:-translate-y-1">
+             class="flex items-center justify-center gap-4 bg-slate-900 hover:bg-slate-800 text-emerald-400 font-black py-6 rounded-2xl transition-all border-2 border-emerald-500/30 uppercase tracking-widest text-sm">
             <span>Technical Audit</span>
-          </a>
-          <a href="/play/" 
-             class="sm:col-span-2 flex items-center justify-center gap-3 bg-black/40 hover:bg-black/60 text-slate-400 hover:text-white font-bold py-5 rounded-2xl transition border border-white/10 uppercase text-xs tracking-widest mt-4">
-            Return to Comparisons Hub
           </a>
         </div>
       </div>
@@ -190,7 +128,7 @@
         <a href="/about/" class="hover:text-white transition">The Agency</a>
         <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
         <a href="/terms.html" class="hover:text-white transition">Terms</a>
-        <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition">Responsible Gambling</a>
+        <a href="/responsible-gambling.html" class="hover:text-white transition text-emerald-500">Responsible Gambling</a>
         <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
     </div>
     <img src="/assets/trimmed-logo.png" alt="Logo" class="h-10 mx-auto mb-8 opacity-20 grayscale">
@@ -198,8 +136,5 @@
         &copy; 2026 SecurityAllround Organisation. AU Technical Standards.
     </p>
 </footer>
-
-
-
 </body>
 </html>

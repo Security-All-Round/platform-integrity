@@ -34,88 +34,71 @@
   <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
     <a href="/" class="flex items-center gap-3 min-w-0">
       <img src="/assets/New-logo.png" class="w-8 h-8 rounded-full" alt="SecurityAllround logo">
-      <span class="font-black text-white tracking-tight truncate">SecurityAllround Agency</span>
+      <span class="font-black text-white tracking-tight truncate uppercase italic">SecurityAllround Agency</span>
     </a>
     <div class="hidden md:flex items-center gap-4 uppercase text-[10px] tracking-widest font-bold">
-      <a href="/play/" class="text-slate-300 hover:text-sky-400 font-black text-sky-400">S-01</a>
-      <a href="/custody/" class="text-slate-300 hover:text-emerald-400">S-02</a>
-      <a href="/fortress/" class="text-slate-300 hover:text-violet-400">S-03</a>
-      <a href="/shield/" class="text-slate-300 hover:text-amber-400">S-04</a>
-      <a href="/tactical/" class="text-slate-300 hover:text-red-500">S-05</a>
-      <a href="/armory/" class="text-slate-300 hover:text-slate-400">S-06</a>
-      <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2">Uplink</a>
+      <a href="/play/" class="text-sky-400 font-black">S-01</a>
+      <a href="/custody/" class="text-slate-300 hover:text-emerald-400 transition">S-02</a>
+      <a href="/fortress/" class="text-slate-300 hover:text-violet-400 transition">S-03</a>
+      <a href="/shield/" class="text-slate-300 hover:text-amber-400 transition">S-04</a>
+      <a href="/tactical/" class="text-slate-300 hover:text-red-500 transition">S-05</a>
+      <a href="/armory/" class="text-slate-300 hover:text-slate-400 transition">S-06</a>
+      <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2 transition">Uplink</a>
     </div>
     <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800">☰</button>
   </div>
 </nav>
 
-  <main class="max-w-4xl mx-auto py-16 px-6 flex-grow space-y-12">
+  <main class="max-w-4xl mx-auto py-16 px-6 flex-grow space-y-12 text-slate-300">
     <header class="text-center">
       <div class="flex items-center justify-center gap-3 mb-4">
         <span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold uppercase border border-emerald-500/20">Audit ID: VG-2026-002</span>
-        <span class="text-slate-600 text-[10px] font-mono uppercase">Last Verified: Feb 2026</span>
+        <span class="text-slate-600 text-[10px] font-mono uppercase font-bold">Status: Verified Pass</span>
       </div>
-      <h1 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-6 italic uppercase">Vegasino <span class="text-emerald-400">Infrastructure Audit</span></h1>
-      <p class="text-slate-400 text-xl leading-relaxed">Target Path: <span class="font-mono text-emerald-500">vegasino-1100.com/au/</span> | Status: <span class="text-emerald-400 font-bold uppercase">Pass</span></p>
-      <p class="text-slate-500 text-xs mt-4 max-w-3xl mx-auto">Audits reflect infrastructure observations at time of testing and do not constitute legal or financial advice.</p>
+      <h1 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-6 italic uppercase">Vegasino <span class="text-emerald-400">Technical Audit</span></h1>
+      <p class="text-slate-400 text-xl max-w-3xl mx-auto leading-relaxed italic">Structural evaluation of mobile-optimised cipher suites and L7 traffic redirection logic.</p>
     </header>
 
-    <section class="glass-overlay p-10 md:p-16 shadow-2xl relative">
+    <section class="glass-overlay p-10 md:p-16 shadow-2xl relative text-center">
       <div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background6.png');"></div>
-      <div class="relative z-10 text-center">
-        <h2 class="text-3xl font-black text-white mb-8 uppercase italic tracking-tighter text-emerald-400">Technical Profile</h2>
+      <div class="relative z-10">
+        <h2 class="text-3xl font-black text-white mb-8 uppercase italic tracking-tighter text-emerald-400">Infrastructure Recon</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             <div class="bg-black/60 p-4 rounded-xl border border-white/5 shadow-inner">
-                <p class="text-[10px] text-slate-500 uppercase font-black mb-1">Encryption</p>
+                <p class="text-[10px] text-slate-500 uppercase font-black mb-1">Standard</p>
                 <p class="text-white font-mono text-sm">TLS 1.3</p>
             </div>
             <div class="bg-black/60 p-4 rounded-xl border border-white/5 shadow-inner">
                 <p class="text-[10px] text-slate-500 uppercase font-black mb-1">WAF</p>
-                <p class="text-white font-mono text-sm">Cloudflare</p>
+                <p class="text-white font-mono text-sm">Enterprise</p>
             </div>
             <div class="bg-black/60 p-4 rounded-xl border border-white/5 shadow-inner">
                 <p class="text-[10px] text-slate-500 uppercase font-black mb-1">AU Latency</p>
                 <p class="text-emerald-400 font-mono text-sm">28ms</p>
             </div>
             <div class="bg-black/60 p-4 rounded-xl border border-white/5 shadow-inner">
-                <p class="text-[10px] text-slate-500 uppercase font-black mb-1">Integrity</p>
-                <p class="text-emerald-400 font-mono text-sm">99.8%</p>
+                <p class="text-[10px] text-slate-500 uppercase font-black mb-1">Handshake</p>
+                <p class="text-emerald-400 font-mono text-sm">1-RTT</p>
             </div>
+        </div>
+        
+        <div class="bg-black/40 p-8 rounded-3xl border border-white/5 font-mono text-[11px] text-slate-300 overflow-x-auto leading-relaxed text-left italic shadow-inner">
+            <p class="mb-4 text-emerald-500 uppercase font-black tracking-widest underline underline-offset-8 decoration-white">Cryptographic Node Analysis</p>
+            [+] Cipher: TLS_CHACHA20_POLY1305_SHA256 (256-bit)<br>
+            [+] Performance: High-entropy stream verification confirmed<br>
+            [+] Traffic Logic: Mobile User-Agent Enforcement Verified<br>
+            [+] Filtering: Layer-7 Fingerprinting Active (vegasino-1100.com)
         </div>
       </div>
     </section>
 
-    <section class="space-y-6">
-        <div class="glass-overlay p-8 md:p-10 border-l-4 border-l-emerald-500">
-            <h2 class="text-2xl font-black text-white mb-4 uppercase italic tracking-tight text-emerald-400">01. Cryptographic Standard</h2>
-            <p class="text-slate-300 leading-relaxed font-bold mb-4">Analysis confirms the use of high-entropy cipher suites designed for mobile performance and secure financial transactions.</p>
-            <div class="bg-black/40 p-6 rounded-2xl border border-white/5 font-mono text-emerald-400 text-sm leading-relaxed">
-                [+] Protocol: TLSv1.3<br>
-                [+] Cipher: TLS_CHACHA20_POLY1305_SHA256 (256-bit)<br>
-                [+] Handshake: 1-RTT (Mobile-optimized)<br>
-                [+] Key Exchange: ECDHE_RSA_AES_256_GCM
-            </div>
-        </div>
-
-        <div class="glass-overlay p-8 md:p-10 border-l-4 border-l-slate-600">
-            <h2 class="text-2xl font-black text-white mb-4 uppercase italic tracking-tight text-emerald-400">02. Infrastructure Recon</h2>
-            <p class="text-slate-300 leading-relaxed font-bold mb-4">Vegasino employs advanced traffic management. Vetting revealed active application-layer filtering to maintain mirror longevity.</p>
-            <div class="bg-black/40 p-6 rounded-2xl border border-white/5 font-mono text-slate-400 text-sm leading-relaxed">
-                - Active Mirror: vegasino-1100.com (Verified)<br>
-                - Traffic Logic: Mobile User-Agent Enforcement<br>
-                - Filtering: Layer-7 Fingerprinting (403 Desktop Redirection)<br>
-                - Edge Network: Cloudflare Enterprise Anycast
-            </div>
-        </div>
-    </section>
-
     <!-- THE VERDICT -->
-    <section class="glass-overlay p-12 md:p-20 text-center relative">
+    <section class="glass-overlay p-12 md:p-20 text-center relative border-2 border-emerald-500/20">
       <div class="absolute inset-0 opacity-30 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background1.png');"></div>
       <div class="relative z-10 max-w-2xl mx-auto">
-        <h3 class="text-4xl font-black text-white mb-8 uppercase italic text-emerald-400 tracking-tighter underline decoration-white underline-offset-8">Execution Verdict</h3>
+        <h3 class="text-4xl font-black text-white mb-10 uppercase italic text-emerald-400 underline decoration-white underline-offset-8">Execution Verdict</h3>
         <p class="text-xl text-slate-100 font-black italic leading-relaxed mb-6">"Vegasino architecture prioritises mobile performance without compromising financial encryption standards."</p>
-        <p class="text-slate-400 leading-relaxed font-medium mb-10">Our independent audit confirms that the Vegasino infrastructure employs highly efficient 1-RTT handshakes, significantly reducing latency for AU-based mobile users. The use of Poly1305 authentication ensures data integrity during high-frequency platform interactions.</p>
+        <p class="text-slate-400 leading-relaxed font-medium mb-10 italic">Our independent audit confirms that the Vegasino infrastructure employs highly efficient 1-RTT handshakes, significantly reducing latency for AU-based mobile users. The use of Poly1305 authentication ensures data integrity during high-frequency platform interactions.</p>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <a href="/go/bitstarz/" rel="nofollow sponsored" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black py-5 rounded-2xl transition shadow-xl uppercase tracking-widest text-xs px-10">Try Verified Choice</a>

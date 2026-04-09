@@ -143,3 +143,5 @@ vite.config.ts.timestamp-*
 links/
 .links.txt
 *.links.txt
+
+play/index2.html

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker 2.0 | Declassification Report: Stripe & HackerOne</title>
+    <style>
+        :root { --accent: #ff4444; --bg: #0a0a0a; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; border: 1px solid #333; padding: 40px; background: rgba(20, 20, 20, 0.8); }
+        h1, h2 { color: var(--accent); text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .evidence-box { background: #1a1a1a; border-left: 4px solid var(--accent); padding: 15px; margin: 20px 0; }
+        .screenshot-placeholder { background: #333; width: 100%; height: auto; min-height: 200px; display: flex; align-items: center; justify-content: center; margin: 15px 0; border: 1px dashed #666; }
+        img { max-width: 100%; height: auto; border: 1px solid #444; }
+        .timeline { list-style: none; padding: 0; }
+        .timeline li { margin-bottom: 15px; padding-left: 20px; border-left: 2px solid #444; }
+        .timeline b { color: var(--accent); }
+        .status-badge { display: inline-block; padding: 5px 15px; background: var(--accent); color: #000; font-weight: bold; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="status-badge">PUBLIC DISCLOSURE: CASE #STRP-25K</div>
+    <h1>The Anatomy of a Shadow-Patch</h1>
+    <p>This report documents the systematic failure of HackerOne mediation and the bad-faith "Shadow-Patching" utilized by Stripe to avoid a $25,000 USD critical vulnerability payout.</p>
+
+    <div class="evidence-box">
+        <strong>EXECUTIVE SUMMARY:</strong> A critical Account Takeover vulnerability was reported. Stripe Support confirmed the fix. Days later, Stripe Security claimed the bug was "Intended Behavior" while simultaneously hardening the system against the exact exploit discovered.
+    </div>
+
+    <h2>01. The Administrative Wall</h2>
+    <p>Following a dispute on a separate platform (Meesho), HackerOne lowered my reputation to -5, effectively silencing my ability to report critical bugs or request mediation.</p>
+    <p>HackerOne Support explicitly stated that bypasses for "Critical" bugs were impossible. This was proven false when Stripe Security forced a bypass within minutes once the email to security@stripe.com was seen by the right person.</p>
+    <div class="screenshot-placeholder">
+        <img src="H1-deny-submitting-report1.png" alt="Screenshot showing H1 refusing to bypass restriction">
+    </div>
+    <div class="screenshot-placeholder">
+        <img src="email-to-allow-reporting.png" alt="Screenshot of email where stripe got bypass on report restriction">
+    </div>
+
+    <h2>02. The Disclosure Timeline</h2>
+    <ul class="timeline">
+        <li><b>MARCH 20, 2026 - 11:06 PM UTC:</b> Critical report submitted to Stripe via HackerOne.</li>
+        <li><b>MARCH 21, 2026 - 02:17 PM UTC:</b> <strong>THE SMOKING GUN.</strong> Stripe Support confirms the bug is fixed and thanks me for bringing it to their attention.</li>
+    </ul>
+    <div class="screenshot-placeholder">
+        <img src="1stripe-support-email-with-dates-times.png" alt="Email from Stripe confirming the fix">
+    </div>
+
+    <h2>03. The Deception</h2>
+    <p>On March 25th, Stripe Security attempted to re-write the narrative. They claimed the vulnerability—which they had already fixed—was "Intended Behavior."</p>
+    <div class="evidence-box">
+        "The behavior described is working as intended... user bears responsibility." - Stripe Security (March 25)
+    </div>
+    <p><strong>The Reality:</strong> My logs prove they restricted the redirect and hardened the client registration logic immediately following my report. You do not "fix" intended behavior.</p>
+    <div class="screenshot-placeholder">
+        <img src="restricted-redirect_uri.png" alt="Comparison showing the system change post-report">
+    </div>
+
+    <h2>04. Internal Receipt</h2>
+    <p>A formal demand was issued to Stripe Legal. While no official response was given, internal network tracking confirmed access by Stripe personnel.</p>
+    <div class="screenshot-placeholder">
+        <img src="canary-log.png" alt="Canarytoken log showing Stripe Organization access">
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #333; margin: 40px 0;">
+
+    <h2>CONCLUSION</h2>
+    <p>HackerOne and Stripe demonstrated a coordinated effort to secure their infrastructure using researcher data while intentionally gatekeeping the financial compensation owed for that data.</p>
+    <p><strong>HACKER 2.0</strong> is the direct response to this fraud. We are building a protocol where the patch <em>is</em> the proof of payment.</p>
+    
+    <p style="text-align: center; margin-top: 50px;">
+        <a href="index.html" style="color: var(--accent); text-decoration: none;">[ RETURN TO MAIN INTERFACE ]</a>
+    </p>
+</div>
+
+</body>
+</html>

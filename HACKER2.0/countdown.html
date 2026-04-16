@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker 2.0 | Declassification Timer</title>
+    <style>
+        body {
+            background-image: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), url('site-idea-background4.png');
+            background-size: cover;
+            background-color: #0a0a0a;
+            color: #ff4444; /* Red for the "Warning" vibe */
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        #timer { font-size: 5rem; font-weight: bold; margin: 20px 0; text-shadow: 0 0 20px #ff0000; }
+        .warning { font-size: 1.5rem; letter-spacing: 5px; opacity: 0.8; }
+        .desc { max-width: 600px; color: #e0e0e0; font-family: sans-serif; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" style="color: #666; text-decoration: none; font-size: 0.9rem; margin-bottom: 30px; border: 1px solid #333; padding: 5px 15px; border-radius: 4px; transition: 0.3s;">
+        [ ESCAPE / BACK TO HOME ]
+    </a>
+    <div class="warning">DISCLOSURE PENDING</div>
+    <div id="timer">00d 00h 00m 00s</div>
+    <div style="font-size: 0.8rem; opacity: 0.5; margin-top: -10px;">TIMEZONE: AEST (UTC+10)</div>
+    
+    <div class="desc">
+        The full technical case study and evidence regarding the Stripe triage failure will be automatically declassified when this timer hits zero. <br><br>
+        <strong>Current Status:</strong> STILL SILENCE / AWAITING ANY SORT OF ANSWER.
+    </div>
+
+    <script>
+        // Set your deadline: April 15th, 2026 at 2:29 PM AEST
+        const deadline = new Date("2026-04-15T14:29:00+10:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const t = deadline - now;
+            
+            const days = Math.floor(t / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+            const format = (num) => String(num).padStart(2, '0');
+
+            document.getElementById("timer").innerHTML = 
+                format(days) + "d " + format(hours) + "h " + 
+                format(minutes) + "m " + format(seconds) + "s ";
+
+            if (t < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "DECLASSIFIED";
+                document.body.style.color = "#00ff41"; // Flip to green when it's go-time
+                window.location.href = "temp-hold.html";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

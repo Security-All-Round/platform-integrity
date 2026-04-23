@@ -9,16 +9,16 @@
   :root {
     --bg: #0a0e14;
     --bg-soft: #0f1419;
-    --fg: #e8fff0;
-    --fg-dim: #a8d4b8;
+    --fg: #b3f0c1;
+    --fg-dim: #5c7a6a;
     --green: #00ff6a;
     --green-bright: #39ff88;
     --red: #ff3e3e;
-    --yellow: #ff8c00;
+    --yellow: #ffb454;
     --cyan: #59c2ff;
     --magenta: #e36ff0;
-    --white: #f0fff5;
-    --border: #243d2e;
+    --white: #e6ffec;
+    --border: #1a2b22;
   }
   * { box-sizing: border-box; }
   html, body {

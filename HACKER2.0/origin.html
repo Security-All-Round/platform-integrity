@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker 2.0 | Declassification: The Stripe/H1 Case Study</title>
+    <style>
+        :root { --accent: #ff4444; --bg: #0a0a0a; --text: #e0e0e0; --code-bg: #111; }
+        body { background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 1100px; margin: 0 auto; border: 1px solid #333; padding: 40px; background: rgba(15, 15, 15, 0.98); box-shadow: 0 0 50px rgba(255, 0, 0, 0.1); }
+        h1, h2, h3 { color: var(--accent); text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 40px; }
+        .timeline-tree { list-style: none; padding: 20px; margin: 30px 0; border: 1px dashed #444; background: #050505; }
+        .timeline-tree li { margin-bottom: 12px; padding-left: 25px; position: relative; border-left: 1px solid #333; }
+        .timeline-tree b { color: #fff; }
+        .evidence-item { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 1px solid #222; }
+        .evidence-text { background: var(--code-bg); border-left: 4px solid var(--accent); padding: 20px; margin: 15px 0; font-size: 0.9rem; }
+        img, video { max-width: 100%; height: auto; border: 1px solid #444; margin-top: 20px; display: block; }
+        .canary-hit { border: 2px solid var(--accent); background: #000; padding: 20px; color: #00ff41; font-size: 0.85rem; overflow-x: auto; font-family: 'Consolas', monospace; }
+        .status-badge { display: inline-block; padding: 8px 20px; background: var(--accent); color: #000; font-weight: bold; margin-bottom: 20px; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="status-badge">DECLASSIFIED EVIDENCE: #STRP-25K-AUD</div>
+    <h1>Institutionalized Bounty Fraud</h1>
+    <p>A technical narrative and forensic log of the Stripe MCP vulnerability disclosure, shadow-patch, and subsequent payment refusal.</p>
+    
+    <h3>The Unified Timeline</h3>
+    <ul class="timeline-tree">
+        <li><b>[MAR 16]</b> Meesho report N/A - Reputation loss (-5) - Manual lockout initiated.</li>
+        <li><b>[MAR 19 12:49]</b> H1 Ticket #645235: Urgent request to allow Critical Stripe report - <b>DENIED/AUTO-CLOSED.</b></li>
+        <li><b>[MAR 20 22:50]</b> Bypass forced via direct intervention from Stripe Security on X (Twitter).</li>
+        <li><b>[MAR 20 23:06]</b> <b>CVSS 10.0 REPORT SUBMITTED.</b></li>
+        <li><b>[MAR 21 08:03]</b> Stripe Support confirms bypass successful.</li>
+        <li><b>[MAR 21 22:56]</b> <b>STRIPE CONFIRMS FIX:</b> Stripe Support (Divine) confirms bug is fully resolved.</li>
+        <li><b>[MAR 23 16:14]</b> H1 Triager attempts to mark report as Duplicate of "Informative."</li>
+        <li><b>[MAR 25 15:49]</b> Stripe Security claims "Intended Behavior" - Refuses $25k Payout.</li>
+        <li><b>[MAR 25 17:12]</b> <b>REBUTTAL:</b> Technical proof confirmed that redirect_uri was restricted post-disclosure.</li>
+        <li><b>[APR 08 10:00]</b> <b>INTERNAL ACCESS:</b> admin.corp.stripe.com views legal demand.</li>
+    </ul>
+
+    <div class="evidence-section">
+        <h2>01. The Administrative Blockade (HackerOne Failure)</h2>
+        <div class="evidence-item">
+            <p>Following an unfair reputation drop from a Meesho report, I was locked out of reporting. HackerOne Support maintained it was "impossible" to bypass the restriction, even for a Critical bug, while their ticket system systematically auto-closed urgent warnings.</p>
+            <img src="1attempt-to-correct-meesho.png" alt="Meesho Dispute">
+            <img src="H1-deny-submitting-report1.png" alt="H1 Refusal to Extend Trial">
+            <img src="1Broken-ticket-system.png" alt="Automated Support Loop">
+            <img src="2H1-support-failure.png" alt="H1 Support Failure">
+        </div>
+
+        <h2>02. The Forced Bypass (Stripe Intervention)</h2>
+        <div class="evidence-item">
+            <p>Realizing HackerOne was leaving Stripe's infrastructure exposed, I went over their heads to Stripe Support on their website, Stripe Security on X and via email. They weren't going to knowingly let a critical bug remain out there without finding out what it is unlike HackerOne that really didnt seem to care the slightest, so Stripe forced HackerOne to allow the report (the one that is not possible to bypass).</p>
+            <img src="notified-stripe-support-onX.png" alt="X Conversation with Stripe">
+            <img src="email-to-allow-reporting.png" alt="Bypass Confirmation Email">
+        </div>
+
+        <h2>03. Technical Evidence: POC & Original Report</h2>
+        <div class="evidence-item">
+            <p>The vulnerability allowed for full platform takeover via unauthenticated registration of high-trust client names with the 'mcp' scope.</p>
+            <img src="report.png" alt="Original Report Overview">
+            <img src="reportPOC-1.png" alt="POC 1">
+            <img src="reportPOC-2.png" alt="POC 2">
+            <img src="reportPOC-3.png" alt="POC 3">
+            <img src="reportPOC-4.png" alt="POC 4">
+        </div>
+
+        <h2>04. The "Smoking Gun" (March 21st Admission)</h2>
+        <div class="evidence-item">
+            <p>Less than 24 hours after submission, Stripe Support confirmed the bug was fixed. This email is the definitive proof that the report was actionable, critical, and remediated.</p>
+            <img src="1stripe-support-email-with-dates-times.png" alt="Divine Confirmation of Fix">
+            <img src="stripe-reply-to-email.png" alt="Stripe Support Response">
+        </div>
+
+        <h2>05. The Deception (Shadow-Patching)</h2>
+        <div class="evidence-item">
+            <p>Four days after confirming the fix, Stripe Security attempted to claw back the bounty by claiming the vulnerability was "intended behavior." However, technical analysis proved they restricted the redirect_uri logic specifically to block the exploit I demonstrated.</p>
+            <img src="restricted-redirect_uri.png" alt="Proof of Hardening">
+            <img src="1marked-as-duplicate-told-intended.png" alt="Marked Duplicate/Intended">
+            <img src="comment3.png" alt="Final Rebuttal Proof">
+        </div>
+
+        <h2>06. Suspicious Hacktivity & Duplicates</h2>
+        <div class="evidence-item">
+            <p>While I got nothing but silence and my report was being buried, another "Informative" report with highly suspicious timing and bounty amount appeared in the Stripe hacktivity timeline, appearing to mask the impact of this CVSS 10.0.</p>
+            <img src="timeline-other-report-likely-fake.png" alt="Hacktivity Timeline Analysis">
+            <img src="1paid-report-comment-gap.png" alt="Comment Disparity">
+        </div>
+
+        <h2>07. Forensic Confirmation: The Corporate Referer</h2>
+        <div class="evidence-item">
+            <p>On April 8th, the formal legal demand was accessed via Stripe's internal administration network. The Referer header confirms the evidence was reviewed on their corporate workstations.</p>
+            
+                <img src="email-opening-map.png" alt="Where , when and how many times final email was opened">
+            
+            <div class="canary-hit">
+                <b>TIMESTAMP:</b> 2026-04-08 10:00:45.80 UTC<br>
+                <b>SOURCE IP:</b> 139.45.180.11 (AS5091 - Stripe, Inc.)<br>
+                <b>REFERER:</b> https://admin.corp.stripe.com/<br>
+                <b>USER AGENT:</b> Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36...
+            </div>
+            <p>The forensic fingerprint shows the "Organization: Stripe, Inc." and the internal "admin.corp.stripe.com" domain. They didn't just receive the demand—they triaged it internally while staying silent.</p>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 60px; opacity: 0.6;">
+        <a href="index.html" style="color: var(--accent); text-decoration: none;">[ EXIT DECLASSIFICATION ]</a>
+    </p>
+</div>
+
+</body>
+</html>

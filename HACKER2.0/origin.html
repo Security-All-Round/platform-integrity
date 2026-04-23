@@ -222,6 +222,12 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
     <div class="ec">After clicking Authorize, the browser redirects to the attacker-controlled webhook.site URL. The authorization <code>code</code> is captured in the query string (visible in the Request Details panel). Timestamp: 03/19/2026 5:25 PM. This code can be exchanged for an administrative MCP token valid for any merchant account that completes this flow. "ABLE TO GENERATE THIS CODE FOR ANY ACCOUNT THAT CLICKS THE AUTHORISED LINK."</div>
   </div>
 
+  <div class="ev">
+    <div class="el">Full Submitted Report — HackerOne #3619019</div>
+    <img src="report.png" alt="Full view of the submitted HackerOne report showing title, summary, CVSS score, impact analysis, and steps to reproduce">
+    <div class="ec">The full report as submitted to HackerOne — Title, CVSS 10.0, summary, four-vector impact analysis, and steps to reproduce. Submitted 20 March 2026 at 23:06 UTC. This is the document that received a single automated "Duplicate" response three days later.</div>
+  </div>
+
   <p>
     A full screen-recorded walkthrough of the complete attack chain was submitted with the
     report as <code>reportOauth_POC-2026-03-19_17_08_09.mkv</code>. The filename timestamp
@@ -292,6 +298,24 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
     <div class="ec">Ticket #645235 auto-closed at 12:49 AM as a "feature request" despite the title explicitly stating "Critical ATO Vulnerability in Stripe — Submission Blocked by Platform Restriction." Researcher replied immediately. By 1:59 AM the support channel responded: "This email no longer accepts new requests." The ticket that promised 72 hours to reopen closed itself in under 70 minutes on an active Critical disclosure in progress.</div>
   </div>
 
+  <div class="ev">
+    <div class="el">Stripe Support Notified — Researcher Confirms Report Submitted</div>
+    <img src="informed-stripe-security-i-reported.png" alt="Researcher informing Stripe Support that the report has been successfully submitted following the bypass">
+    <div class="ec">Researcher confirming to Stripe Support that report #3619019 was successfully submitted using the HackerOne bypass, with the full report ID and title provided for reference. Closes the escalation loop: X contact → bypass granted → report submitted → confirmed.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Direct Outreach to Stripe Security on X (Twitter)</div>
+    <img src="notified-stripe-support-onX.png" alt="Researcher contacting Stripe Security on X after HackerOne blocked submission">
+    <div class="ec">With HackerOne's channel closed, the researcher located Stripe Security on X (Twitter) and disclosed the existence of a Critical unauthenticated endpoint — withholding the full PoC until a secure channel was established. This was the escalation that ultimately triggered the HackerOne bypass.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Stripe Security Confirms HackerOne Bypass Applied</div>
+    <img src="email-to-allow-reporting.png" alt="Email from Sholihin Kamarudin at security@stripe.com confirming the submission limiter bypass has been applied to account reevesy_1">
+    <div class="ec">Email from Sholihin Kamarudin (<code>security@stripe.com</code>): <em>"We worked with HackerOne to remove the submission limitation on your account. They've applied a limiter bypass to your profile (reevesy_1), so you should be able to submit directly to our program now."</em> This is the confirmation that Stripe — not HackerOne — forced the channel open.</div>
+  </div>
+
   <div class="co r">
     <div class="ct2">Platform failure with consequences</div>
     HackerOne's automated system prevented disclosure of a CVSS 10.0 vulnerability on a core
@@ -335,7 +359,7 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
     <div class="ti key">
       <div class="td">21 March 2026 — ~22:56 AEST</div>
       <div class="tt g">Stripe Support Confirms Fix — Case sco_UBGGEEWlAeyXSv</div>
-      <div class="tb">Agent Divine emails: <em>"Our security team has confirmed that the issue is now fully resolved. We really appreciate you bringing this to our attention."</em> Fix confirmed within ~12 hours of submission, on a Sunday.</div>
+      <div class="tb">Agent Divine emails: <em>"Our security team has confirmed that the issue is now fully resolved. We really appreciate you bringing this to our attention."</em> Fix confirmed within ~12 hours of submission, on a Sunday. A follow-up email from Stripe Support (Parv) later that day confirmed the case had been escalated to a specialised team for final resolution.</div>
     </div>
 
     <div class="ti">
@@ -393,45 +417,121 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
   </div>
 
   <p style="font-size:13px;color:var(--mt)">Excerpts taken verbatim from the HackerOne AI support chat transcript, available in full upon request.</p>
+
+  <div class="ev">
+    <div class="el">Comment Thread — Researcher Rebuttal on Report #3619019</div>
+    <div class="eg">
+      <div>
+        <img src="comment1.png" alt="First researcher comment on HackerOne report requesting triage status update after Stripe confirms fix">
+        <div class="ec">First comment (21 Mar): Stripe Support case <code>sco_UBGGEEWlAeyXSv</code> cited as confirmation. Requesting Triaged status.</div>
+      </div>
+      <div>
+        <img src="comment2-H1-stripe-comment.png" alt="Second comment showing Stripe Support escalation confirmation and HackerOne silence">
+        <div class="ec">Second comment (21 Mar): Stripe Support (Parv) confirms escalation to specialised team. Still no HackerOne response. Report remains New/Open.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- 07 DUPLICATE ANALYSIS -->
 <div class="sec">
-  <div class="sh"><span class="sn">07 //</span><h2>The Duplicate Claim — What the Evidence Shows</h2></div>
+  <div class="sh"><span class="sn">07 //</span><h2>The Duplicate Claim — Five Reasons It Doesn't Hold</h2></div>
 
   <p>
-    On 23 March, @h1_analyst_tan marked report #3619019 as a duplicate of report
-    <strong>#3597174</strong>, submitted March 10, 2026 at 10:13 PM UTC — ten days before
-    this report. The researcher was told this other report "may contain additional information"
-    that cannot be shared. The following evidence is now visible and puts that claim in context.
+    On 23 March, @h1_analyst_tan marked report #3619019 as a duplicate of
+    <strong>#3597174</strong> — submitted March 10, marked <strong>Informative</strong>,
+    bounty paid: <strong>$0</strong>. The researcher raised the following arguments on the
+    report. They remain unanswered.
   </p>
 
-  <div class="ev">
-    <div class="el">Report #3619019 — Duplicate Metadata & Stripe's "Intended Behavior" Response</div>
-    <img src="1marked-as-duplicate-told-intended.png" alt="HackerOne report #3619019 showing Duplicate (Closed) status, duplicate of #3597174 marked Informative, Critical 9.6 severity, Bounty: None, alongside @e-stripe's working as intended comment">
-    <div class="ec">Report #3619019 metadata panel: Duplicate (Closed), Severity Critical (10.0), Duplicate of <strong>#3597174</strong> — marked <strong>Informative</strong>, duplicate severity Critical (9.6), Bounty: None. Left panel shows @e-stripe's "working as intended" comment and the researcher's rebuttal confirming redirect_uri restriction post-disclosure.</div>
+  <div class="co r">
+    <div class="ct2">Problem 1 — Automation almost certainly misfired on the "original"</div>
+    The duplicate report's own title (filled by HackerOne/Stripe) includes the word
+    <em>"phishing"</em>: <em>"Unauthenticated OAuth Client Registration... leads to account
+    takeover via phishing."</em> Phishing is explicitly out of scope in most bug bounty programs.
+    HackerOne's automated classifier would have flagged this and closed it as Informative
+    without a human ever reading that the actual vulnerability was the
+    <strong>unauthenticated registration endpoint</strong> — not phishing. The phishing was
+    only the downstream attack vector. The automation killed a valid Critical report on a
+    keyword match.
   </div>
 
   <div class="co r">
-    <div class="ct2">What the duplicate data reveals</div>
-    Report #3597174 — the alleged "original" — was itself marked <strong>Informative</strong>.
-    That means whoever submitted it also received nothing. It was not triaged, not remediated,
-    not bounty-paid. It sat for ten days while the endpoint remained fully exploitable.
-    Stripe then used this unresolved, unpaid, Informative report to deny a second researcher
-    who provided the specific PoC and SIRT coordination that resulted in the actual fix —
-    within 12 hours, on a Sunday.
+    <div class="ct2">Problem 2 — If it's Informative, the privacy justification collapses</div>
+    HackerOne's stated reason for not adding the researcher to #3597174:
+    <em>"the report may contain additional information that we cannot share with you."</em>
+    Informative reports contain no validated vulnerability, no confirmed impact, and no
+    bounty-eligible finding. What sensitive additional information exists in a closed,
+    unpaid, Informative report that justifies blocking a researcher from verifying the
+    duplicate claim? The privacy excuse only makes sense for a legitimate triaged report.
+    An Informative has nothing to protect. If the report is truly Informative with less
+    validated content than this submission, there is no basis for the privacy restriction —
+    and therefore no basis for refusing to let the researcher verify the duplicate.
+  </div>
+
+  <div class="co r">
+    <div class="ct2">Problem 3 — Circular logic: duplicate of evidence you cannot examine</div>
+    To mark a report a duplicate, a triager must confirm the vulnerability class and endpoint
+    match. HackerOne simultaneously claimed (a) #3597174 contains enough information to
+    confirm it's the same vulnerability, and (b) the researcher cannot see that information
+    to verify. The researcher is being asked to accept a duplicate ruling based on evidence
+    they are not permitted to examine. This is not how duplicate triage works.
+    If it's a valid duplicate, show the matching endpoint. If it can't be shown, the
+    duplicate determination cannot stand.
+  </div>
+
+  <div class="co r">
+    <div class="ct2">Problem 4 — An Informative report that sat 10 days does not explain a 12-hour fix</div>
+    If #3597174 was submitted March 10 and Stripe was aware of the vulnerability, why did
+    the endpoint remain fully exploitable for ten days? An Informative disposition means
+    no remediation was planned. Stripe's security team fixed the vulnerability within
+    12 hours of <em>this</em> report — on a Sunday — after Stripe Security personally
+    intervened with HackerOne to allow the submission through. That response pattern
+    is inconsistent with a team that already knew about and had deprioritised the issue.
+    The fix was triggered by this report. The duplicate claim is being used to deny credit
+    for work that was clearly operative.
+  </div>
+
+  <div class="co r">
+    <div class="ct2">Problem 5 — The $25,000 bounty paid the same day makes no sense if this was "Informative"</div>
+    On March 25 — the same day Stripe denied this bounty citing "Intended Behavior" —
+    a separate Stripe report was resolved with a <strong>$25,000 bounty</strong> (hacktivity
+    timestamp: March 25, 2026 09:40:18 AEST). If unauthenticated OAuth registration on
+    <code>access.stripe.com</code> was genuinely "Intended Behavior," and if the duplicate
+    report was already fully handled via #3597174, there is no explanation for why the same
+    endpoint class — on the same asset — warranted a simultaneous six-figure-adjacent payout
+    to another researcher. No claim is made about the content of that report. The timing and
+    amount are documented here as observed facts.
   </div>
 
   <div class="ev">
-    <div class="el">Hacktivity Timeline — $25,000 Bounty & Concurrent Activity</div>
-    <img src="1paid-report-comment-gap.png" alt="Stripe hacktivity showing $25,000 bounty awarded to rcss resolved 4 days ago, timestamped March 25 2026, alongside the duplicate-marked report #3619019">
-    <div class="ec">Stripe hacktivity panel showing a <strong>$25,000 bounty</strong> paid to user <code>rcss</code> on a Stripe report resolved around the same period (timestamp: March 25, 2026 09:40:18 AEST). This is documented here as observed timing context only — no claim is made about the content or legitimacy of that report or its author. The contrast between that payment and the $0 paid on a confirmed-fixed CVSS 10.0 is noted for the record.</div>
+    <div class="el">Report #3619019 — Duplicate Metadata & "Working As Intended" Response</div>
+    <img src="1marked-as-duplicate-told-intended.png" alt="HackerOne report #3619019 showing Duplicate Closed, duplicate of #3597174 Informative, Critical 10.0, Bounty None, with @e-stripe comment and researcher rebuttal">
+    <div class="ec">Metadata panel: Report #3619019 — Duplicate (Closed). Severity Critical (10.0). Duplicate of <strong>#3597174</strong> — disposition: <strong>Informative</strong>. Duplicate severity: Critical (9.6). Bounty: None. @e-stripe's "working as intended" comment visible alongside the researcher's redirect_uri rebuttal. Note: the original report (#3597174) was itself Critical 9.6 — yet marked Informative with no bounty paid to that researcher either.</div>
   </div>
 
   <div class="ev">
-    <div class="el">Full Report View — Hacktivity Side-by-Side</div>
-    <img src="timeline-other-report-likely-fake.png" alt="Full HackerOne report #3619019 view alongside the hacktivity panel showing timing of other bounty payments">
-    <div class="ec">Side-by-side view of report #3619019 (Duplicate Closed, Severity Critical 10.0, Bounty None) alongside the Stripe hacktivity timeline during the same period. Included for complete record transparency.</div>
+    <div class="el">Researcher's Rebuttal Comment on Report (24 March 2026)</div>
+    <img src="comment3.png" alt="Researcher comment on HackerOne report #3619019 challenging the duplicate determination with the mathematical impossibility argument">
+    <div class="ec">Researcher's comment requesting immediate management escalation: "If this was a known 'Critical' since March 10th, it is mathematically impossible that the endpoint remained unauthenticated and exploitable until my report forced the fix 11 days later." The rebuttal also notes the confirmed post-disclosure redirect_uri restriction as proof of remediation. This comment has not received a substantive response.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Hacktivity — $25,000 Bounty Paid Same Day as Denial (March 25, 2026)</div>
+    <img src="1paid-report-comment-gap.png" alt="Stripe hacktivity showing $25,000 bounty to rcss resolved March 25 alongside duplicate-closed report #3619019">
+    <div class="ec">Stripe hacktivity showing a <strong>$25,000 bounty</strong> paid to <code>rcss</code>, resolved around March 25, 2026 (timestamp: 09:40:18 AEST) — the same day this bounty was denied. No claim is made about that report's content or its author. The timing and amount are documented as observed facts for the record.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">$25,000 Bounty — Hacktivity Appearance</div>
+    <img src="25k-report-appears.png" alt="Hacktivity showing the $25,000 bounty appearing in the Stripe program timeline">
+    <div class="ec">Separate view of the $25,000 bounty appearing in the Stripe hacktivity feed. Documented for completeness — no claim is made about the content or legitimacy of the associated report.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Full Report + Hacktivity Context</div>
+    <img src="timeline-other-report-likely-fake.png" alt="Full HackerOne report view alongside hacktivity panel">
+    <div class="ec">Full report #3619019 view (Duplicate Closed, Severity Critical 10.0, Bounty None) alongside the Stripe hacktivity panel for the same period. Complete record transparency.</div>
   </div>
 </div>
 
@@ -474,8 +574,14 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
   </div>
 
   <div class="ev">
+    <div class="el">Stripe Support Reply — Case Escalation Acknowledgment</div>
+    <img src="stripe-reply-to-email.png" alt="Stripe Support reply acknowledging the critical vulnerability report and confirming escalation to specialised team">
+    <div class="ec">Stripe Support reply confirming receipt of the vulnerability report and escalation to a specialised security team — separate from the HackerOne channel. Documents that Stripe Support was independently tracking this case.</div>
+  </div>
+
+  <div class="ev">
     <div class="el">Email Open Map — Geographic &amp; Timestamp Record</div>
-    <img src="https://securityallround.com/HACKER2.0/email-opening-map.png" alt="Email open tracking map" loading="lazy">
+    <img src="email-opening-map.png" alt="Email open tracking map" loading="lazy">
     <div class="ec">Geographic and timestamp record of demand document access events.</div>
   </div>
 
@@ -503,6 +609,38 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
     <div class="el">Canary Token 2 — Access Log (ID: czytqe7jmge5vo11iynol80m2)</div>
     <img src="canary-token2-2026-04-23_16-27.png" alt="Second canary token showing access from 121.123.120.246 and 66.249.84.101 (Google) and 194.126.177.6">
     <div class="ec">Second token showing access from <code>121.123.120.246</code> across multiple sessions (April 18–21), <code>194.126.177.6</code> (April 18), and <code>66.249.84.101</code> (Google crawler, April 18). US west coast and UK/Europe clusters visible. Combined with Token 1, the logs confirm sustained, multi-session monitoring of this disclosure from multiple network sources including the Stripe AS5091 block.</div>
+  </div>
+</div>
+
+<!-- 10 MEESHO PRIOR CONDUCT -->
+<div class="sec">
+  <div class="sh"><span class="sn">10 //</span><h2>Prior Conduct — The Meesho Incident</h2></div>
+
+  <p>
+    The HackerOne reporting restriction that forced the researcher to contact Stripe Security
+    directly — delaying disclosure by five days while the vulnerability was live — was itself
+    the result of a disputed reputation penalty on an unrelated program.
+  </p>
+  <p>
+    A vulnerability was reported to Meesho via HackerOne. Meesho marked it N/A (their
+    decision, not HackerOne's). The researcher's IP was subsequently blocked from the Meesho
+    site — consistent with silent remediation of the reported issue. The -5 reputation penalty
+    remained active. All HackerOne mediation tickets were closed without review.
+  </p>
+
+  <div class="ev">
+    <div class="el">Meesho — Attempted Dispute Escalation</div>
+    <img src="1attempt-to-correct-meesho.png" alt="Researcher attempts to dispute Meesho N/A ruling and reputation penalty — all HackerOne mediation paths closed">
+    <div class="ec">Documented attempts to dispute the Meesho N/A ruling that caused the -5 reputation penalty. All HackerOne mediation tickets closed without review. The penalty remained, directly triggering the submission block that delayed the Stripe disclosure by five days and left a CVSS 10.0 endpoint publicly exploitable during that period.</div>
+  </div>
+
+  <div class="co a">
+    <div class="ct2">Why this matters to the Stripe disclosure</div>
+    Without the Meesho-triggered reputation penalty, the Stripe report would have been
+    submitted through normal channels on March 15 — five days earlier. The vulnerability
+    remained fully exploitable during that window. HackerOne's refusal to review the
+    disputed Meesho penalty had direct, measurable consequences for Stripe's infrastructure
+    security. This is not background context — it is a direct cause-and-effect relationship.
   </div>
 </div>
 

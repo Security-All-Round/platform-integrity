@@ -472,6 +472,7 @@ const HTB_TRANSCRIPT_PDF = "data:application/pdf;base64,JVBERi0xLjQKJSBjcmVhdGVk
   <span class="info">clear</span>         Clear the terminal   <span class="dim">(alias: cls)</span>
   <span class="ok">ask &lt;q&gt;</span>       Ask the AI anything about Ray   <span class="warn">★ AI-powered</span>
   <span class="ok">beck</span>          Beck Water application context  <span class="warn">★</span>
+  <span class="ok">apikey reset</span>  Clear stored Gemini API key     <span class="dim">(re-prompts on next ask)</span>
 
 <span class="dim">Tip: ↑/↓ = history, Tab = autocomplete, Ctrl+L = clear.</span>
 `,
@@ -1202,7 +1203,7 @@ Keep answers under 8 lines unless the question genuinely needs more. Stay in cha
 
     print('<span class="dim">[*] Querying Gemini... </span><span class="ok">█</span>');
     try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1528,7 +1529,7 @@ recruiter:x:1001:1001:You?,,,:/home/recruiter:/bin/bash</span>`;
 <span class="ok">│</span>                                                                         <span class="ok">│</span>
 <span class="ok">│</span>  Start: ${clickCmd('whoami')} ${clickCmd('transcript')} ${clickCmd('dashboards')} ${clickCmd('ctfs')} ${clickCmd('projects')} ${clickCmd('certs')} ${clickCmd('help')}     <span class="ok">│</span>
 <span class="ok">│</span>                                                                         <span class="ok">│</span>
-<span class="ok">│</span>  <span class="hl">AI:</span> ${clickCmd('ask [question]')} · ${clickCmd('beck')}                                         <span class="ok">│</span>
+<span class="ok">│</span>  <span class="hl">AI:</span> ${clickCmd('ask [question]')} · ${clickCmd('beck')} · ${clickCmd('apikey reset')}                  <span class="ok">│</span>
 <span class="ok">│</span>                                                                         <span class="ok">│</span>
 <span class="ok">│</span>  <span class="dim">↑/↓ history · Tab autocomplete · Ctrl+L clear · click any green cmd</span>  <span class="ok">│</span>
 <span class="ok">╰─────────────────────────────────────────────────────────────────────────╯</span>

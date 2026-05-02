@@ -1172,12 +1172,7 @@ Keep answers under 8 lines unless the question genuinely needs more. Stay in cha
 <span class="warn">╰────────────────────────────────────────────────────────────────────╯</span>
 <span class="dim">Paste your key and press Enter (or type </span><span class="err">cancel</span><span class="dim"> to abort):</span>`);
 
-      function keyHandler(e) {
-        e.preventDefault();
-        const val = input.value.trim();
-        input.value = '';
-        form.removeEventListener('submit', keyHandler);
-
+      form._interceptKey = function(val) {
         if (!val || val.toLowerCase() === 'cancel') {
           print('<span class="err">[!] Cancelled.</span>');
           resolve(null);
@@ -1189,8 +1184,7 @@ Keep answers under 8 lines unless the question genuinely needs more. Stay in cha
           print('<span class="err">[!] Doesn\'t look like a Gemini key (should start with AIza). Try: </span>' + clickCmd('ask'));
           resolve(null);
         }
-      }
-      form.addEventListener('submit', keyHandler);
+      };
     });
   }
 
@@ -1450,11 +1444,15 @@ recruiter:x:1001:1001:You?,,,:/home/recruiter:/bin/bash</span>`;
   }
 
   form.addEventListener('submit', async (e) => {
-    form._keyHandler = form._keyHandler || null;
     e.preventDefault();
     if (!booted) return;
-    const val = input.value;
+    const val = input.value.trim();
     input.value = '';
+    if (form._interceptKey) {
+      form._interceptKey(val);
+      form._interceptKey = null;
+      return;
+    }
     await handleSubmit(val);
   });
 

@@ -1140,16 +1140,84 @@ KEY FACTS ABOUT RAY:
 
 Keep answers under 8 lines unless the question genuinely needs more. Stay in character as Ray's resume AI.`;
 
+  const API_KEY_STORAGE = 'ray_resume_anthropic_key';
+
+  function getStoredKey() {
+    try { return localStorage.getItem(API_KEY_STORAGE) || ''; } catch(e) { return ''; }
+  }
+  function saveKey(k) {
+    try { localStorage.setItem(API_KEY_STORAGE, k); } catch(e) {}
+  }
+  function clearKey() {
+    try { localStorage.removeItem(API_KEY_STORAGE); } catch(e) {}
+  }
+
+  function promptForKey() {
+    return new Promise((resolve) => {
+      print(`<span class="warn">╭─ API KEY REQUIRED ─────────────────────────────────────────────────╮</span>
+<span class="warn">│</span>  The <span class="hl">ask</span> command is powered by Claude (Anthropic's API).           <span class="warn">│</span>
+<span class="warn">│</span>                                                                    <span class="warn">│</span>
+<span class="warn">│</span>  <span class="bright">Why do I need my own key?</span>                                         <span class="warn">│</span>
+<span class="warn">│</span>  <span class="dim">Ray can't front the API costs for every visitor — so this feature</span> <span class="warn">│</span>
+<span class="warn">│</span>  <span class="dim">runs on your own key. It's also proof of concept: this is exactly</span> <span class="warn">│</span>
+<span class="warn">│</span>  <span class="dim">the kind of AI integration Ray builds.</span>                            <span class="warn">│</span>
+<span class="warn">│</span>                                                                    <span class="warn">│</span>
+<span class="warn">│</span>  <span class="bright">Is my key safe?</span>                                                   <span class="warn">│</span>
+<span class="warn">│</span>  <span class="dim">Yes. This is a static HTML file — no server, no backend, no</span>       <span class="warn">│</span>
+<span class="warn">│</span>  <span class="dim">logging. Your key goes from your browser directly to Anthropic.</span>   <span class="warn">│</span>
+<span class="warn">│</span>  <span class="dim">Ray has no way to see or capture it. It's stored in YOUR browser.</span> <span class="warn">│</span>
+<span class="warn">│</span>                                                                    <span class="warn">│</span>
+<span class="warn">│</span>  <span class="dim">No key? No problem — all other commands work without one.</span>         <span class="warn">│</span>
+<span class="warn">│</span>  <span class="dim">Get a free key at: </span><a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> <span class="dim">(free tier available)</span>  <span class="warn">│</span>
+<span class="warn">╰────────────────────────────────────────────────────────────────────╯</span>
+<span class="dim">Paste your key and press Enter (or type </span><span class="err">cancel</span><span class="dim"> to abort):</span>`);
+
+      // Temporarily hijack form submit for key entry
+      const origHandler = form._keyHandler;
+      function keyHandler(e) {
+        e.preventDefault();
+        const val = input.value.trim();
+        input.value = '';
+        form.removeEventListener('submit', keyHandler);
+        if (origHandler) form.addEventListener('submit', origHandler);
+
+        if (!val || val.toLowerCase() === 'cancel') {
+          print('<span class="err">[!] Cancelled.</span>');
+          resolve(null);
+        } else if (val.startsWith('sk-ant-')) {
+          saveKey(val);
+          print('<span class="ok">[+] Key saved to your browser. You won\'t need to enter it again.</span>');
+          resolve(val);
+        } else {
+          print('<span class="err">[!] That doesn\'t look like an Anthropic key (should start with sk-ant-). Try again with: </span>' + clickCmd('ask'));
+          resolve(null);
+        }
+      }
+      form.addEventListener('submit', keyHandler);
+    });
+  }
+
   async function askAI(question) {
     if (!question || question.trim().length < 2) {
-      print('<span class="err">[!] Usage: ask [your question]</span>\n<span class="dim">    e.g. ask what experience do you have with automation?</span>');
+      print('<span class="err">[!] Usage: ask [your question]</span>\n<span class="dim">    e.g.  ask what experience does Ray have with automation?</span>');
       return;
     }
-    print('<span class="dim">[*] Querying AI... </span><span class="ok">█</span>');
+
+    let apiKey = getStoredKey();
+    if (!apiKey) {
+      apiKey = await promptForKey();
+      if (!apiKey) return;
+    }
+
+    print('<span class="dim">[*] Querying Claude... </span><span class="ok">█</span>');
     try {
       const res = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'anthropic-dangerous-direct-browser-access': 'true',
+          'x-api-key': apiKey
+        },
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
           max_tokens: 1000,
@@ -1158,22 +1226,35 @@ Keep answers under 8 lines unless the question genuinely needs more. Stay in cha
         })
       });
       const data = await res.json();
+
+      // Remove the "querying" line
+      const lastLine = term.lastElementChild;
+      if (lastLine) lastLine.remove();
+
+      if (data.error) {
+        if (data.error.type === 'authentication_error') {
+          clearKey();
+          print(`<span class="err">[!] Invalid API key — cleared. Try: </span>${clickCmd('ask ' + question)}`);
+        } else {
+          print(`<span class="err">[!] API error: ${escapeHtml(data.error.message)}</span>`);
+        }
+        return;
+      }
+
       if (data.content && data.content[0] && data.content[0].text) {
-        // Remove last "querying" line and print response
-        const lastLine = term.lastElementChild;
-        if (lastLine) lastLine.remove();
         const text = data.content[0].text;
         const escaped = text
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
-          .replace(/\[(\+|\*|!|>)\]/g, '<span class="ok">[$1]</span>')
-          .replace(/\n/g, '\n');
-        print(`<span class="ok">[+]</span> <span class="info">AI Response:</span>\n<span class="dim">─────────────────────────────────────</span>\n${escaped}\n<span class="dim">─────────────────────────────────────</span>\n<span class="dim">ask another question or type </span>${clickCmd('help')}`);
+          .replace(/\[(\+|\*|!|>)\]/g, '<span class="ok">[$1]</span>');
+        print(`<span class="ok">[+]</span> <span class="info">Claude says:</span>\n<span class="dim">─────────────────────────────────────────────</span>\n${escaped}\n<span class="dim">─────────────────────────────────────────────</span>\n<span class="dim">Type </span>${clickCmd('ask [another question]')}<span class="dim"> to keep going · </span>${clickCmd('apikey reset')}<span class="dim"> to change key</span>`);
       } else {
-        print('<span class="err">[!] No response received. Try again.</span>');
+        print('<span class="err">[!] Unexpected response format.</span>');
       }
     } catch(e) {
+      const lastLine = term.lastElementChild;
+      if (lastLine) lastLine.remove();
       print(`<span class="err">[!] Connection error: ${escapeHtml(e.message)}</span>`);
     }
   }
@@ -1210,6 +1291,9 @@ Keep answers under 8 lines unless the question genuinely needs more. Stay in cha
 <span class="dim">Type </span>${clickCmd('ask why should beck water hire ray?')}<span class="dim"> to ask the AI anything.</span>
 <span class="dim">Type </span>${clickCmd('contact')}<span class="dim"> for Ray's contact details.</span>
 `;
+
+  commands['apikey reset'] = () => { clearKey(); return '<span class="ok">[+] API key cleared. Next </span>' + clickCmd('ask') + '<span class="ok"> will prompt for a new one.</span>'; };
+  commands['apikey clear'] = commands['apikey reset'];
 
   // Aliases
   commands.history = commands.experience;
@@ -1374,6 +1458,7 @@ recruiter:x:1001:1001:You?,,,:/home/recruiter:/bin/bash</span>`;
   }
 
   form.addEventListener('submit', async (e) => {
+    form._keyHandler = form._keyHandler || null;
     e.preventDefault();
     if (!booted) return;
     const val = input.value;

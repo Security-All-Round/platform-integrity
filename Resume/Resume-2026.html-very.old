@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>raymond@reeves:~ — Interactive Resume</title>
 <meta name="description" content="Raymond Reeves — Cybersecurity Professional. Interactive terminal resume.">
@@ -10,16 +9,16 @@
   :root {
     --bg: #0a0e14;
     --bg-soft: #0f1419;
-    --fg: #e8fff0;
-    --fg-dim: #a8d4b8;
+    --fg: #b3f0c1;
+    --fg-dim: #5c7a6a;
     --green: #00ff6a;
     --green-bright: #39ff88;
     --red: #ff3e3e;
-    --yellow: #ff8c00;
+    --yellow: #ffb454;
     --cyan: #59c2ff;
     --magenta: #e36ff0;
-    --white: #f0fff5;
-    --border: #243d2e;
+    --white: #e6ffec;
+    --border: #1a2b22;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -470,8 +469,6 @@ const HTB_TRANSCRIPT_PDF = "data:application/pdf;base64,JVBERi0xLjQKJSBjcmVhdGVk
   <span class="info">view &lt;name&gt;</span>   Display a specific credential  <span class="dim">(e.g. view pt1)</span>
   <span class="info">nmap</span>          Scan my skills   <span class="dim">(sudo -l, tree, neofetch also work)</span>
   <span class="info">clear</span>         Clear the terminal   <span class="dim">(alias: cls)</span>
-  <span class="ok">ask &lt;q&gt;</span>       Ask the AI anything about Ray   <span class="warn">★ AI-powered</span>
-  <span class="ok">beck</span>          Beck Water application context  <span class="warn">★</span>
 
 <span class="dim">Tip: ↑/↓ = history, Tab = autocomplete, Ctrl+L = clear.</span>
 `,
@@ -1113,104 +1110,6 @@ I've been training like it's my job. All I need is the shot.
 `,
   };
 
-  // ── AI-powered ask command ──────────────────────────────────────────────
-  const RAY_CONTEXT = `You are an AI assistant embedded in Raymond Reeves' interactive terminal resume.
-Answer questions about Ray concisely and in a terminal/hacker style — short punchy lines, no fluff.
-Use plain text only. No markdown formatting like ** or ##. Use terminal-style indicators like [+] or [>] instead.
-
-KEY FACTS ABOUT RAY:
-- Gold Coast, QLD. Available for on-site work immediately.
-- 15 years physical security (Gold Coast University Hospital 2015-2022, Village Roadshow Theme Parks 2022-2024)
-- Self-taught ethical hacker / pentester for 8-10 years
-- TryHackMe Top 1% global (sustained). PT1 certified (Junior Pentester) March 2026.
-- HTB Top 2% — ranked 107/5,694 teams globally at Cyber Apocalypse 2024
-- HTB Academy Top 5% — 122 targets compromised, 2 full paths completed
-- Certs: Cert IV Cybersecurity (TAFE QLD 2025), THM PT1, ISC2 CC + 7 domains, AWS Cloud Foundations, Cisco Ethical Hacker
-- Tools daily: Claude CLI (expert), Gemini CLI, Node-RED, Burp Suite Pro, Metasploit, Splunk, Python, Kali Linux
-- Built a multi-agent AI orchestration system: Claude as supervisor, Gemini as worker, running in tmux side-by-side via CLI. Directs Gemini to execute tasks, summarises results back to Claude for next decision. Human (Ray) oversees as manager.
-- Built a 47-module Python pentest framework (90+ files) covering recon through reporting
-- Bug bounty: discovered CVSS 10.0 critical vulnerability in Stripe MCP OAuth infrastructure — unauthenticated endpoint allowed full merchant account takeover. Fixed within 12 hours on a Sunday. Bounty denied via disputed duplicate claim. Full disclosure: securityallround.com/HACKER2.0/origin.html
-- Applying for AI & Automation Specialist role at Beck Water (Gold Coast). The role is about using Claude, automation, and workflow tools to improve business operations.
-- PortSwigger Web Academy: 57/59 Apprentice, 151/171 Practitioner, 17/39 Expert
-- Node-RED: advanced user, workflow automation and API integration
-- Has no formal CS degree but equivalent hands-on experience
-- Strong ability to explain technical concepts to non-technical people (15 years doing exactly that in physical security)
-- Transition from physical security to cyber is deliberate — AI and automation is reshaping both fields
-- Email: s3curityallround@gmail.com | securityallround.com | LinkedIn: raymond-reeves-security-all-round
-
-Keep answers under 8 lines unless the question genuinely needs more. Stay in character as Ray's resume AI.`;
-
-  async function askAI(question) {
-    if (!question || question.trim().length < 2) {
-      print('<span class="err">[!] Usage: ask [your question]</span>\n<span class="dim">    e.g. ask what experience do you have with automation?</span>');
-      return;
-    }
-    print('<span class="dim">[*] Querying AI... </span><span class="ok">█</span>');
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: RAY_CONTEXT,
-          messages: [{ role: 'user', content: question }]
-        })
-      });
-      const data = await res.json();
-      if (data.content && data.content[0] && data.content[0].text) {
-        // Remove last "querying" line and print response
-        const lastLine = term.lastElementChild;
-        if (lastLine) lastLine.remove();
-        const text = data.content[0].text;
-        const escaped = text
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/\[(\+|\*|!|>)\]/g, '<span class="ok">[$1]</span>')
-          .replace(/\n/g, '\n');
-        print(`<span class="ok">[+]</span> <span class="info">AI Response:</span>\n<span class="dim">─────────────────────────────────────</span>\n${escaped}\n<span class="dim">─────────────────────────────────────</span>\n<span class="dim">ask another question or type </span>${clickCmd('help')}`);
-      } else {
-        print('<span class="err">[!] No response received. Try again.</span>');
-      }
-    } catch(e) {
-      print(`<span class="err">[!] Connection error: ${escapeHtml(e.message)}</span>`);
-    }
-  }
-
-  commands.beck = () => `
-<span class="ok">╭─ BECK WATER · AI & AUTOMATION SPECIALIST ─────────────────╮</span>
-<span class="ok">│</span>  Applying for:  <span class="hl">AI & Automation Specialist</span>                   <span class="ok">│</span>
-<span class="ok">│</span>  Location:      Ashmore, Gold Coast — <span class="ok">I'm local ✓</span>             <span class="ok">│</span>
-<span class="ok">│</span>  Salary range:  $90k–$120k                                   <span class="ok">│</span>
-<span class="ok">╰─────────────────────────────────────────────────────────────╯</span>
-
-<span class="warn">[ What I bring to Beck Water ]</span>
-
-  <span class="ok">→</span> <span class="hl">Claude expert</span> — running Claude CLI daily in a multi-agent setup
-    where Claude supervises Gemini as a worker in automated workflows.
-    This IS the kind of AI orchestration Beck Water wants to build.
-
-  <span class="ok">→</span> <span class="hl">Node-RED</span> — visual workflow automation. Connect APIs, trigger
-    actions, build integrations without full application development.
-    Direct match to the low-code integration platform requirement.
-
-  <span class="ok">→</span> <span class="hl">Ships real things</span> — 47-module Python pentest framework,
-    this interactive AI-powered resume, multi-agent Claude/Gemini system.
-    Not a talker. A builder.
-
-  <span class="ok">→</span> <span class="hl">Physical ops background</span> — 15 years in hospitals and theme parks
-    means I understand how real businesses actually run before touching
-    any tooling. Months 1-3 at Beck Water? That's literally my career.
-
-  <span class="ok">→</span> <span class="hl">Security mindset</span> — the role mentions designing AI security policies.
-    I found a CVSS 10.0 critical bug in Stripe's AI infrastructure.
-    Few applicants bring that to the table.
-
-<span class="dim">Type </span>${clickCmd('ask why should beck water hire ray?')}<span class="dim"> to ask the AI anything.</span>
-<span class="dim">Type </span>${clickCmd('contact')}<span class="dim"> for Ray's contact details.</span>
-`;
-
   // Aliases
   commands.history = commands.experience;
   commands.work = commands.experience;
@@ -1259,10 +1158,6 @@ recruiter:x:1001:1001:You?,,,:/home/recruiter:/bin/bash</span>`;
     }
     if (cmd.startsWith('sudo ') && cmd !== 'sudo -l') {
       return print('<span class="err">raymond is not in the sudoers file. This incident will be reported.</span>\n<span class="comment"># jk, try `sudo -l`</span>');
-    }
-    if (cmd.startsWith('ask ') || cmd === 'ask') {
-      const question = cmd.slice(4).trim();
-      return askAI(question);
     }
     if (cmd.startsWith('nmap')) {
       return nmapSim();
@@ -1452,8 +1347,6 @@ recruiter:x:1001:1001:You?,,,:/home/recruiter:/bin/bash</span>`;
 <span class="ok">│</span>  <span class="hl">Top 5% HTB Academy · 122 targets · Top 1% THM · Top 2% HTB CTF 2024</span>    <span class="ok">│</span>
 <span class="ok">│</span>                                                                         <span class="ok">│</span>
 <span class="ok">│</span>  Start: ${clickCmd('whoami')} ${clickCmd('transcript')} ${clickCmd('dashboards')} ${clickCmd('ctfs')} ${clickCmd('projects')} ${clickCmd('certs')} ${clickCmd('help')}     <span class="ok">│</span>
-<span class="ok">│</span>                                                                         <span class="ok">│</span>
-<span class="ok">│</span>  <span class="hl">AI:</span> ${clickCmd('ask [question]')} · ${clickCmd('beck')}                                         <span class="ok">│</span>
 <span class="ok">│</span>                                                                         <span class="ok">│</span>
 <span class="ok">│</span>  <span class="dim">↑/↓ history · Tab autocomplete · Ctrl+L clear · click any green cmd</span>  <span class="ok">│</span>
 <span class="ok">╰─────────────────────────────────────────────────────────────────────────╯</span>

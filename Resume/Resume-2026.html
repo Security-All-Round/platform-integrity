@@ -494,6 +494,15 @@ cyber security self-study &amp; certification. Recently certified — <span clas
 Active bug bounty researcher and author of a custom modular Python pentest
 framework with 90+ files across 47 modules.
 
+<span class="warn">┌─ Critical Disclosure ────────────────────────────────────┐</span>
+  <span class="hl">Stripe MCP OAuth Bypass</span>  <span class="ok">(CVSS 10.0 · Mar 2026)</span>
+  Unauthenticated endpoint at access.stripe.com/mcp/oauth2/register
+  allowed any attacker to register OAuth clients with full merchant
+  control scope — customer records, payments, subscriptions.
+  <span class="ok">Fixed within 12 hours of submission (Sunday).</span>
+  <span class="dim">→ </span><a href="https://securityallround.com/HACKER2.0/origin.html" target="_blank" style="color:var(--cyan)">securityallround.com/HACKER2.0/origin.html</a>
+<span class="warn">└──────────────────────────────────────────────────────────┘</span>
+
 <span class="comment"># Cert IV in Cyber Security (TAFE QLD) + 20+ industry credentials.</span>
 <span class="comment"># Kali/Parrot daily driver. Burp, Metasploit, Splunk, Python.</span>
 
@@ -526,6 +535,11 @@ I'm still ascending. See </span>${clickCmd('transcript')}<span class="dim"> for 
 
 <span class="hl">WHY HIRE ME</span>
 <span class="dim">─────────────────────────────────────────────────────────────</span>
+I found a CVSS 10.0 critical in Stripe's production AI infrastructure.
+Unauthenticated OAuth registration with full merchant scope — payments,
+customers, subscriptions. Fixed in 12 hours. That's not training.
+That's the job.
+
 I've been training like it's my job. All I need is the shot.
 `,
 

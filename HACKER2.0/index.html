@@ -3,58 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacker 2.0 | The Future of Bug Bounties</title>
+    <title>HACKER2.0 | The Platform Built Because the Old One is Broken</title>
     <style>
         :root {
             --bg: #0a0a0a;
             --text: #e0e0e0;
-            --accent: #00ff41; /* Matrix/Cyber Green */
+            --accent: #00ff41;
+            --accent-red: #ff4444;
             --card-bg: #1a1a1a;
+            --border: #333;
         }
+        * { box-sizing: border-box; }
         body {
-            background-image: linear-gradient(rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0.45)), url('site-idea-background4.png');
+            background-image: linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.5)), url('site-idea-background4.png');
             background-size: cover;
             background-position: top center;
             background-attachment: fixed;
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
+        /* ── HEADER ── */
         header {
-            padding: 4rem 1rem;
+            padding: 5rem 1rem 3rem;
             text-align: center;
             max-width: 800px;
         }
-        h1 { font-size: 3rem; color: var(--accent); margin-bottom: 0; }
-        .tagline { font-size: 1.2rem; opacity: 0.8; }
-        
-        .container {
+        h1 { font-size: 3.5rem; color: var(--accent); margin-bottom: 0.3rem; letter-spacing: 2px; }
+        .tagline { font-size: 1.2rem; opacity: 0.75; margin-top: 0; }
+
+        /* ── SHARED SECTION WRAPPER ── */
+        .section {
+            width: 100%;
             max-width: 900px;
             padding: 2rem;
+        }
+        .section-dark {
+            width: 100%;
+            background: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            padding: 3rem 1rem;
+        }
+        .section-dark > .inner { max-width: 900px; width: 100%; }
+
+        h2 { color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-top: 0; }
+        h3 { color: var(--accent); margin-top: 2rem; }
+
+        /* ── TWO-COL CARDS ── */
+        .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
         }
         .card {
             background: var(--card-bg);
             padding: 2rem;
             border-radius: 8px;
-            border: 1px solid #333;
+            border: 1px solid var(--border);
         }
-        h2 { color: var(--accent); border-bottom: 1px solid #333; padding-bottom: 10px; }
-        
+        .card h2 { font-size: 1.2rem; }
+        .card ul { padding-left: 1.2rem; }
+        .card ul li { margin-bottom: 0.4rem; }
+
+        /* ── PROBLEM SECTION ── */
+        .problem-block {
+            background: #110000;
+            border-left: 3px solid var(--accent-red);
+            padding: 1.5rem 2rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+        .problem-block p { margin: 0.4rem 0; }
+
+        /* ── FEATURE NUMBERS ── */
+        .feature {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+        .feature-num {
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: bold;
+            min-width: 2.5rem;
+            line-height: 1;
+            padding-top: 4px;
+        }
+        .feature-body h3 { margin-top: 0; margin-bottom: 0.3rem; font-size: 1.1rem; }
+        .feature-body p { margin: 0; opacity: 0.85; }
+
+        /* ── PRINCIPLES ── */
+        .principles {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .principle {
+            background: #0f0f0f;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .principle .num { font-size: 2rem; color: var(--accent); font-weight: bold; margin-bottom: 0.5rem; }
+        .principle p { margin: 0; font-size: 0.95rem; opacity: 0.85; }
+        .principle strong { color: var(--accent); }
+
+        /* ── STATS STRIP ── */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: #111;
+            width: 100%;
+            padding: 2rem 1rem;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+        .stat { text-align: center; }
+        .stat-num { font-size: 2.2rem; color: var(--accent-red); font-weight: bold; }
+        .stat-label { font-size: 0.85rem; opacity: 0.6; }
+
+        /* ── QUOTE ── */
+        .quote-block {
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.5rem;
+            background: #111;
+            border-radius: 4px;
+            font-style: italic;
+            margin: 2rem 0;
+            opacity: 0.9;
+        }
+
+        /* ── CTA / WAITLIST ── */
         .cta-section {
             text-align: center;
             padding: 4rem 1rem;
             background: #111;
             width: 100%;
         }
+        .cta-section h3 { color: var(--text); max-width: 700px; margin: 0 auto 2rem; }
         .btn {
             display: inline-block;
             background: var(--accent);
@@ -65,84 +163,232 @@
             font-weight: bold;
             margin: 10px;
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
         }
         .btn:hover { background: #00cc33; transform: scale(1.05); }
-        
-        footer { padding: 2rem; opacity: 0.5; font-size: 0.8rem; }
-        
+        .btn-red {
+            background: transparent;
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red);
+        }
+        .btn-red:hover { background: #ff444422; transform: scale(1.05); }
+
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            background: #222;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        form label { display: block; margin-bottom: 5px; opacity: 0.8; font-size: 0.9rem; }
+        .form-group { margin-bottom: 18px; }
+        .radio-group { margin-bottom: 18px; }
+        .radio-group input { width: auto; margin-right: 6px; }
+
+        footer { padding: 2rem; opacity: 0.4; font-size: 0.8rem; text-align: center; }
+
         @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .principles { grid-template-columns: 1fr; }
+            .feature { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
 
+<!-- ══ HEADER ══ -->
 <header>
     <h1>HACKER2.0</h1>
     <p class="tagline">The platform built because the old one is broken.</p>
 </header>
 
-<div class="container">
-    <div class="card">
-        <h2>For Researchers</h2>
-        <p>No more "Intended Behavior" or "Duplicate" lies after a silent patch. We use <strong>Automated Verification Protocols</strong> to trigger an independant review the moment a fix is detected.</p>
-        <ul>
-            <li>Escrow-backed bounties.</li>
-            <li>No "Reputation" gatekeeping.</li>
-            <li>Fair Peer-Review Arbitration.</li>
-        </ul>
-    </div>
-    <div class="card">
-        <h2>For Programs</h2>
-        <p>Attract the world's best talent by proving your integrity. Avoid public PR disasters and get high-signal, zero-noise vulnerability data.</p>
-        <ul>
-            <li>Verified Security Attestation.</li>
-            <li>Reduced Legal/PR Risk.</li>
-            <li>Automated Triage Efficiency.</li>
-        </ul>
+<!-- ══ QUICK CARDS ══ -->
+<div class="section">
+    <div class="grid-2">
+        <div class="card">
+            <h2>For Researchers</h2>
+            <p>No more "Intended Behavior" or unverifiable "Duplicate" claims after a silent patch. Escrow releases automatically the moment a fix is detected — no human can override it.</p>
+            <ul>
+                <li>Escrow-backed bounties, released on patch detection</li>
+                <li>No reputation gatekeeping on dispute access</li>
+                <li>Three independent triagers — every decision has a written reason</li>
+                <li>Duplicate claims require a registry entry, not just a claim</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>For Programs</h2>
+            <p>Transparency protects you. The researchers who go public, file legal demands, and contact journalists are almost never the ones who got a fair explanation. They're the ones who got silence.</p>
+            <ul>
+                <li>Verified security attestation — proof you take researchers seriously</li>
+                <li>Reduced legal and PR risk through documented process</li>
+                <li>High-signal reports from verified researchers only</li>
+                <li>Automated triage efficiency — no manual payment delays</li>
+            </ul>
+        </div>
     </div>
 </div>
 
-<div class="cta-section">
-    <h4>                                       Subject to change </h4>
-    
-    <h3>The current model is built on trust that doesn't exist. We're building the protocol that doesn't need it.</h3>
-    
-    <a href="countdown.html" class="btn" style="background: transparent; border: 1px solid #ff4444; color: #ff4444; margin-bottom: 20px;">
-    ⚠️ DECLASSIFICATION IN PROGRESS: VIEW COUNTDOWN
-</a>
+<!-- ══ THE PROBLEM ══ -->
+<div class="section-dark">
+    <div class="inner">
+        <h2>The Problem</h2>
+        <div class="problem-block">
+            <p>Bug bounty platforms are supposed to be neutral. They're not.</p>
+            <p>HackerOne, Bugcrowd, Intigriti — their customer is the company. The researcher is the product. When a dispute happens, the platform sides with whoever pays the bills.</p>
+        </div>
+        <p>Researchers get:</p>
+        <ul>
+            <li><strong>Silent duplicate claims</strong> they can't verify or challenge — the original report is hidden, the similarity is asserted, and no proof is required</li>
+            <li><strong>"Intended behavior" verdicts</strong> on bugs that get quietly patched days later — with no acknowledgment and no bounty</li>
+            <li><strong>Reputation penalties</strong> from companies who mark valid bugs N/A to avoid paying — then that reputation score blocks access to dispute and mediation</li>
+            <li><strong>Auto-closed support tickets</strong> when you try to escalate</li>
+            <li><strong>Zero explanation. Zero transparency. Zero recourse.</strong></li>
+        </ul>
+        <div class="quote-block">
+            "A CVSS 10.0 vulnerability in Stripe's MCP infrastructure was patched on a Sunday in 12 hours — then called 'intended behavior' to avoid a bounty. The report it was marked duplicate of was itself Informative, $0 paid. The 'duplicate' title contained the word 'phishing' — likely auto-categorised as out of scope before any human read it. Two layers of automation buried a critical security fix. Nobody explained anything."
+            <br><br>— documented case, March 2026
+        </div>
+        <p>This isn't a theory. It's documented. And it's not one researcher — it's the business model.</p>
+    </div>
+</div>
 
-    <div data-fs-success style="color: #ff0000; margin-bottom: 20px; font-weight: bold; display: none;">
+<!-- ══ STATS ══ -->
+<div class="stats">
+    <div class="stat">
+        <div class="stat-num">26</div>
+        <div class="stat-label">Bugs submitted by founder</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Paid out</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">12hrs</div>
+        <div class="stat-label">Stripe patched after report</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Paid for that patch</div>
+    </div>
+</div>
+
+<!-- ══ HOW IT WORKS ══ -->
+<div class="section">
+    <h2>How HACKER2.0 Works Differently</h2>
+
+    <div class="feature">
+        <div class="feature-num">1</div>
+        <div class="feature-body">
+            <h3>Escrow Before Programs Open</h3>
+            <p>Companies fund an escrow account through a third-party payment processor before a single report can be submitted. The platform never holds the money. The company never holds the money. Independent escrow, released only on verified resolution. No funds, no program.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <div class="feature-num">2</div>
+        <div class="feature-body">
+            <h3>The Bug Registry</h3>
+            <p>Every company joining must submit a registry of known bugs — current, in-progress, acknowledged-but-unpatched — encrypted and hashed. If a company claims duplicate, the duplicate must exist in the registry before the report was submitted. No entry, no duplicate claim. Full stop. If a company patches something matching an open report, escrow releases automatically. If a company claims "intended behavior" and patches it anyway, the researcher gets a defined partial bounty from escrow within a set number of days.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <div class="feature-num">3</div>
+        <div class="feature-body">
+            <h3>Three Independent Triagers</h3>
+            <p>No single triager makes a decision. Three senior researchers assess each report independently with no communication between them. All three agree → automatic resolution. Split decision → all reasoning is published in a visible chat readable by both parties in real time. Either party disagrees → formal mediation with the full transcript as the record. Triagers earn platform standing, not money — no financial incentive to side either way.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <div class="feature-num">4</div>
+        <div class="feature-body">
+            <h3>Transparent Dispute Record</h3>
+            <p>Every decision, every piece of reasoning, every timeline event is logged and visible to both parties. Not to the public — to the people involved. No more "we can't share that information." If a duplicate is claimed, the researcher sees the matching registry entry. If a severity is downgraded, the reasoning is written down and signed off by all three triagers. Silence is not an option.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <div class="feature-num">5</div>
+        <div class="feature-body">
+            <h3>Researcher Onboarding — Two Tracks</h3>
+            <p><strong>Fast track:</strong> Verified high-reputation researchers from HackerOne, Bugcrowd, Intigriti — already vetted, invite directly.<br>
+            <strong>Earned entry:</strong> PortSwigger Web Security Academy completion, HackTheBox/TryHackMe progress, documented CTF results. Proof of genuine learning, not just a username. Both tracks require real identity verification — not public, just confirmed.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ══ THREE PRINCIPLES ══ -->
+<div class="section-dark">
+    <div class="inner">
+        <h2>The Three Principles HACKER2.0 Will Not Compromise</h2>
+        <div class="principles">
+            <div class="principle">
+                <div class="num">01</div>
+                <p><strong>No decision without a written reason.</strong> Every outcome has a documented explanation visible to the affected parties. Always. No exceptions.</p>
+            </div>
+            <div class="principle">
+                <div class="num">02</div>
+                <p><strong>No duplicate without proof.</strong> Duplicate claims require a registry entry that predates the report. If it's not documented before the report came in, it's not a duplicate.</p>
+            </div>
+            <div class="principle">
+                <div class="num">03</div>
+                <p><strong>No escrow discretion.</strong> Patch detection and registry matching trigger automatic payment. Humans review grey areas. Humans do not override black and white.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ WAITLIST / CTA ══ -->
+<div class="cta-section">
+    <a href="countdown.html" class="btn btn-red" style="margin-bottom: 2rem; display: inline-block;">
+        ⚠️ DECLASSIFICATION IN PROGRESS: VIEW COUNTDOWN
+    </a>
+
+    <h3>The current model is built on trust that doesn't exist.<br>We're building the protocol that doesn't need it.</h3>
+
+    <div data-fs-success style="color: var(--accent); margin-bottom: 20px; font-weight: bold; display: none;">
         ✓ Your signal has been received. You are on the waitlist.
     </div>
-    <div data-fs-error style="color: #ff4444; margin-bottom: 20px; display: none;">
+    <div data-fs-error style="color: var(--accent-red); margin-bottom: 20px; display: none;">
         ⚠ Transmission failed. Please try again.
     </div>
 
-    <form id="hacker-waitlist" style="max-width: 400px; margin: 0 auto; text-align: left;">
-        <label style="display: block; margin-bottom: 5px;">I am a:</label>
-        <select name="user_type" data-fs-field style="width: 100%; padding: 10px; margin-bottom: 15px; background: #222; color: #fff; border: 1px solid #444;">
-            <option value="researcher">Security Researcher</option>
-            <option value="business">Business / Program Owner</option>
-            <option value="journalist">Journalist / Media</option>
-        </select>
+    <form id="hacker-waitlist" style="max-width: 420px; margin: 0 auto; text-align: left;">
 
-        <label style="display: block; margin-bottom: 5px;">Would you switch to an Escrow-backed platform?</label>
-        <div style="margin-bottom: 15px;">
-            <input type="radio" name="switch_interest" value="yes" checked> Yes, immediately<br>
-            <input type="radio" name="switch_interest" value="maybe"> Maybe, show me more
+        <div class="form-group">
+            <label>I am a:</label>
+            <select name="user_type" data-fs-field>
+                <option value="researcher">Security Researcher</option>
+                <option value="business">Business / Program Owner</option>
+                <option value="journalist">Journalist / Media</option>
+            </select>
         </div>
 
-        <label style="display: block; margin-bottom: 5px;">Email Address:</label>
-        <input type="email" name="email" data-fs-field required placeholder="hacker@proton.me" 
-               style="width: 100%; padding: 10px; margin-bottom: 20px; background: #222; color: #fff; border: 1px solid #444;">
-        <span data-fs-error="email" style="color: #ff4444; font-size: 0.8rem;"></span>
-        
-        <label style="display: block; margin-bottom: 5px;">What feature do you want most?</label>
-        <textarea name="feature_request" data-fs-field placeholder="e.g. Automated payout on GitHub commit, specific escrow logic, etc." 
-              style="width: 100%; padding: 10px; height: 80px; margin-bottom: 20px; background: #222; color: #fff; border: 1px solid #444; font-family: inherit; resize: vertical;"></textarea>
+        <div class="radio-group">
+            <label>Would you switch to an escrow-backed platform?</label>
+            <label style="margin-top:8px;"><input type="radio" name="switch_interest" value="yes" checked> Yes, immediately</label>
+            <label><input type="radio" name="switch_interest" value="maybe"> Maybe, show me more</label>
+        </div>
 
-        <button type="submit" data-fs-submit-btn class="btn" style="width: 100%; border: none; cursor: pointer;">
+        <div class="form-group">
+            <label>Email Address:</label>
+            <input type="email" name="email" data-fs-field required placeholder="hacker@proton.me">
+            <span data-fs-error="email" style="color: var(--accent-red); font-size: 0.8rem;"></span>
+        </div>
+
+        <div class="form-group">
+            <label>What feature do you want most?</label>
+            <textarea name="feature_request" data-fs-field placeholder="e.g. Automated payout on GitHub commit, specific escrow logic, triager accountability..." style="height: 80px; resize: vertical;"></textarea>
+        </div>
+
+        <button type="submit" data-fs-submit-btn class="btn" style="width: 100%;">
             SUBMIT TO WAITLIST
         </button>
     </form>
@@ -150,8 +396,8 @@
 
 <script>
   window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { 
-    formElement: '#hacker-waitlist', 
+  formspree('initForm', {
+    formElement: '#hacker-waitlist',
     formId: 'mreovqly',
     onSuccess: function() {
         document.getElementById('hacker-waitlist').style.display = 'none';
@@ -162,7 +408,8 @@
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 <footer>
-    &copy; 2026 SecurityAllRound. Inspired by the $25,000 Stripe MCP Triage Failure.
+    &copy; 2026 SecurityAllRound &mdash; Inspired by the $25,000 Stripe MCP Triage Failure.<br>
+    Built by a researcher who submitted 26 bugs and got paid for one.
 </footer>
 
 </body>

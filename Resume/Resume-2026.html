@@ -455,7 +455,8 @@ const HTB_TRANSCRIPT_PDF = "data:application/pdf;base64,JVBERi0xLjQKJSBjcmVhdGVk
   <span class="info">whoami</span>        Professional summary
   <span class="info">about</span>         Extended background &amp; what I'm looking for
   <span class="info">skills</span>        Technical competencies
-  <span class="info">experience</span>    Work history   <span class="dim">(aliases: history, work)</span>
+  <span class="info">experience</span>    Work history   <span class="dim">(aliases: exp, work, jobs)</span>
+  <span class="info">hacker2.0</span>     The bug bounty platform I'm building   <span class="warn">★</span>
   <span class="info">projects</span>      Custom tooling &amp; personal projects
   <span class="info">ctfs</span>          CTF competition history &amp; rankings
   <span class="info">stats</span>         Platform stats &amp; lab progress
@@ -471,7 +472,6 @@ const HTB_TRANSCRIPT_PDF = "data:application/pdf;base64,JVBERi0xLjQKJSBjcmVhdGVk
   <span class="info">nmap</span>          Scan my skills   <span class="dim">(sudo -l, tree, neofetch also work)</span>
   <span class="info">clear</span>         Clear the terminal   <span class="dim">(alias: cls)</span>
   <span class="ok">ask &lt;q&gt;</span>       Ask the AI anything about Ray   <span class="warn">★ AI-powered</span>
-  <span class="ok">beck</span>          Beck Water application context  <span class="warn">★</span>
   <span class="ok">apikey reset</span>  Clear stored Gemini API key     <span class="dim">(re-prompts on next ask)</span>
 
 <span class="dim">Tip: ↑/↓ = history, Tab = autocomplete, Ctrl+L = clear.</span>
@@ -480,42 +480,47 @@ const HTB_TRANSCRIPT_PDF = "data:application/pdf;base64,JVBERi0xLjQKJSBjcmVhdGVk
     whoami: () => `
 <span class="bright">Raymond Reeves</span> <span class="dim">// Cybersecurity Professional, Gold Coast QLD</span>
 
-15 years in operational security &amp; incident response. Four years deep in hands-on
-cyber security self-study &amp; certification. Recently certified — <span class="hl">TryHackMe PT1</span>
-(Junior Penetration Tester, Mar 2026).
+<span class="warn">┌─ Critical Disclosure ────────────────────────────────────┐</span>
+  <span class="hl">Stripe MCP OAuth Bypass</span>  <span class="ok">(CVSS 10.0 · Mar 2026)</span>
+  Unauthenticated OAuth registration on access.stripe.com/mcp/oauth2/register
+  — full merchant scope. Customer records, payments, subscriptions.
+  <span class="ok">Patched within 12 hours of my report. On a Sunday.</span>
+  I found a CVSS 10.0 in production infrastructure. That's not training. That's the job.
+  <span class="dim">→ </span><a href="https://securityallround.com/HACKER2.0/origin.html" target="_blank" style="color:var(--cyan)">Full disclosure: securityallround.com/HACKER2.0/origin.html</a>
+<span class="warn">└──────────────────────────────────────────────────────────┘</span>
+
+15 years operational security &amp; incident response. Eight years hands-on
+cyber self-study. Certified — <span class="hl">TryHackMe PT1</span> (Junior Penetration Tester, Mar 2026).
 
 <span class="warn">┌─ Ranked performance ─────────────────────────────────────┐</span>
   HTB Academy:              <span class="hl">Top 5% global</span>  <span class="ok">(122 targets compromised)</span>
   TryHackMe:                <span class="hl">Top 1% sustained</span>
-  HTB Cyber Apocalypse CTF: <span class="hl">Top 2% (107 / 5,694)</span>
+  HTB Cyber Apocalypse CTF: <span class="hl">Top 2% (107 / 5,694 teams)</span>
   PortSwigger Academy:      Apprentice 96% · Practitioner 88% · Expert 44%
 <span class="warn">└──────────────────────────────────────────────────────────┘</span>
 
-Active bug bounty researcher and author of a custom modular Python pentest
-framework with 90+ files across 47 modules.
-
-<span class="warn">┌─ Critical Disclosure ────────────────────────────────────┐</span>
-  <span class="hl">Stripe MCP OAuth Bypass</span>  <span class="ok">(CVSS 10.0 · Mar 2026)</span>
-  Unauthenticated endpoint at access.stripe.com/mcp/oauth2/register
-  allowed any attacker to register OAuth clients with full merchant
-  control scope — customer records, payments, subscriptions.
-  <span class="ok">Fixed within 12 hours of submission (Sunday).</span>
-  <span class="dim">→ </span><a href="https://securityallround.com/HACKER2.0/origin.html" target="_blank" style="color:var(--cyan)">securityallround.com/HACKER2.0/origin.html</a>
-<span class="warn">└──────────────────────────────────────────────────────────┘</span>
+Bug bounty researcher. Author of a custom 47-module Python pentest framework.
+Founder of <span class="hl">HACKER2.0</span> — escrow-backed bug bounty built because the old one is broken.
 
 <span class="comment"># Cert IV in Cyber Security (TAFE QLD) + 20+ industry credentials.</span>
-<span class="comment"># Kali/Parrot daily driver. Burp, Metasploit, Splunk, Python.</span>
+<span class="comment"># Kali/Parrot daily driver. Burp, Metasploit, Splunk, Python, Claude/Gemini CLI.</span>
 
-<span class="dim">Next: </span>${clickCmd('transcript')}<span class="dim"> · </span>${clickCmd('dashboards')}<span class="dim"> · </span>${clickCmd('ctfs')}<span class="dim"> · </span>${clickCmd('projects')}
+<span class="dim">Next: </span>${clickCmd('experience')}<span class="dim"> · </span>${clickCmd('skills')}<span class="dim"> · </span>${clickCmd('hacker2.0')}<span class="dim"> · </span>${clickCmd('transcript')}
 `,
 
     about: () => `
 <span class="hl">BACKGROUND</span>
 <span class="dim">─────────────────────────────────────────────────────────────</span>
 A decade-plus in physical security &amp; incident response across a public hospital
-and a major theme park — now actively transitioning into cyber. The operational
-mindset (24/7 escalation, clear written reporting, high-pressure response)
-transfers directly to SOC / IR / pentest work.
+and a major theme park. Running alongside that: eight years of self-teaching —
+building computers, helping colleagues with IT because it came naturally, one paid
+engagement configuring remote access for a nursing home, and then progressively
+deeper: networking, Linux, scripting, and eventually full offensive security
+through HTB, THM, PortSwigger, and structured cert study.
+
+The operational mindset transfers directly — 24/7 escalation, clear written
+reporting, high-pressure response, and the discipline to keep learning on your
+own when nobody is making you.
 
 <span class="hl">THE NARRATIVE YOU WON'T SEE ON A CV</span>
 <span class="dim">─────────────────────────────────────────────────────────────</span>
@@ -524,7 +529,7 @@ transfers directly to SOC / IR / pentest work.
   2026 · HTB Academy ranking:    <span class="hl">Top 5% global  ·  122 targets ⚡</span>
   2026 · TryHackMe PT1 cert:     <span class="hl">Junior Pentester — earned Mar '26</span>
 
-That's four years of consistent self-study compressed into data points.
+That's eight years of consistent self-study compressed into data points.
 I'm still ascending. See </span>${clickCmd('transcript')}<span class="dim"> for the HTB Academy breakdown or </span>${clickCmd('ctfs')}<span class="dim"> for the full CTF record.
 
 <span class="hl">WHAT I'M LOOKING FOR</span>
@@ -541,6 +546,13 @@ customers, subscriptions. Fixed in 12 hours. That's not training.
 That's the job.
 
 I've been training like it's my job. All I need is the shot.
+
+One more thing worth saying: I didn't come up through IT. I don't default to
+jargon. After 15 years explaining security incidents to nurses, doctors, and
+theme park managers at 3am, I know how to communicate technical problems to
+people who don't care about the technical details — they just need to know what
+happened, how bad it is, and what's being done about it. In a SOC or pentest
+context, that's not a soft skill. That's half the job.
 `,
 
     skills: () => `
@@ -573,38 +585,14 @@ I've been training like it's my job. All I need is the shot.
   Docker / Portainer                 ${bar(65)}
   Active Directory / Group Policy    ${bar(60)}
 
+<span class="warn">[ AI &amp; Automation ]</span>
+  Claude CLI (Expert)    ${bar(90)}  <span class="dim">Supervisor in multi-agent orchestration</span>
+  Gemini CLI             ${bar(80)}  <span class="dim">Worker agent via terminal</span>
+  Node-RED               ${bar(75)}  <span class="dim">Workflow automation &amp; API integration</span>
+  Prompt Engineering     ${bar(85)}  <span class="dim">Structured tasking, context management</span>
+
 <span class="warn">[ Networking ]</span>
   TCP/IP, VLANs, DNS, DHCP, VPN troubleshooting, switch config.
-`,
-
-    experience: () => `
-<span class="hl">PROFESSIONAL EXPERIENCE</span>
-<span class="dim">─────────────────────────────────────────────────────────────</span>
-
-<span class="bright">Independent Security Researcher &amp; Systems Auditor</span>
-<span class="info">Security All Round  ·  Oct 2024 – Present</span>
-  • Independent security audits &amp; technical reviews of online services/tools
-  • Deep-dive lab using Kali + Docker for exploit research
-  • Custom automation scripts for identifying security control gaps
-  • Active bug bounty hunting across HackerOne / Bugcrowd programs
-
-<span class="bright">Night Shift Console Operator</span>
-<span class="info">Ampol  ·  2024 – Present</span>
-  • Primary after-hours monitoring &amp; incident handling
-  • Systems &amp; alert triage, escalation workflows
-
-<span class="bright">Night Shift Security Officer</span>
-<span class="info">Village Roadshow Theme Parks  ·  Jul 2022 – Oct 2024</span>
-  • Sole after-hours incident contact — detection to resolution
-  • Monitored integrated electronic security systems &amp; alerts
-  • Escalated surveillance/access-control faults to specialist teams
-
-<span class="bright">Protective Services Officer / On-call Supervisor</span>
-<span class="info">Gold Coast University Hospital  ·  Aug 2015 – Apr 2022</span>
-  • End-to-end breach response in 24/7 public health environment
-  • Surveillance &amp; access control monitoring (SOC-analogous)
-  • Detailed technical incident reports for stakeholders
-  • 100% reliability record on rotating 24/7 roster
 `,
 
     projects: () => `
@@ -644,9 +632,17 @@ I've been training like it's my job. All I need is the shot.
   Practitioner  ${bar(88)}  <span class="hl">151 / 171</span>
   Expert        ${bar(44)}  <span class="hl">17 / 39</span>
 
+<span class="bright">◆ HACKER2.0</span>  <span class="dim">(securityallround.com/HACKER2.0)</span>
+
+  Founding and building an escrow-backed bug bounty platform. Designed the
+  core architecture: third-party escrow, encrypted bug registry, three-triager
+  independent review model, and automatic patch-detection payment triggers.
+  Born from direct experience of the systemic problems in the current model.
+  <span class="dim">→ </span><a href="https://securityallround.com/HACKER2.0/" target="_blank" style="color:var(--cyan)">securityallround.com/HACKER2.0/</a>
+
 <span class="bright">◆ Security All Round</span>  <span class="dim">(securityallround.com)</span>
 
-  Personal research platform &amp; technical writeup archive.
+  Personal research platform, technical writeup archive, and audit portfolio.
 
 <span class="dim">Next: </span>${clickCmd('ctfs')}<span class="dim"> for competition history · </span>${clickCmd('dashboards')}<span class="dim"> for live proof</span>
 `,
@@ -1042,13 +1038,12 @@ I've been training like it's my job. All I need is the shot.
 
   <span class="warn">Email (primary):</span>    <a href="mailto:s3curityallround@gmail.com">s3curityallround@gmail.com</a>
   <span class="warn">Email (secure):</span>     <a href="mailto:securityallround@proton.me">securityallround@proton.me</a>
-  <span class="warn">Phone:</span>              0414 274 757
   <span class="warn">Location:</span>           Gold Coast, QLD 4216
   <span class="warn">Website:</span>            <a href="https://securityallround.com" target="_blank">securityallround.com</a>
   <span class="warn">LinkedIn:</span>           <a href="https://linkedin.com/in/raymond-reeves-security-all-round" target="_blank">linkedin.com/in/raymond-reeves-security-all-round</a>
 
 <span class="comment"># References available upon request.</span>
-<span class="comment"># Open to remote, hybrid, or on-site Gold Coast / Brisbane.</span>
+<span class="comment"># Open to remote, hybrid, or on-site Gold Coast.</span>
 `,
 
     download: () => {
@@ -1059,8 +1054,6 @@ I've been training like it's my job. All I need is the shot.
 
   ${clickCmd('download transcript', 'download transcript')}   HTB Academy student transcript (PDF, 5 pages)
   <span class="dim">                     Top 5% global · 122 targets · 2 paths</span>
-
-<span class="dim">More downloads coming soon. Traditional PDF resume available at </span><a href="https://securityallround.com" target="_blank">securityallround.com</a><span class="dim">.</span>
 `;
     },
 
@@ -1069,13 +1062,14 @@ I've been training like it's my job. All I need is the shot.
   <span class="green">    |o_o |</span>             <span class="dim">─────────────────</span>
   <span class="green">    |:_/ |</span>             <span class="warn">OS:</span>       Kali Linux (daily driver)
   <span class="green">   //   \\ \\</span>            <span class="warn">Host:</span>     Gold Coast, QLD
-  <span class="green">  (|     | )</span>           <span class="warn">Uptime:</span>   15 yrs security ops
+  <span class="green">  (|     | )</span>           <span class="warn">Uptime:</span>   15 yrs ops · 8 yrs cyber self-study
   <span class="green"> /'\\_   _/\`\\</span>          <span class="warn">Shell:</span>    zsh + tmux
   <span class="green"> \\___)=(___/</span>          <span class="warn">CPU:</span>      Curious / Persistent
                          <span class="warn">RAM:</span>      Stackable (always learning)
-                         <span class="warn">GPU:</span>      Burp + Metasploit accelerated
+                         <span class="warn">GPU:</span>      Burp + Metasploit + Claude CLI
                          <span class="warn">DE:</span>       Terminal-first
                          <span class="warn">Packages:</span> 20+ certs · 100+ THM rooms · 6 CTFs
+                         <span class="warn">Exploit:</span>  CVSS 10.0 · Stripe MCP · Mar 2026
                          <span class="warn">Status:</span>   Available for hire
 `,
 
@@ -1126,6 +1120,75 @@ I've been training like it's my job. All I need is the shot.
 │   └── ...
 └── <span class="info">contact.txt</span>
 `,
+
+    experience: () => `
+<span class="hl">WORK HISTORY</span>
+<span class="dim">─────────────────────────────────────────────────────────────</span>
+
+<span class="warn">Security All Round</span>  <span class="ok">2024 – present</span>  <span class="dim">// Independent Security Researcher</span>
+  Active bug bounty research across 30+ programs (HackerOne).
+  Discovered CVSS 10.0 in Stripe MCP infrastructure — patched in 12hrs.
+  Built multi-agent AI orchestration: Claude CLI supervisor + Gemini CLI worker.
+  Author of 47-module Python pentest framework (90+ files).
+  Founder of HACKER2.0 — escrow-backed bounty platform in development.
+
+<span class="warn">Freelance / Informal IT</span>  <span class="ok">~2016 – 2024</span>  <span class="dim">// Self-taught, unpaid &amp; occasional paid work</span>
+  Upgraded and configured remote access infrastructure for a nursing home IT
+  administrator — the one paid engagement that started it properly.
+  Built and maintained PCs for family and friends over many years.
+  Provided general IT support to colleagues at GCUH and Village Roadshow —
+  the kind of help that never makes a job title but never stops happening either.
+  All the while: teaching myself networking, Linux, security, and eventually
+  the offensive side through HTB, THM, PortSwigger, and anything else available.
+
+<span class="warn">Village Roadshow Theme Parks</span>  <span class="ok">2022 – 2024</span>  <span class="dim">// Senior Security Officer</span>
+  Large-scale public venue security — crowd management, incident command,
+  CCTV monitoring, access control, written reporting to management.
+  High-pressure environment: 10,000+ daily visitors, major event operations.
+
+<span class="warn">Gold Coast University Hospital (GCUH)</span>  <span class="ok">2015 – 2022</span>  <span class="dim">// Security Officer</span>
+  Frontline security at one of QLD's largest public hospitals.
+  Psychiatric unit response, code black/blue management, patient welfare.
+  De-escalation under pressure. Meticulous incident documentation.
+  Security principles applied daily: access control, surveillance, reporting.
+
+<span class="comment"># 15 years of "something went wrong at 2am, fix it and write it up."</span>
+<span class="comment"># That mindset transfers directly to SOC / IR / pentest work.</span>
+
+<span class="dim">Next: </span>${clickCmd('skills')}<span class="dim"> · </span>${clickCmd('projects')}<span class="dim"> · </span>${clickCmd('contact')}
+`,
+
+    'hacker2.0': () => `
+<span class="hl">HACKER2.0</span>  <span class="dim">// The bug bounty platform built because the old one is broken</span>
+<span class="dim">─────────────────────────────────────────────────────────────</span>
+
+Bug bounty platforms claim to be neutral. They're not.
+Their customer is the company. The researcher is the product.
+
+<span class="warn">┌─ The problem ────────────────────────────────────────────┐</span>
+  "Duplicate" claims with no proof required.
+  "Intended behavior" verdicts on bugs quietly patched next day.
+  Reputation penalties that lock you out of your own dispute process.
+  Auto-closed support tickets when you try to escalate.
+<span class="warn">└──────────────────────────────────────────────────────────┘</span>
+
+<span class="warn">┌─ What HACKER2.0 does differently ───────────────────────┐</span>
+  <span class="ok">[1]</span> Escrow before programs open — company funds held by third party
+  <span class="ok">[2]</span> Bug registry — duplicates require a documented prior entry
+  <span class="ok">[3]</span> Three independent triagers — every decision has a written reason
+  <span class="ok">[4]</span> Patch detection triggers automatic escrow release — no human override
+  <span class="ok">[5]</span> No reputation gatekeeping on dispute access. Ever.
+<span class="warn">└──────────────────────────────────────────────────────────┘</span>
+
+Founded after submitting 26 bugs and getting paid for one.
+The Stripe CVSS 10.0 was patched in 12 hours — bounty denied.
+Built by someone who knows exactly what's broken and why.
+
+  <span class="dim">→ </span><a href="https://securityallround.com/HACKER2.0/" target="_blank" style="color:var(--cyan)">securityallround.com/HACKER2.0/</a>
+  <span class="dim">→ </span><a href="https://securityallround.com/HACKER2.0/origin.html" target="_blank" style="color:var(--cyan)">The Stripe story: securityallround.com/HACKER2.0/origin.html</a>
+
+<span class="dim">Next: </span>${clickCmd('whoami')}<span class="dim"> · </span>${clickCmd('contact')}
+`,
   };
 
   // ── AI-powered ask command ──────────────────────────────────────────────
@@ -1136,7 +1199,8 @@ Use plain text only. No markdown formatting like ** or ##. Use terminal-style in
 KEY FACTS ABOUT RAY:
 - Gold Coast, QLD. Available for on-site work immediately.
 - 15 years physical security (Gold Coast University Hospital 2015-2022, Village Roadshow Theme Parks 2022-2024)
-- Self-taught ethical hacker / pentester for 8-10 years
+- IT background is self-taught over ~8 years: building PCs, helping colleagues, one paid contract configuring remote access for a nursing home IT admin. No formal IT employment until bug bounty work in 2024.
+- Self-taught ethical hacker / pentester for ~8 years
 - TryHackMe Top 1% global (sustained). PT1 certified (Junior Pentester) March 2026.
 - HTB Top 2% — ranked 107/5,694 teams globally at Cyber Apocalypse 2024
 - HTB Academy Top 5% — 122 targets compromised, 2 full paths completed
@@ -1145,7 +1209,7 @@ KEY FACTS ABOUT RAY:
 - Built a multi-agent AI orchestration system: Claude as supervisor, Gemini as worker, running in tmux side-by-side via CLI. Directs Gemini to execute tasks, summarises results back to Claude for next decision. Human (Ray) oversees as manager.
 - Built a 47-module Python pentest framework (90+ files) covering recon through reporting
 - Bug bounty: discovered CVSS 10.0 critical vulnerability in Stripe MCP OAuth infrastructure — unauthenticated endpoint allowed full merchant account takeover. Fixed within 12 hours on a Sunday. Bounty denied via disputed duplicate claim. Full disclosure: securityallround.com/HACKER2.0/origin.html
-- Applying for AI & Automation Specialist role at Beck Water (Gold Coast). The role is about using Claude, automation, and workflow tools to improve business operations.
+- Looking for Junior Pentester / SOC / Security Analyst roles. Open to remote or Gold Coast on-site.
 - PortSwigger Web Academy: 57/59 Apprentice, 151/171 Practitioner, 17/39 Expert
 - Node-RED: advanced user, workflow automation and API integration
 - Has no formal CS degree but equivalent hands-on experience
@@ -1317,6 +1381,10 @@ raymond:x:1000:1000:Raymond Reeves,,,:/home/raymond:/bin/zsh
 recruiter:x:1001:1001:You?,,,:/home/recruiter:/bin/bash</span>`;
   commands['rm -rf /'] = () => '<span class="err">[!] Nope. This terminal has been hardened.</span>\n<span class="comment"># ...but nice pentest attempt.</span>';
   commands['hire me'] = () => '<span class="ok">[+] Excellent choice! Running </span>' + clickCmd('contact') + '<span class="ok"> ...</span>';
+  commands['h2'] = commands['hacker2.0'];
+  commands['exp'] = commands['experience'];
+  commands['work'] = commands['experience'];
+  commands['jobs'] = commands['experience'];
   commands.matrix = () => '<span class="green">Wake up, Neo...</span>\n<span class="dim">(look at the background)</span>';
   commands.date = () => new Date().toString();
   commands.uname = () => 'Linux reeves 6.1.0-kali #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux';
@@ -1512,7 +1580,7 @@ recruiter:x:1001:1001:You?,,,:/home/recruiter:/bin/bash</span>`;
       ['<span class="dim">[    0.000000] Linux version 6.1.0-kali-amd64 (raymond@reeves) #1 SMP PREEMPT_DYNAMIC</span>', 40],
       ['<span class="dim">[    0.003412] Command line: BOOT_IMAGE=/vmlinuz root=UUID=cybersec ro quiet splash</span>', 30],
       ['<span class="dim">[    0.012008] CPU: curious / persistent / caffeinated</span>', 30],
-      ['<span class="dim">[    0.024104] Memory: 100+ THM rooms, 20+ certs, 15 yrs operational</span>', 30],
+      ['<span class="dim">[    0.024104] Memory: 100+ THM rooms, 20+ certs, 15 yrs ops · 8 yrs cyber self-study</span>', 30],
       ['<span class="dim">[    0.041289] Loading kernel modules...</span>', 100],
       ['<span class="ok">[  OK  ] </span><span class="dim">Started Burp Suite Professional</span>', 60],
       ['<span class="ok">[  OK  ] </span><span class="dim">Started Metasploit Framework</span>', 60],
@@ -1539,11 +1607,11 @@ recruiter:x:1001:1001:You?,,,:/home/recruiter:/bin/bash</span>`;
     print(`<span class="ok">╭─ Welcome. ─────────────────────────────────────────────────────────────╮</span>
 <span class="ok">│</span>  Interactive terminal resume. Type commands to explore.                 <span class="ok">│</span>
 <span class="ok">│</span>                                                                         <span class="ok">│</span>
-<span class="ok">│</span>  <span class="hl">Top 5% HTB Academy · 122 targets · Top 1% THM · Top 2% HTB CTF 2024</span>    <span class="ok">│</span>
+<span class="ok">│</span>  <span class="hl">Top 5% HTB · Top 1% THM · Top 2% CTF · CVSS 10.0 Stripe disclosure</span>     <span class="ok">│</span>
 <span class="ok">│</span>                                                                         <span class="ok">│</span>
 <span class="ok">│</span>  Start: ${clickCmd('whoami')} ${clickCmd('transcript')} ${clickCmd('dashboards')} ${clickCmd('ctfs')} ${clickCmd('projects')} ${clickCmd('certs')} ${clickCmd('help')}     <span class="ok">│</span>
 <span class="ok">│</span>                                                                         <span class="ok">│</span>
-<span class="ok">│</span>  <span class="hl">AI:</span> ${clickCmd('ask [question]')} · ${clickCmd('beck')} · ${clickCmd('apikey reset')}                  <span class="ok">│</span>
+<span class="ok">│</span>  <span class="hl">AI:</span> ${clickCmd('ask [question]')} · ${clickCmd('apikey reset')}                              <span class="ok">│</span>
 <span class="ok">│</span>                                                                         <span class="ok">│</span>
 <span class="ok">│</span>  <span class="dim">↑/↓ history · Tab autocomplete · Ctrl+L clear · click any green cmd</span>  <span class="ok">│</span>
 <span class="ok">╰─────────────────────────────────────────────────────────────────────────╯</span>

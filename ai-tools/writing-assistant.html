@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing Assistant</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F5F0;
+    --surface: #FFFFFF;
+    --border: #E2DDD6;
+    --text: #1A1714;
+    --text-muted: #7A746C;
+    --accent: #2D6A4F;
+    --accent-light: #E8F4EE;
+    --accent-hover: #245A42;
+    --warn: #B5541A;
+    --warn-light: #FDF0E8;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  .tagline {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    resize: vertical;
+    min-height: 140px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  textarea:focus {
+    border-color: var(--accent);
+  }
+
+  textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .tone-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .tone-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tone-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 400;
+  }
+
+  .tone-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .tone-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    font-weight: 500;
+  }
+
+  .action-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-secondary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .btn-icon {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  .output-card {
+    display: none;
+  }
+
+  .output-card.visible {
+    display: block;
+  }
+
+  .output-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .output-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .status {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  .status.visible { display: flex; }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .error-banner {
+    display: none;
+    background: var(--warn-light);
+    border: 1px solid #E8C4A8;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--warn);
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  .error-banner.visible { display: block; }
+
+  .api-section {
+    background: var(--warn-light);
+    border: 1px solid #E8C4A8;
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .api-section .card-label {
+    color: var(--warn);
+  }
+
+  .api-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .api-input {
+    flex: 1;
+    border: 1px solid #E8C4A8;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    background: white;
+    color: var(--text);
+    outline: none;
+  }
+
+  .api-input:focus { border-color: var(--warn); }
+
+  .api-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  .api-note a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .api-note a:hover { text-decoration: underline; }
+
+  .voice-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid #B8DDC8;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .voice-btn:hover { background: #D4EEE0; }
+  .voice-btn.recording { background: #FDECEA; color: #C0392B; border-color: #F5C6C6; }
+
+  .char-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+    margin-top: 4px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: var(--accent-light);
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+
+  .tips {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .tips strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .copied-msg {
+    display: none;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    align-items: center;
+    gap: 4px;
+  }
+  .copied-msg.visible { display: flex; }
+
+  @media (max-width: 500px) {
+    .action-row { flex-direction: column; }
+    .btn-primary, .btn-secondary, .voice-btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <h1>Writing Assistant <span class="badge">AI</span></h1>
+    </div>
+    <p class="tagline">Turn rough notes into polished, professional writing — in seconds.</p>
+  </header>
+
+  <div class="api-section" id="apiSection">
+    <div class="card-label">API key required</div>
+    <p style="font-size:13px;color:var(--text-muted);line-height:1.5;margin-bottom:2px;">
+      This tool uses the Gemini AI API. Paste your free key below — it's stored only in your browser and never sent anywhere except directly to Google.
+    </p>
+    <div class="api-row">
+      <input class="api-input" type="password" id="apiKeyInput" placeholder="Paste your Gemini API key (starts with AIza...)" />
+      <button class="btn-primary" onclick="saveKey()">
+        <svg class="btn-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Save
+      </button>
+    </div>
+    <p class="api-note">
+      Get a free key (no credit card) at <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a> &nbsp;·&nbsp;
+      <a href="#" onclick="clearKey(); return false;">Clear saved key</a>
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">What do you want to say?</div>
+    <textarea id="inputText" placeholder="Just write — don't worry about spelling, grammar, or how it sounds. Type it out, use voice, whatever works for you. The AI will handle the rest." oninput="updateCharCount()"></textarea>
+    <div class="char-count" id="charCount">0 characters</div>
+
+    <div class="controls">
+      <span class="tone-label">Tone:</span>
+      <div class="tone-group" id="toneGroup">
+        <button class="tone-btn active" data-tone="professional">Professional</button>
+        <button class="tone-btn" data-tone="friendly">Friendly</button>
+        <button class="tone-btn" data-tone="formal">Formal</button>
+        <button class="tone-btn" data-tone="concise">Concise</button>
+        <button class="tone-btn" data-tone="detailed">Detailed</button>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn-primary" id="polishBtn" onclick="polishText()">
+        <svg class="btn-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Polish my writing
+      </button>
+      <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">
+        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        <span id="voiceBtnText">Use voice</span>
+      </button>
+      <button class="btn-secondary" onclick="clearAll()">
+        <svg class="btn-icon" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        Clear
+      </button>
+    </div>
+
+    <div class="status" id="status">
+      <div class="spinner"></div>
+      <span>Polishing your writing...</span>
+    </div>
+    <div class="error-banner" id="errorBanner"></div>
+  </div>
+
+  <div class="card output-card" id="outputCard">
+    <div class="card-label">Polished version</div>
+    <div class="output-text" id="outputText"></div>
+    <div class="output-actions">
+      <button class="btn-primary" onclick="copyOutput()">
+        <svg class="btn-icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy to clipboard
+      </button>
+      <button class="btn-secondary" onclick="polishAgain()">
+        <svg class="btn-icon" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        Try again
+      </button>
+      <span class="copied-msg" id="copiedMsg">
+        <svg class="btn-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Copied!
+      </span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="tips">
+    <strong>Tips:</strong> Just write how you naturally think — don't worry about spelling or grammar.
+    Use the voice button to speak instead of type. Choose a tone that matches who you're writing to.
+    If you don't like the result, try again — the AI will produce a slightly different version each time.
+  </p>
+
+  <footer>
+    Built with Gemini AI &nbsp;·&nbsp; Your key is stored locally and never shared &nbsp;·&nbsp;
+    <a href="#" onclick="clearKey(); return false;" style="color:var(--text-muted);">Clear API key</a>
+  </footer>
+
+</div>
+
+<script>
+  const STORAGE_KEY = 'writing_assistant_gemini_key';
+  let selectedTone = 'professional';
+  let recognition = null;
+  let isRecording = false;
+
+  function getKey() {
+    try { return localStorage.getItem(STORAGE_KEY) || ''; } catch(e) { return ''; }
+  }
+
+  function saveKey() {
+    const val = document.getElementById('apiKeyInput').value.trim();
+    if (!val.startsWith('AIza')) {
+      showError("That doesn't look like a Gemini API key — it should start with 'AIza'.");
+      return;
+    }
+    try { localStorage.setItem(STORAGE_KEY, val); } catch(e) {}
+    document.getElementById('apiSection').style.display = 'none';
+    hideError();
+  }
+
+  function clearKey() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+    document.getElementById('apiKeyInput').value = '';
+    document.getElementById('apiSection').style.display = 'block';
+  }
+
+  function initKeyDisplay() {
+    if (getKey()) {
+      document.getElementById('apiSection').style.display = 'none';
+    }
+  }
+
+  document.querySelectorAll('.tone-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedTone = btn.dataset.tone;
+    });
+  });
+
+  function updateCharCount() {
+    const len = document.getElementById('inputText').value.length;
+    document.getElementById('charCount').textContent = len + ' character' + (len === 1 ? '' : 's');
+  }
+
+  function showStatus(show) {
+    document.getElementById('status').classList.toggle('visible', show);
+    document.getElementById('polishBtn').disabled = show;
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorBanner');
+    el.textContent = msg;
+    el.classList.add('visible');
+  }
+
+  function hideError() {
+    document.getElementById('errorBanner').classList.remove('visible');
+  }
+
+  async function polishText() {
+    const text = document.getElementById('inputText').value.trim();
+    if (!text) {
+      showError('Please write something first.');
+      return;
+    }
+
+    let apiKey = getKey();
+    if (!apiKey) {
+      showError('Please save your Gemini API key above first.');
+      document.getElementById('apiSection').style.display = 'block';
+      document.getElementById('apiSection').scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+
+    hideError();
+    showStatus(true);
+    document.getElementById('outputCard').classList.remove('visible');
+
+    const toneInstructions = {
+      professional: 'professional and polished, suitable for workplace emails and communication',
+      friendly: 'warm and friendly while still being clear and appropriate for work',
+      formal: 'formal and structured, suitable for official correspondence',
+      concise: 'concise and to the point — remove unnecessary words while keeping all meaning',
+      detailed: 'clear and detailed, expanding on key points to ensure nothing is misunderstood'
+    };
+
+    const prompt = `You are a writing assistant helping someone who finds writing difficult. They have given you rough notes or draft text and you need to turn it into polished, professional writing.
+
+IMPORTANT RULES:
+- Keep the person's meaning and intent exactly — never change what they are trying to say
+- Never add information that wasn't in the original
+- Make the tone ${toneInstructions[selectedTone]}
+- Fix all spelling, grammar, and punctuation
+- Structure it clearly with proper paragraphs
+- Output ONLY the finished, polished text — no explanations, no "Here is your email:", no preamble
+- If it's clearly an email, format it as an email body only (no subject line unless one was given)
+
+Original text from the user:
+${text}`;
+
+    try {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ role: 'user', parts: [{ text: prompt }] }],
+          generationConfig: { maxOutputTokens: 1500, temperature: 0.4 }
+        })
+      });
+
+      const data = await res.json();
+      showStatus(false);
+
+      if (data.error) {
+        if (data.error.code === 403 || data.error.code === 401) {
+          clearKey();
+          showError('Invalid API key — cleared. Please enter your key again above.');
+          document.getElementById('apiSection').style.display = 'block';
+        } else {
+          showError('API error: ' + data.error.message);
+        }
+        return;
+      }
+
+      const output = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (output) {
+        document.getElementById('outputText').textContent = output.trim();
+        document.getElementById('outputCard').classList.add('visible');
+        document.getElementById('outputCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        document.getElementById('copiedMsg').classList.remove('visible');
+      } else {
+        showError('No response received. Please try again.');
+      }
+    } catch(e) {
+      showStatus(false);
+      showError('Connection error: ' + e.message);
+    }
+  }
+
+  function copyOutput() {
+    const text = document.getElementById('outputText').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById('copiedMsg').classList.add('visible');
+      setTimeout(() => document.getElementById('copiedMsg').classList.remove('visible'), 2500);
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      document.getElementById('copiedMsg').classList.add('visible');
+      setTimeout(() => document.getElementById('copiedMsg').classList.remove('visible'), 2500);
+    });
+  }
+
+  function polishAgain() {
+    document.getElementById('outputCard').classList.remove('visible');
+    polishText();
+  }
+
+  function clearAll() {
+    document.getElementById('inputText').value = '';
+    document.getElementById('outputCard').classList.remove('visible');
+    document.getElementById('copiedMsg').classList.remove('visible');
+    hideError();
+    updateCharCount();
+  }
+
+  function toggleVoice() {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      showError('Voice input is not supported in this browser. Try Chrome or Edge.');
+      return;
+    }
+
+    if (isRecording) {
+      stopVoice();
+      return;
+    }
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-AU';
+
+    let finalTranscript = document.getElementById('inputText').value;
+
+    recognition.onresult = (e) => {
+      let interim = '';
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        if (e.results[i].isFinal) {
+          finalTranscript += e.results[i][0].transcript + ' ';
+        } else {
+          interim += e.results[i][0].transcript;
+        }
+      }
+      document.getElementById('inputText').value = finalTranscript + interim;
+      updateCharCount();
+    };
+
+    recognition.onerror = (e) => {
+      stopVoice();
+      if (e.error !== 'aborted') {
+        showError('Voice error: ' + e.error + '. Please try again.');
+      }
+    };
+
+    recognition.onend = () => {
+      if (isRecording) recognition.start();
+    };
+
+    recognition.start();
+    isRecording = true;
+    document.getElementById('voiceBtn').classList.add('recording');
+    document.getElementById('voiceBtnText').textContent = 'Stop recording';
+    hideError();
+  }
+
+  function stopVoice() {
+    if (recognition) { recognition.abort(); recognition = null; }
+    isRecording = false;
+    document.getElementById('voiceBtn').classList.remove('recording');
+    document.getElementById('voiceBtnText').textContent = 'Use voice';
+    const val = document.getElementById('inputText').value;
+    document.getElementById('inputText').value = val.trim();
+    updateCharCount();
+  }
+
+  document.getElementById('apiKeyInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') saveKey();
+  });
+
+  initKeyDisplay();
+</script>
+</body>
+</html>

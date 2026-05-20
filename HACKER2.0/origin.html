@@ -255,7 +255,7 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
   <div class="ev">
     <div class="el">redirect_uri — Before vs After Disclosure</div>
     <img src="restricted-redirect_uri.png" alt="Side-by-side: left shows webhook.site URL working during PoC, right shows invalid_redirect_uri error on March 26">
-    <div class="ec">Left side: the exact webhook.site redirect URI accepted without error during PoC testing (pre-disclosure). Right side (timestamp 2026-03-26): the same URI now returns <code>error: invalid_redirect_uri — "Not registered redirect_uri"</code>. The <code>redirect_uri</code> validation was added or tightened specifically between disclosure and March 26. Stripe's own browser tab in the upper right confirms the date.</div>
+    <div class="ec">Left side: the exact webhook.site redirect URI accepted without error during PoC testing (pre-disclosure). Right side (timestamp 2026-03-26): the same URI now returns <code>error: invalid_redirect_uri — "Not registered redirect_uri"</code>. The <code>redirect_uri</code> validation was added or tightened specifically between disclosure and March 26. The browser tab in the upper right confirms the date.</div>
   </div>
 
   <div class="smoking-gun">
@@ -287,21 +287,9 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
   </div>
 
   <div class="ev">
-    <div class="el">Ticket Auto-Closed — Within 1 Hour</div>
+    <div class="el">Ticket Auto-Closed — In Approx 1 Hour</div>
     <img src="1Broken-ticket-system.png" alt="Ticket #645235 auto-closed as 'feature request' at 12:49AM, researcher replied immediately, email bounced at 1:59AM">
-    <div class="ec">Top: Ticket #645235 auto-closed at 12:49 AM as a "feature request" — despite the title explicitly stating Critical ATO vulnerability. Researcher replied immediately explaining the situation. By 1:59 AM — within one hour, not the 72 hours stated — the reply address returned: "This email no longer accepts new requests." The support channel closed itself on an active Critical disclosure.</div>
-  </div>
-
-  <div class="ev">
-    <div class="el">Second Support Response — "No Manual Override Possible"</div>
-    <img src="H1-support-or-lack-there-of-2.png" alt="HackerOne Support second response confirming no bypass possible, researcher formally notifies them of liability">
-    <div class="ec">Ticket #645235 auto-closed at 12:49 AM as a "feature request" despite the title explicitly stating "Critical ATO Vulnerability in Stripe — Submission Blocked by Platform Restriction." Researcher replied immediately. By 1:59 AM the support channel responded: "This email no longer accepts new requests." The ticket that promised 72 hours to reopen closed itself in under 70 minutes on an active Critical disclosure in progress.</div>
-  </div>
-
-  <div class="ev">
-    <div class="el">Stripe Support Notified — Researcher Confirms Report Submitted</div>
-    <img src="informed-stripe-security-i-reported.png" alt="Researcher informing Stripe Support that the report has been successfully submitted following the bypass">
-    <div class="ec">Researcher confirming to Stripe Support that report #3619019 was successfully submitted using the HackerOne bypass, with the full report ID and title provided for reference. Closes the escalation loop: X contact → bypass granted → report submitted → confirmed.</div>
+    <div class="ec">Top: Ticket #645235 auto-closed at 12:49 AM as a "feature request" — despite the title explicitly stating Critical ATO vulnerability. Researcher replied immediately explaining the situation. By 1:59 AM — within one hour and 10 minutes, not the 72 hours stated — the reply address returned: "This email no longer accepts new requests." The support channel closed itself on an active Critical disclosure.</div>
   </div>
 
   <div class="ev">
@@ -314,6 +302,12 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
     <div class="el">Stripe Security Confirms HackerOne Bypass Applied</div>
     <img src="email-to-allow-reporting.png" alt="Email from Sholihin Kamarudin at security@stripe.com confirming the submission limiter bypass has been applied to account reevesy_1">
     <div class="ec">Email from Sholihin Kamarudin (<code>security@stripe.com</code>): <em>"We worked with HackerOne to remove the submission limitation on your account. They've applied a limiter bypass to your profile (reevesy_1), so you should be able to submit directly to our program now."</em> This is the confirmation that Stripe — not HackerOne — forced the channel open.</div>
+  </div>
+
+  <div class="ev">
+    <div class="el">Stripe Support Notified — Researcher Confirms Report Submitted</div>
+    <img src="informed-stripe-security-i-reported.png" alt="Researcher informing Stripe Support that the report has been successfully submitted following the bypass">
+    <div class="ec">Researcher confirming to Stripe Support that report #3619019 was successfully submitted using the HackerOne bypass, with the full report ID and title provided for reference. Closes the escalation loop: X contact → bypass granted → report submitted → confirmed.</div>
   </div>
 
   <div class="co r">
@@ -642,6 +636,125 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
     disputed Meesho penalty had direct, measurable consequences for Stripe's infrastructure
     security. This is not background context — it is a direct cause-and-effect relationship.
   </div>
+</div>
+
+<!-- 11 META-REPORT ---->
+
+<div class="ev">
+  <div class="el">The Perfect Circle — Illustrated</div>
+  <img src="broken-cycle.png" alt="Illustrated diagram showing the circular trap: researcher submits report, gets closed, files ticket, told to comment, comments disabled, can't gain rep, back to start. Company revenue flows in while bug bounty fund stays empty.">
+  <div class="ec">The complete system failure visualized: researcher attempts every available pathway (bug report, support ticket, comments, mediation), each blocked by the same reputation system that prevents accumulating reputation. Meanwhile, company revenue continues flowing in while the bug bounty fund remains inaccessible to researchers who find Critical vulnerabilities.</div>
+</div>
+
+<div class="sec">
+  <div class="sh"><span class="sn">11 //</span><h2>The Meta-Report — HackerOne's Response</h2></div>
+
+  <p>
+    On 19 May 2026, the researcher submitted report #3743325 to HackerOne documenting
+    the platform failure that delayed the Stripe OAuth disclosure by five days. The report
+    focused on the platform security issue: submission restrictions preventing time-sensitive
+    Critical disclosures from reaching security teams.
+  </p>
+
+  <div class="ev">
+    <div class="el">Report #3743325 — Submission & Immediate Closure</div>
+    <img src="h1-meta-report1.png" alt="HackerOne report documenting the platform failure">
+    <img src="h1-meta-report2.png" alt="HackerOne report documenting the platform failure">
+    <img src="h1-meta-closure.png" alt="HackerOne report closed as Informative within 40 minutes with severity downgraded from High to Low">
+    <div class="ec">Report submitted, triaged, downgraded from High to Low (CVSS 2.3), and closed as Informative — all within 40 minutes. Analyst @h1_analyst_diablo's reasoning: "downstream impact on third-party vulnerability disclosure timelines is indirect and not part of HackerOne's system CIA assessment." In other words: HackerOne does not consider blocking Critical disclosures to other companies to be a security issue for their platform.</div>
+  </div>
+
+  <div class="co r">
+    <div class="ct2">The Dismissal Logic</div>
+    HackerOne operates a <strong>vulnerability disclosure platform</strong>. I documented
+    their platform <strong>preventing vulnerability disclosure</strong> for five days while
+    a CVSS 10.0 endpoint remained exploitable.<br><br>
+    Their dismissal: the harm was to <em>Stripe's</em> security, not HackerOne's, so it
+    doesn't qualify as a HackerOne security issue.<br><br>
+    By this logic, a vulnerability disclosure platform can block disclosures indefinitely
+    and it's "not a security problem" because the exploited systems belong to their clients.
+  </div>
+
+  <div class="co a">
+    <div class="ct2">The Silencing</div>
+    Immediately after closure, a notice appeared at the bottom of the report stating that
+    HackerOne had deployed a new policy: Comments disabled on closed informative reports
+    unless the researcher has reputation >3000 and signal >3. The researcher now cannot comment
+    on their report about a dismissal. The researcher cannot reach reputation >3000 because...
+    HackerOne's submission restrictions prevent accumulating reputation when penalties are applied.
+    <br><br>
+    <strong>This is the exact circular trap documented in the report they just closed.</strong>
+    <img src="no-comment-policy.png" alt="HackerOne's new policy prevents low reputation and/or signal from commenting on their report once closed">
+  </div>
+
+  <div class="qb">
+    <div class="qs">From the closure comment</div>
+    <div class="qt">"The submission restriction system functioned <em>as intended</em> by applying
+    restrictions following a reputation penalty from another program. While you've raised valid
+    concerns about how this design might impact time-sensitive vulnerability disclosures, this
+    represents feedback on platform policy rather than an exploitable security flaw."</div>
+  </div>
+
+  <p>
+    A system that functions "as intended" and still creates a five-day disclosure gap on a
+    Critical financial infrastructure vulnerability is a system with a <strong>design flaw</strong>,
+    not a policy disagreement.
+  </p>
+
+  <div class="co a">
+    <div class="ct2">The Redirect</div>
+    The triager then instructed: <em>"For reporting functional bugs: if you are looking to
+    report a non-security-related bug in HackerOne, please submit at
+    https://support.hackerone.com/support/home instead."</em><br><br>
+    I followed this instruction and filed a support ticket documenting the same functional
+    bugs: submission restrictions blocking Critical disclosures, support tickets auto-closing,
+    no manual override pathway.
+  </div>
+
+  <div class="ev">
+    <div class="el">Support Ticket Response — The Circle Closes</div>
+    <img src="support-ticket.png" alt="Support ticket that report comment told me to submit.">
+    <img src="support-ticket-response.png" alt="HackerOne support response directing back to report comments">
+    <div class="ec">Support response received ~1 hour later: "If you disagree with any report's
+    decision, you can consider following up with the team in the report comments." They
+    directed me back to the report they had just closed — which has comments disabled for
+    researchers below 3000 reputation.</div>
+  </div>
+
+  <div class="co r">
+    <div class="ct2">The Perfect Circle</div>
+    <strong>Step 1:</strong> Submit bug bounty report → closed as Informative, told to file
+    support ticket<br>
+    <strong>Step 2:</strong> File support ticket → told to leave comment on report<br>
+    <strong>Step 3:</strong> Comments disabled on Informative reports unless reputation >3000<br>
+    <strong>Step 4:</strong> Can't reach >3000 reputation because submission restrictions
+    prevent accumulating reputation<br>
+    <strong>Step 5:</strong> Back to Step 1<br><br>
+    Neither the bug bounty triager nor the support agent acknowledged that comments are
+    disabled, mediation is inaccessible, or that the circular dependency is the exact issue
+    being reported.
+  </div>
+
+<div class="ev">
+  <div class="el">The Perfect Circle — Technical Flow</div>
+  <img src="broken-cycle2.png" alt="Flowchart showing 5-step circular dependency: 1. Submit bug bounty report → 2. File support ticket → 3. Comments disabled (rep >3000 required) → 4. Can't reach >3000 (submission restrictions) → 5. Back to Step 1">
+  <div class="ec">Neither the bug bounty triager nor the support agent acknowledged that comments are disabled, mediation is inaccessible, or that the circular dependency is the exact issue being reported.</div>
+</div>
+
+  <div class="smoking-gun">
+    <div class="sg-title">Three Documented Failures</div>
+    <div class="sg-body">
+      <strong>1. Stripe OAuth vulnerability</strong> — CVSS 10.0, fixed in 12 hours, bounty
+      denied as "duplicate" of Informative report<br><br>
+      <strong>2. HackerOne disclosure blockade</strong> — 5-day delay, forced to bypass
+      platform entirely, Stripe Security had to intervene<br><br>
+      <strong>3. Meta-report closure</strong> — Platform claims blocking disclosures isn't
+      their security problem, then directs to inaccessible resolution pathways<br><br>
+      <em>Each layer is documented with timestamps, screenshots, and email records.<br>
+      Each layer strengthens the case that the current bug bounty platform model is broken.</em>
+    </div>
+  </div>
+
 </div>
 
 <div class="cta">

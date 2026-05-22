@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Story Continues: Platform Failure & The Perfect Circle | SecurityAllround</title>
+<meta name="description" content="What happened after the Stripe OAuth disclosure went public: HackerOne's response, the circular trap, and 63 days of documented silence.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0f0c;--bg2:#111411;--bg3:#161a16;--bdr:#1e2a1e;--bdrb:#2d4a2d;--tx:#d4e8d4;--dm:#7a9e7a;--mt:#4a6a4a;--gr:#4dff91;--gd:#2a8a50;--am:#ffb347;--rd:#ff5555;--cy:#55ccff;--wh:#edfaed;--mo:'IBM Plex Mono',monospace;--sa:'IBM Plex Sans',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--sa);font-size:15px;line-height:1.7;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(77,255,145,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(77,255,145,.015) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+.hdr{position:sticky;top:0;z-index:100;background:rgba(12,15,12,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--bdr);padding:14px 32px;display:flex;align-items:center;justify-content:space-between}
+.hdr a{font-family:var(--mo);font-size:12px;color:var(--dm);text-decoration:none;display:flex;align-items:center;gap:8px}.hdr a::before{content:'←'}.hdr a:hover{color:var(--gr)}
+.hdr .st{font-family:var(--mo);font-size:11px;color:var(--am);display:flex;align-items:center;gap:8px}.hdr .st::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--am);animation:pulse 2.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px 80px}
+.hero{padding:64px 0 48px;border-bottom:1px solid var(--bdr);margin-bottom:48px}
+.tag{font-family:var(--mo);font-size:11px;color:var(--gr);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px}.tag::after{content:'';height:1px;width:60px;background:var(--gd)}
+h1{font-family:var(--mo);font-size:clamp(19px,3.3vw,30px);font-weight:600;color:var(--wh);line-height:1.25;margin-bottom:20px}h1 span{color:var(--gr)}
+h2{font-family:var(--mo);font-size:20px;font-weight:600;color:var(--wh);margin-bottom:20px;margin-top:48px}
+h3{font-family:var(--mo);font-size:16px;font-weight:600;color:var(--gr);margin-bottom:12px;margin-top:32px}
+.sub{font-size:16px;font-weight:300;color:var(--dm);max-width:660px;line-height:1.65;margin-bottom:32px}
+p{margin-bottom:14px;color:var(--dm);font-size:15px}p:last-child{margin-bottom:0}
+strong{color:var(--tx);font-weight:600}
+em{color:var(--am);font-style:italic}
+code{font-family:var(--mo);font-size:12px;background:var(--bg3);border:1px solid var(--bdr);padding:1px 6px;color:var(--cy)}
+a{color:var(--cy);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:16px 0 16px 24px;color:var(--dm)}
+ul li{margin-bottom:8px}
+hr{border:none;border-top:1px solid var(--bdr);margin:40px 0}
+.callout{background:var(--bg3);border-left:3px solid var(--gr);padding:20px 24px;margin:24px 0;font-size:14px;line-height:1.6}
+.callout.warn{border-left-color:var(--am);background:rgba(255,179,71,.04)}
+.callout.critical{border-left-color:var(--rd);background:rgba(255,85,85,.04)}
+.ev{margin:24px 0;text-align:center}
+.ev img{max-width:100%;border:1px solid var(--bdr);margin-bottom:8px;display:block;margin-left:auto;margin-right:auto}
+.ev p{font-size:12px;color:var(--mt);font-style:italic;text-align:left;max-width:800px;margin-left:auto;margin-right:auto}
+.cta{background:var(--bg3);border:1px solid var(--bdrb);padding:32px;text-align:center;margin-top:64px}
+.cta h3{font-family:var(--mo);font-size:16px;color:var(--wh);margin-bottom:10px}
+.cta p{color:var(--dm);font-size:14px;margin-bottom:24px;max-width:520px;margin-left:auto;margin-right:auto}
+.btn{display:inline-block;padding:12px 28px;font-family:var(--mo);font-size:13px;text-decoration:none;transition:all .15s;margin:4px 6px}
+.btnp{background:var(--gr);color:var(--bg);font-weight:600}.btnp:hover{background:#7affa8;text-decoration:none}
+.btns{border:1px solid var(--bdrb);color:var(--dm)}.btns:hover{border-color:var(--gr);color:var(--gr);text-decoration:none}
+footer{position:relative;z-index:1;border-top:1px solid var(--bdr);padding:24px 32px;font-family:var(--mo);font-size:11px;color:var(--mt);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
+@media(max-width:640px){.hdr{padding:12px 16px}.wrap{padding:0 16px 60px}.hero{padding:40px 0 32px}footer{padding:20px 16px}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="origin.html">← Back to Origin Story</a>
+  <div class="st">UPDATE — MAY 2026</div>
+</header>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="tag">Reddit Update · Platform Failure Documentation · May 2026</div>
+  <h1>The Story Continues<br><span>Platform Failure & The Perfect Circle</span></h1>
+  <p class="sub">
+    What happened after the Stripe OAuth disclosure went public. Meta-report to HackerOne. 
+    Circular resolution paths. 63 days of documented silence. This is the full update 
+    that was posted to Reddit following the original disclosure.
+  </p>
+</div>
+
+<p><strong>Context:</strong> Three months ago, the <a href="origin.html">original disclosure</a> about finding a CVSS 10.0 OAuth bypass in Stripe's infrastructure was posted to Reddit and hit 70k+ views. This is what happened next.</p>
+
+<div class="callout warn">
+  <strong>Spoiler:</strong> It's somehow dumber than you'd think.
+</div>
+
+<hr>
+
+<h2>The Bug (Quick Recap)</h2>
+
+<p>Found <code>access.stripe.com/mcp/oauth2/register</code> — completely unauthenticated endpoint that handed out OAuth clients with the privileged <code>mcp</code> scope. No API key. No developer verification. Just POST a JSON body and get back a working <code>client_id</code> that could authorize full merchant account takeover.</p>
+
+<p><strong>Attack chain:</strong> Register client → craft authorization URL → victim merchant clicks "Authorize" on what looks like an official Stripe integration (because it IS served from access.stripe.com) → exfiltrate auth code → exchange for admin token → game over. Treasury transfers, virtual card creation, Connect platform control, persistent webhooks that survive token revocation.</p>
+
+<p>CVSS 10.0. Full PoC with video. Tested in my own sandbox.</p>
+
+<hr>
+
+<h2>The 5-Day Blockade</h2>
+
+<p><strong>March 15, 2026:</strong> Found it. Built the PoC. Ready to report.</p>
+
+<p><strong>March 15-20:</strong> HackerOne's platform blocked my submission. Reason? A -5 reputation penalty from an unrelated program (Meesho marked a different report N/A, triggering "trial report" restrictions).</p>
+
+<p>I filed support ticket #645235: <strong>"URGENT: Critical ATO Vulnerability in Stripe — Submission Blocked by Platform Restriction"</strong></p>
+
+<p>Their response: "No manual override possible. Wait for automatic reset."</p>
+
+<p>The ticket auto-closed as a "feature request" within an hour. When I replied, the email bounced back: "This address no longer accepts requests."</p>
+
+<div class="callout critical">
+  <strong>During those 5 days, Stripe's endpoint was live and exploitable.</strong>
+</div>
+
+<div class="ev">
+  <img src="1attempt-to-correct-meesho.png" alt="March 19 support ticket attempting to mediate Meesho report that caused reputation penalty">
+  <p>March 19, 2026, 4:04 AM: Support ticket filed requesting HackerOne Mediation to review closure of Meesho Report #3605479 (marked N/A, resulting in -5 reputation penalty). Response: "Hacker Mediation must be requested directly from the report itself. Requests submitted through the Support Portal cannot be processed and the ticket will be closed." The circular catch: mediation can only be requested after commenting on the report with no response, but hackers with negative signal are not eligible to request mediation.</p>
+</div>
+
+<div class="ev">
+  <img src="H1-deny-submitting-report1.png" alt="March 19 notification that trial reports are used up">
+  <p>March 19, 2026, 10:50 PM: HackerOne response explaining trial report restrictions. "Trial reports are limited: Once you've used all of your trial report submissions, they cannot be retrieved or reset manually." The -5 rep penalty from Meesho triggered this limitation exactly when a Critical Stripe vulnerability needed immediate disclosure.</p>
+</div>
+
+<div class="ev">
+  <img src="H1-support-or-lack-there-of-2.png" alt="March 20 support ticket auto-closed as feature request">
+  <p>March 20, 2026, 12:49 AM: Support Ticket #645235 auto-closed as "resolved" and classified as a "feature request" despite title explicitly stating "URGENT: Critical ATO Vulnerability in Stripe — Submission Blocked by Platform Restriction." Promised 72-hour reopen window if issue not fully resolved.</p>
+</div>
+
+<div class="ev">
+  <img src="1Broken-ticket-system.png" alt="Reply bounced with email no longer accepting requests">
+  <p>March 20, 2026, 1:59 AM: Reply sent within 10 minutes of the "resolved" closure explaining the issue is not resolved. Email bounced back: "This email no longer accepts new requests. To contact us, please use our HackerOne Support Portal." The 72-hour reopen window closed itself within 1 hour. Support channel eliminated on an active Critical disclosure.</p>
+</div>
+
+<div class="ev">
+  <img src="2H1-support-failure.png" alt="Second support response reiterating platform limitation">
+  <p>March 20, 2026, 12:49 AM: Second support response reiterating the platform limitation exists as designed. "At the moment, since you've used all of your trial reports, there isn't another way to submit reports to programs that have Signal restrictions. This is not an automated reply specific to your case — it's a standard platform limitation that applies to all new researchers." A CVSS 9.1+ vulnerability requiring immediate disclosure, actively blocked by platform design.</p>
+</div>
+
+<hr>
+
+<h2>The Bypass</h2>
+
+<p><strong>March 20:</strong> Exhausted every HackerOne channel. Did the only thing left — contacted Stripe Security directly on Twitter. Explained I had a Critical unauthenticated endpoint, withheld the PoC until we had a secure channel.</p>
+
+<p><strong>Stripe Security's response:</strong> They contacted HackerOne and forced them to lift my submission restriction.</p>
+
+<p>Email from Sholihin Kamarudin (security@stripe.com): <em>"We worked with HackerOne to remove the submission limitation on your account."</em></p>
+
+<div class="callout">
+  Think about that. <strong>Stripe Security had to bypass HackerOne to let me report a vulnerability to Stripe via HackerOne.</strong>
+</div>
+
+<hr>
+
+<h2>The Fix</h2>
+
+<p><strong>March 20, 23:06 UTC:</strong> Report #3619019 finally submitted. Full PoC, curl commands, 4 screenshots, screen recording, impact analysis.</p>
+
+<p><strong>March 21, ~22:56 AEST:</strong> Email from Stripe Support (Agent Divine): <em>"Our security team has confirmed that the issue is now fully resolved. We really appreciate you bringing this to our attention."</em></p>
+
+<p><strong>They patched it in ~12 hours. On a Sunday.</strong></p>
+
+<hr>
+
+<h2>The Denial</h2>
+
+<p><strong>March 23:</strong> HackerOne marks the report "Duplicate" of report #3597174.</p>
+
+<p>That report? Submitted March 10. Marked <strong>Informative</strong>. Bounty: <strong>$0</strong>.</p>
+
+<p>So let me get this straight:</p>
+<ul>
+  <li>March 10: Someone reports it → sits for 11 days → marked Informative, no bounty</li>
+  <li>March 20: I report it → Stripe patches in 12 hours on a Sunday</li>
+  <li>March 23: HackerOne says mine is a duplicate of the one that got zero response for 11 days</li>
+</ul>
+
+<p><strong>March 25:</strong> Stripe Security comments: <em>"This is intended behavior."</em></p>
+
+<p>Four days after their own Support team confirmed it was "verified and fully resolved."</p>
+
+<hr>
+
+<h2>The Smoking Gun</h2>
+
+<p><strong>March 26:</strong> I checked the original webhook.site redirect URI I used in the PoC. The one that worked perfectly during testing.</p>
+
+<p>Now? <code>error: invalid_redirect_uri — "Not registered redirect_uri"</code></p>
+
+<div class="callout critical">
+  <strong>They added redirect_uri validation after my disclosure.</strong><br><br>
+  So it was "intended behavior" that also required a security patch deployed post-disclosure? Make it make sense.
+</div>
+
+<hr>
+
+<h2>The $25k Question</h2>
+
+<p><strong>March 25, 15:49 UTC:</strong> Stripe denies my bounty citing "intended behavior."</p>
+
+<p><strong>March 24, 23:40 GMT:</strong> Stripe pays researcher @rcss <strong>$25,000</strong> for a different report.</p>
+
+<p>Same program. Same day. One researcher gets $25k. I get "intended behavior."</p>
+
+<hr>
+
+<h2>The Meta-Report</h2>
+
+<p>At this point I'm thinking: okay, this is fucked, but at least I can report the <em>platform</em> failure to HackerOne. The 5-day blockade that left a CVSS 10.0 endpoint exploitable while their submission restrictions prevented disclosure.</p>
+
+<p><strong>May 19, 2026:</strong> Submit report #3743325 documenting the platform security issue.</p>
+
+<p><strong>40 minutes later:</strong> Closed as "Informative." Severity downgraded from High to Low (CVSS 2.3).</p>
+
+<p>Their reasoning: <em>"The downstream impact on third-party vulnerability disclosure timelines is indirect and not part of HackerOne's system CIA assessment."</em></p>
+
+<div class="callout critical">
+  Let me translate: <strong>A vulnerability disclosure platform blocking disclosures to other companies isn't a HackerOne security issue.</strong>
+</div>
+
+<p>Then they added: <em>"For reporting functional bugs, please submit at https://support.hackerone.com/support/home instead."</em></p>
+
+<div class="ev">
+  <img src="h1-meta-report1.png" alt="Meta-report page 1">
+</div>
+
+<div class="ev">
+  <img src="h1-meta-report2.png" alt="Meta-report page 2">
+</div>
+
+<div class="ev">
+  <img src="h1-meta-closure.png" alt="Meta-report closed as Informative in 40 minutes">
+  <p>Report #3743325 closed as "Informative" within 40 minutes. Severity downgraded from High to Low (CVSS 2.3). Reason: "downstream impact on third-party vulnerability disclosure timelines is indirect and not part of HackerOne's system CIA assessment."</p>
+</div>
+
+<hr>
+
+<h2>The Perfect Circle</h2>
+
+<p>Alright. Fine. I'll file a support ticket like they asked.</p>
+
+<p><strong>Support ticket filed:</strong> Same issue. Submission restrictions blocked a Critical disclosure. Support auto-closed the original ticket. No manual override exists.</p>
+
+<p><strong>Support response (~1 hour later):</strong> <em>"If you disagree with any report's decision, you can consider following up with the team in the report comments."</em></p>
+
+<p><strong>The problem:</strong> Comments are disabled on Informative reports unless you have >3000 reputation and signal >3.</p>
+
+<p><strong>My reputation:</strong> Blocked by the same submission restrictions that caused this whole mess.</p>
+
+<div class="callout warn">
+  <strong>Step 1:</strong> Report blocked → told to file support ticket<br>
+  <strong>Step 2:</strong> Support ticket → told to comment on report<br>
+  <strong>Step 3:</strong> Comments disabled unless >3000 rep<br>
+  <strong>Step 4:</strong> Can't get >3000 rep because submissions are blocked<br>
+  <strong>Step 5:</strong> Back to Step 1
+</div>
+
+<p>I reported a circular trap. They responded by creating a circular trap.</p>
+
+<div class="ev">
+  <img src="support-ticket.png" alt="Support ticket filed per triager instruction">
+  <p>Support ticket #655323 filed May 20, 2026 as instructed by meta-report triager. Same issue: submission restrictions blocking Critical disclosure, no manual override pathway.</p>
+</div>
+
+<div class="ev">
+  <img src="ticket655323-blockade-closed.png" alt="Support ticket marked resolved">
+  <p>Support ticket #655323 marked "resolved" May 20, 2026 at 3:38 PM. Claimed it was soft-closed as a feature request and would be tracked internally. Promised 72-hour reopen window.</p>
+</div>
+
+<div class="ev">
+  <img src="ticket655323-blockade-closed-reply.png" alt="Reply explaining the circular trap">
+  <p>Researcher reply May 20, 2026 at 4:22 PM: "How could my issue be fully resolved when not one thing has been done about it other than the automation I have an issue with is doing the exact thing it shouldn't be doing?" Explained the circular dependency. This was the reply to the ticket they claimed had 72 hours to reopen.</p>
+</div>
+
+<div class="ev">
+  <img src="support-ticket-response.png" alt="Support response redirecting to disabled comments">
+  <p>Support response (~10 hours later): "If you disagree with any report's decision, you can consider following up with the team in the report comments." Comments are disabled on Informative reports unless reputation >3000 and signal >3. The exact circular trap documented in the ticket.</p>
+</div>
+
+<div class="ev">
+  <img src="no-comment-policy.png" alt="HackerOne policy disabling comments for low reputation users">
+  <p>HackerOne's comment restriction policy deployed immediately after meta-report was closed: "Starting now, we will be disabling comments on closed, invalid reports. However, hackers with a signal above 3 and a reputation above 3000 will continue to be able to comment." The policy that creates the circular trap.</p>
+</div>
+
+<hr>
+
+<h2>The Mediation Request</h2>
+
+<p><strong>May 20, 2026, 12:25am UTC — 63 days after the original report:</strong> Filed formal mediation request.</p>
+
+<p>Cited:</p>
+<ul>
+  <li>Timeline impossibility (duplicate sat 11 days untriaged, my report triggered 12-hour Sunday fix)</li>
+  <li>Contradictory statements (Support confirmed fix, Security claimed "intended behavior")</li>
+  <li>Post-disclosure hardening (redirect_uri restriction proves remediation)</li>
+  <li>Discriminatory payment ($25k to competitor same day, denied mine 15 hours later)</li>
+</ul>
+
+<p><strong>Response as of May 23:</strong> <strong>Zero.</strong> Not even an automated acknowledgment.</p>
+
+<div class="callout critical">
+  <strong>Total comments on report #3619019 across 63+ days:</strong> 2<br>
+  • HackerOne: "Duplicate"<br>
+  • Stripe: "Intended behavior"<br><br>
+  That's it.
+</div>
+
+<div class="ev">
+  <img src="mediation-request1.png" alt="Mediation request page 1">
+</div>
+
+<div class="ev">
+  <img src="mediation-request2.png" alt="Mediation request page 2 with attached evidence">
+  <p>Full mediation request filed 63 days after original report submission. Cited timeline impossibility, contradictory statements, post-disclosure hardening proof, and discriminatory payment pattern. Requested formal review of duplicate determination. Attached 6 supporting screenshots including Stripe Support case confirmation, timeline evidence, redirect_uri restriction implementation, and $25k payment to competitor.</p>
+</div>
+
+<div class="ev">
+  <img src="2-3days-after-mediate-request-silence.png" alt="3 days after mediation request — complete silence">
+  <p>Screenshot taken ~3 days after mediation request filed. Total responses: Zero. No automated acknowledgment. No timeline for review. Complete silence. 63 days since original report.</p>
+</div>
+
+<hr>
+
+<h2>The Pattern</h2>
+
+<p>Let me lay out every communication attempt:</p>
+
+<h3>What I sent:</h3>
+<ul>
+  <li>Detailed vulnerability report (PoC, video, timeline, impact analysis)</li>
+  <li>Multiple status requests via comments (blocked after new policy)</li>
+  <li>2 HackerOne support tickets (auto-closed or redirected)</li>
+  <li>1 formal legal demand to Stripe — 30+ opens via email tracking, no response</li>
+  <li>1 final notice to Stripe — 23+ opens, forwarded to external legal counsel, no response</li>
+  <li>1 meta-report about platform failure (closed in 40 minutes)</li>
+  <li>1 support ticket about platform failure (redirected to disabled comments)</li>
+  <li>1 official mediation request (zero response)</li>
+</ul>
+
+<h3>What I got back:</h3>
+<ul>
+  <li>1 comment: "Duplicate"</li>
+  <li>1 comment: "Intended behavior"</li>
+</ul>
+
+<p><strong>Responses addressing technical evidence:</strong> 0<br>
+<strong>Responses to legal demands:</strong> 0<br>
+<strong>Responses to mediation:</strong> 0</p>
+
+<hr>
+
+<h2>Why This Matters</h2>
+
+<p>This isn't about one bounty. It's about what happens when platform economics prioritize denial over disclosure.</p>
+
+<p><strong>HackerOne's submission restrictions left a CVSS 10.0 endpoint exploitable for 5 extra days.</strong> During that window, any attacker could have registered malicious OAuth clients and started collecting merchant authorization codes.</p>
+
+<p>When I reported this platform failure, their response was: <em>blocking disclosures to third parties isn't our security problem.</em></p>
+
+<p>Then they created a resolution system where:</p>
+<ul>
+  <li>Bug reports get closed → told to file support tickets</li>
+  <li>Support tickets → told to comment on reports</li>
+  <li>Comments disabled based on reputation</li>
+  <li>Reputation can't be gained because submissions are blocked</li>
+</ul>
+
+<p>Every pathway either auto-closes, redirects in a circle, or goes silent.</p>
+
+<hr>
+
+<h2>The Documentation</h2>
+
+<p>I documented every single step. Timestamps, screenshots, emails, server logs. It's all public:</p>
+
+<div class="callout">
+  <strong>Full technical documentation:</strong> <a href="origin.html">https://securityallround.com/HACKER2.0/origin.html</a>
+</div>
+
+<p>Including:</p>
+<ul>
+  <li>Full Stripe OAuth PoC (attack chain with curl commands)</li>
+  <li>HackerOne support tickets showing the 5-day blockade</li>
+  <li>Email from Stripe Security forcing HackerOne to lift the restriction</li>
+  <li>Stripe Support confirming the fix in 12 hours</li>
+  <li>Post-disclosure redirect_uri hardening that proves it wasn't "intended"</li>
+  <li>Meta-report closure + support ticket runaround</li>
+  <li>Mediation request (currently: 3 days, zero response)</li>
+  <li>Both illustrated and technical diagrams of the circular trap</li>
+</ul>
+
+<p>Everything. Receipts for days.</p>
+
+<hr>
+
+<h2>What I'm Building</h2>
+
+<p><strong>HACKER2.0</strong> — because this shit shouldn't be possible.</p>
+
+<p>Core principles:</p>
+<ul>
+  <li><strong>Escrow-backed bounties:</strong> Funds locked at submission, released when criteria met</li>
+  <li><strong>Automated silent-patch detection:</strong> If the bug gets fixed, researcher gets paid (can't claim "intended behavior" after deploying a patch)</li>
+  <li><strong>Binding arbitration:</strong> Reports can't be closed without payment until disputed claims are independently resolved</li>
+  <li><strong>No reputation system that blocks time-sensitive disclosures</strong></li>
+</ul>
+
+<p>Not because I'm bitter. Because platform economics create predictable failure modes, and those can be engineered out.</p>
+
+<hr>
+
+<h2>The Question</h2>
+
+<div class="callout critical">
+  If a vulnerability disclosure platform can block a CVSS 10.0 disclosure for 5 days, force the researcher to bypass the platform entirely via Twitter, then close a report about that blockade as "not our problem" while creating circular resolution paths...<br><br>
+  <strong>What exactly is the platform protecting?</strong>
+</div>
+
+<hr>
+
+<p><strong>Full timeline with evidence:</strong> <a href="origin.html">https://securityallround.com/HACKER2.0/origin.html</a></p>
+
+<p>I'll update this if/when mediation responds. But after 63 days of pattern-matched silence, I'm not holding my breath.</p>
+
+<div class="callout warn">
+  <strong>Next Steps:</strong> Filed mediation May 20. HackerOne's policy says 10 business days typical response time. If nothing by end of month, proceeding with Australian Consumer Law complaint against Stripe Payments Australia Pty Ltd and potentially QCAT filing. Every resolution pathway has been attempted. Every one has failed or gone silent. The paper trail is complete.
+</div>
+
+<div class="cta">
+  <h3>This is why HACKER2.0 needs to exist.</h3>
+  <p>Escrow-backed bounties. Automated silent-patch detection. Binding arbitration before a program can close a report without paying. No reputation system that can be weaponised to block a researcher mid-disclosure.</p>
+  <a class="btn btnp" href="https://securityallround.com/HACKER2.0/">Join the Waitlist</a>
+  <a class="btn btns" href="origin.html">Read the Full Origin Story</a>
+</div>
+
+</div>
+
+<footer>
+  <span>&#169; 2026 SecurityAllround. Ray Reeves — Independent Security Researcher.</span>
+  <span>
+    <a href="https://securityallround.com/">Home</a> &#183;
+    <a href="https://securityallround.com/HACKER2.0/">HACKER2.0</a> &#183;
+    <a href="https://securityallround.com/contact/">Contact</a>
+  </span>
+</footer>
+
+</body>
+</html>

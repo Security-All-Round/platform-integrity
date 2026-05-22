@@ -382,8 +382,14 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
 
     <div class="ti wn">
       <div class="td">8 April 2026 — 10:00:45 UTC</div>
-      <div class="tt a">Legal Demand Accessed from Stripe Infrastructure</div>
-      <div class="tb">Formal letter of demand accessed from IP <code>139.45.180.11</code> (AS5091 — Stripe, Inc.) via Referer <code>https://admin.corp.stripe.com/</code>. No response received.</div>
+      <div class="tt a">First Legal Demand Accessed from Stripe Infrastructure</div>
+      <div class="tb">Formal letter of demand accessed from IP <code>139.45.180.11</code> (AS5091 — Stripe, Inc.) via Referer <code>https://admin.corp.stripe.com/</code>. Email tracking shows 30+ opens. No response received.</div>
+    </div>
+
+    <div class="ti wn">
+      <div class="td">18 April 2026</div>
+      <div class="tt a">Final Notice Sent</div>
+      <div class="tb">Second formal demand sent. Email tracking shows 23+ opens, forwarded to external legal counsel. No substantive response received.</div>
     </div>
 
   </div>
@@ -485,6 +491,12 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
     The fix was triggered by this report. The duplicate claim is being used to deny credit
     for work that was clearly operative.
   </div>
+  
+  <div class="ev">
+    <div class="el">Stripe Support Reply — Dispute Escalation Response</div>
+    <img src="stripe-reply-to-email.png" alt="Stripe Support response after researcher disputed duplicate marking">
+    <div class="ec">March 23, 2026, 8:39 PM: After HackerOne marked the report as duplicate of an 11-day-old Informative report, researcher contacted Stripe Support directly pointing out the timeline discrepancy (duplicate sat untriaged for 11 days, my report triggered Sunday fix in 12 hours). Jack from Stripe Support confirms they've escalated the concern to the internal team for investigation as a top priority and will provide updates.</div>
+  </div>
 
   <div class="co r">
     <div class="ct2">Problem 5 — The $25,000 bounty paid the same day makes no sense if this was "Informative"</div>
@@ -568,12 +580,6 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
   </div>
 
   <div class="ev">
-    <div class="el">Stripe Support Reply — Case Escalation Acknowledgment</div>
-    <img src="stripe-reply-to-email.png" alt="Stripe Support reply acknowledging the critical vulnerability report and confirming escalation to specialised team">
-    <div class="ec">Stripe Support reply confirming receipt of the vulnerability report and escalation to a specialised security team — separate from the HackerOne channel. Documents that Stripe Support was independently tracking this case.</div>
-  </div>
-
-  <div class="ev">
     <div class="el">Email Open Map — Geographic &amp; Timestamp Record</div>
     <img src="email-opening-map.png" alt="Email open tracking map" loading="lazy">
     <div class="ec">Geographic and timestamp record of demand document access events.</div>
@@ -603,6 +609,17 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
     <div class="el">Canary Token 2 — Access Log (ID: czytqe7jmge5vo11iynol80m2)</div>
     <img src="canary-token2-2026-04-23_16-27.png" alt="Second canary token showing access from 121.123.120.246 and 66.249.84.101 (Google) and 194.126.177.6">
     <div class="ec">Second token showing access from <code>121.123.120.246</code> across multiple sessions (April 18–21), <code>194.126.177.6</code> (April 18), and <code>66.249.84.101</code> (Google crawler, April 18). US west coast and UK/Europe clusters visible. Combined with Token 1, the logs confirm sustained, multi-session monitoring of this disclosure from multiple network sources including the Stripe AS5091 block.</div>
+    <div class="ev">
+      <div class="el">Canary Token Access — May 2026 (Post-Mediation Filing)</div>
+      <img src="stripe-email1-canary22-5-26.png" alt="Canary token showing access on May 20 (mediation filing day) and May 19 (meta-report day)">
+      <div class="ec">Access logged on May 20, 2026 — the same day mediation was filed. IP <code>140.82.192.207</code>. Additional access on May 19 at 8:13 PM (the day meta-report was closed), May 1, and multiple April dates. Geographic distribution: Oklahoma City, Dallas, Dublin, Zurich, Bengaluru, Kuala Lumpur. Canary token ID: <code>116tctp1y216jf8fbkwlzfajj</code>.</div>
+    </div>
+
+    <div class="ev">
+      <div class="el">Canary Token Access — Continued Monitoring (May 2026)</div>
+      <img src="stripe-email2-canary22-5-26.png" alt="Second canary token showing sustained global monitoring across May, April">
+      <div class="ec">Second canary token (ID: <code>czytqe7jmge5vo11iynol80m2</code>) showing access from multiple IPs across May 19 (8:13 PM), May 1, and April 24-25. Pattern confirms sustained, multi-session monitoring of the disclosure from various geographic locations. The page is being actively watched — including on the day mediation was filed — even as the mediation request goes unanswered.</div>
+    </div>
   </div>
 </div>
 
@@ -734,6 +751,20 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
     disabled, mediation is inaccessible, or that the circular dependency is the exact issue
     being reported.
   </div>
+  <div style="margin:24px 0;text-align:center;">
+      <img src="support-ticket.png" alt="Support ticket filed per triager instruction" style="max-width:100%;border:1px solid var(--bdr);margin-bottom:8px;">
+      <p style="font-size:12px;color:var(--mt);font-style:italic;">Support ticket filed as instructed by meta-report triager. Same issue: submission restrictions blocking Critical disclosure, no manual override pathway.</p>
+    </div>
+
+    <div style="margin:24px 0;text-align:center;">
+      <img src="support-ticket-response.png" alt="Support response redirecting to disabled comments" style="max-width:100%;border:1px solid var(--bdr);margin-bottom:8px;">
+      <p style="font-size:12px;color:var(--mt);font-style:italic;">Support response: "If you disagree with any report's decision, you can consider following up with the team in the report comments." Comments are disabled on Informative reports unless reputation >3000 and signal >3.</p>
+    </div>
+
+    <div style="margin:24px 0;text-align:center;">
+      <img src="no-comment-policy.png" alt="HackerOne policy disabling comments for low reputation users" style="max-width:100%;border:1px solid var(--bdr);margin-bottom:8px;">
+      <p style="font-size:12px;color:var(--mt);font-style:italic;">HackerOne's comment restriction policy: "Starting now, we will be disabling comments on closed, invalid reports. However, hackers with a signal above 3 and a reputation above 3000 will continue to be able to comment." The exact circular trap documented in the report.</p>
+    </div>
 
 <div class="ev">
   <div class="el">The Perfect Circle — Technical Flow</div>
@@ -762,6 +793,11 @@ footer a{color:var(--mt);text-decoration:none}footer a:hover{color:var(--gr)}
   <p>Escrow-backed bounties. Automated silent-patch detection. Binding arbitration before a program can close a report without paying. No reputation system that can be weaponised to block a researcher mid-disclosure.</p>
   <a class="btn btnp" href="https://securityallround.com/HACKER2.0/">Join the Waitlist</a>
   <a class="btn btns" href="https://securityallround.com/HACKER2.0/index.html">About the Platform</a>
+  <div class="cta" style="margin-top:48px;background:var(--bg2);border:2px solid var(--gr);">
+    <h3>The Story Continues</h3>
+    <p>After this disclosure went public, I reported the platform failure to HackerOne. Their response: close it in 40 minutes, create a circular resolution system, then go silent on mediation. Read what happened next.</p>
+    <a class="btn btnp" href="origin_continues.html">Read the Full Reddit Update</a>
+  </div>
 </div>
 
 </div>

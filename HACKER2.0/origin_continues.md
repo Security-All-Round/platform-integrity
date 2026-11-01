@@ -60,7 +60,6 @@ So let me get this straight:
 March 25: Stripe Security comments: "This is intended behavior."
 
 Four days after their own Support team confirmed it was "verified and fully resolved."
-The Smoking Gun
 
 March 26: I checked the original webhook.site redirect URI I used in the PoC. The one that worked perfectly during testing.
 

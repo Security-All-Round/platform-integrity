@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raymond Reeves | Terminal Portfolio</title>
+    <style>
+        body {
+            background-color: #0c0c0c;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+        #terminal {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .output {
+            white-space: pre-wrap;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .prompt-line {
+            display: flex;
+            align-items: center;
+        }
+        .prompt {
+            color: #00ff00;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        input {
+            background-color: transparent;
+            color: #00ff00;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            font-size: inherit;
+            width: 100%;
+        }
+        .highlight {
+            color: #00ffff;
+            font-weight: bold;
+        }
+        .header {
+            color: #ff00ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal">
+        <div class="output"><span class="header">SYSTEM READY.</span>
+Welcome to the interactive portfolio of Raymond Reeves.</div>
+        <div class="output">Type <span class="highlight">help</span> to view available commands.</div>
+        <div id="history"></div>
+        <div class="prompt-line">
+            <span class="prompt">raymond@kali:~$</span>
+            <input type="text" id="cmd" autocomplete="off" autofocus>
+        </div>
+    </div>
+
+    <script>
+        const commands = {
+            help: "Available commands:\n  about          - Display professional summary\n  skills         - List technical skills and tools\n  experience     - Show employment history\n  certifications - View degrees, micro-credentials, and certifications\n  projects       - View bug bounty, framework dev, and CTF achievements\n  clear          - Clear the terminal screen",
+            
+            about: "Raymond Reeves\nLocation: Coombabah, QLD\n\nOffensive security professional specializing in penetration testing, custom Python automation, and bug bounty research. Transitioned from 15 years in high-pressure physical security and incident response into technical cybersecurity. Developer of a custom 47-part pentest automation framework.",
+            
+            skills: "Technical Skills:\n\n- Offensive Tools: Burp Suite, Nmap, FFuf, SQLmap, Hashcat, Impacket, Recon-ng, Wireshark\n- Scripting & Automation: Python, BASH\n- OS & Environments: Kali Linux, Docker, Windows\n- Cloud & Defense: AWS (Cloud Foundations), Splunk (SIEM)",
+            
+            experience: "Professional Experience:\n\nNight Shift Security Officer | Village Roadshow Theme Parks | Jul 2022 - 2024\n- Managed site-wide security operations, incident response, and asset protection across massive commercial footprints.\n\nProtective Services Officer | Gold Coast University Hospital | Aug 2015 - Apr 2022\n- Executed crisis de-escalation, high-stakes incident response, and evidence handling across a major medical precinct.",
+            
+            certifications: "Certifications & Education:\n\n[Core Degrees & Practical Certifications]\n- Certificate IV in Cyber Security (TAFE Queensland)\n- TryHackMe: Junior Penetration Tester (PT1)\n\n[Micro-Credentials & Platform Training]\n- Cisco Networking Academy: Ethical Hacker\n- AWS Academy: Cloud Foundations\n- Alison & Various Platforms: Multiple IT & Cybersecurity Diplomas/Micro-credentials\n\n[Industry Foundations]\n- (ISC)²: Certified in Cybersecurity (CC)",
+            
+            projects: "Notable Projects & Achievements:\n\n- CTF: Top 2% global ranking (107th/5694 teams) in Hack The Box Cyber Apocalypse 2024.\n- Bug Bounty: Halls of Fame acknowledgments for Lendi Group and Aussie.com.au (focused on API authorization and access controls).\n- Engineering: Developer of a custom, multi-threaded penetration testing automation framework in Python targeting high-efficiency reconnaissance and execution."
+        };
+
+        const historyDiv = document.getElementById('history');
+        const cmdInput = document.getElementById('cmd');
+
+        // Keep focus on the input so the user doesn't have to keep clicking it
+        document.addEventListener('click', () => {
+            cmdInput.focus();
+        });
+
+        cmdInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const inputVal = this.value.trim().toLowerCase();
+                
+                if (inputVal) {
+                    // Echo the command
+                    const promptDiv = document.createElement('div');
+                    promptDiv.className = 'output';
+                    promptDiv.innerHTML = `<span class="prompt">raymond@kali:~$</span> ${this.value}`;
+                    historyDiv.appendChild(promptDiv);
+                    
+                    // Handle command logic
+                    if (inputVal === 'clear') {
+                        historyDiv.innerHTML = '';
+                    } else if (commands[inputVal]) {
+                        const responseDiv = document.createElement('div');
+                        responseDiv.className = 'output';
+                        responseDiv.textContent = commands[inputVal];
+                        historyDiv.appendChild(responseDiv);
+                    } else {
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'output';
+                        errorDiv.textContent = `bash: ${inputVal}: command not found. Type 'help' for available commands.`;
+                        historyDiv.appendChild(errorDiv);
+                    }
+                }
+                
+                // Reset input and scroll down
+                this.value = '';
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        });
+    </script>
+</body>
+</html>

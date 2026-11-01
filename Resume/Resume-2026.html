@@ -476,6 +476,7 @@ const HTB_TRANSCRIPT_PDF = "data:application/pdf;base64,JVBERi0xLjQKJSBjcmVhdGVk
   <span class="info">skills</span>        Technical competencies
   <span class="info">experience</span>    Work history   <span class="dim">(aliases: exp, work, jobs)</span>
   <span class="info">hacker2.0</span>     The bug bounty platform I'm building   <span class="warn">★</span>
+  <span class="info">bounties</span>      Bug bounties & VDP Hall of Fame (Stripe, Lendi)   <span class="warn">★</span>
   <span class="info">projects</span>      Custom tooling &amp; personal projects
   <span class="info">ctfs</span>          CTF competition history &amp; rankings
   <span class="info">stats</span>         Platform stats &amp; lab progress
@@ -766,6 +767,31 @@ context, that's not a soft skill. That's half the job.
 <span class="warn">╚═══════════════════════════════════════════════════════════╝</span>
 
 <span class="dim">See </span>${clickCmd('dashboards')}<span class="dim"> for visual proof of the above.</span>
+`,
+
+bounties: () => `
+<span class="hl">VULNERABILITY DISCLOSURES & BUG BOUNTIES</span>
+<span class="dim">─────────────────────────────────────────────────────────────</span>
+
+<span class="bright">◆ Lendi Group & Aussie Home Loans</span>  <span class="dim">(Aug 2026)</span>
+  <span class="ok">Status:</span>     <span class="hl">Confirmed & Patched ✓</span>
+  <span class="ok">Impact:</span>     Significant Broken Access Control (IDOR)
+  <span class="ok">Details:</span>    Identified a vulnerability allowing unauthorized read access to highly sensitive 
+              PII and private user records.
+  <span class="ok">Credit:</span>     Officially listed on the Vulnerability Disclosure Hall of Fame
+  <span class="ok">Proof:</span>      <a class="live-link" href="https://www.lendi.com.au/about-us/vulnerability-disclosure-program/" target="_blank">Lendi VDP Page</a> · <a class="live-link" href="https://www.aussie.com.au/about-us/vulnerability-disclosure-program/" target="_blank">Aussie VDP Page</a>
+  <span class="ok">Handle:</span>     reevesy_1 <span class="dim">(securityallround.com)</span>
+  <span class="dim">→ Authorized disclosure following strict VDP guidelines.</span>
+
+<span class="bright">◆ Stripe</span>  <span class="dim">(Mar 2026)</span>
+  <span class="ok">Status:</span>     <span class="hl">Confirmed & Patched ✓</span>
+  <span class="ok">Impact:</span>     <span class="hl">Full Account Takeover (ATO)</span> via OAuth Misconfiguration
+  <span class="ok">Details:</span>    Critical authentication flaw in Model Context Protocol infrastructure.
+  <span class="ok">Write-up:</span>   <a class="live-link" href="https://securityallround.com/HACKER2.0/origin.html" target="_blank">securityallround.com/HACKER2.0/origin.html</a>
+  <span class="ok">Handle:</span>     reevesy_1
+  <span class="dim">→ Identified and reported critical misconfiguration in auth infrastructure.</span>
+
+<span class="dim">All research conducted ethically with explicit permission under VDP/Bug Bounty rules.</span>
 `,
 
     dashboards: () => `

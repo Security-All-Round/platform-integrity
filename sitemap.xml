@@ -5,22 +5,31 @@
   <url><loc>https://securityallround.com/contact/</loc><priority>0.5</priority></url>
 
   <!-- Sector 00: Hacker2.0 -->
-  <url><loc>https://securityallround.com/HACKER2.0/origin.html/</loc><priority>0.9</priority></url>
-  <url><loc>https://securityallround.com/HACKER2.0/origin_continues.html/</loc><priority>0.8</priority></url>
   <url><loc>https://securityallround.com/HACKER2.0/index.html</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/HACKER2.0/origin.html</loc><priority>0.9</priority></url>
+  <url><loc>https://securityallround.com/HACKER2.0/origin_continues.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/HACKER2.0/founding.html</loc><priority>0.8</priority></url>
 
-  <!-- Sector 01: Digital Play -->
+  <!-- Sector 01: Digital Play (Reviews) -->
   <url><loc>https://securityallround.com/play/</loc><priority>0.9</priority></url>
   <url><loc>https://securityallround.com/play/bitstarz.html</loc><priority>0.8</priority></url>
-  <url><loc>https://securityallround.com/play/bitkingz.html</loc><priority>0.8</priority></url>
-  <url><loc>https://securityallround.com/play/casinoly.html</loc><priority>0.8</priority></url>
   <url><loc>https://securityallround.com/play/crocoslots.html</loc><priority>0.8</priority></url>
-  <url><loc>https://securityallround.com/play/quickwin.html</loc><priority>0.8</priority></url>
-  <url><loc>https://securityallround.com/play/spingranny.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/bitkingz.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/staycasino.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/cashy.html</loc><priority>0.8</priority></url>
   <url><loc>https://securityallround.com/play/spinmama.html</loc><priority>0.8</priority></url>
-  <url><loc>https://securityallround.com/play/spinwinera.html</loc><priority>0.8</priority></url>
-  <url><loc>https://securityallround.com/play/vegasino.html</loc><priority>0.8</priority></url>
   <url><loc>https://securityallround.com/play/vincispin.html</loc><priority>0.8</priority></url>
+  <url><loc>https://securityallround.com/play/spingranny.html</loc><priority>0.8</priority></url>
+
+  <!-- Technical Audits (Casino) -->
+  <url><loc>https://securityallround.com/bitstarz-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/crocoslots-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/bitkingz-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/staycasino-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/cashy-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/spinmama-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/vincispin-audit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://securityallround.com/spingranny-audit.html</loc><priority>0.7</priority></url>
 
   <!-- Sector 02: Asset Custody -->
   <url><loc>https://securityallround.com/custody/</loc><priority>0.9</priority></url>
@@ -43,18 +52,8 @@
   <url><loc>https://securityallround.com/tactical/olight-review.html</loc><priority>0.8</priority></url>
   <url><loc>https://securityallround.com/tactical/surveillance-audit.html</loc><priority>0.8</priority></url>
 
-  <!-- Technical Audits (Casino) -->
-  <url><loc>https://securityallround.com/bitkingz-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/bitstarz-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/casinoly-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/crocoslots-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/quickwin-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/spingranny-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/spinmama-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/spinwinera-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/vegasino-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/vincispin-audit.html</loc><priority>0.7</priority></url>
-  <url><loc>https://securityallround.com/zet-audit.html</loc><priority>0.7</priority></url>
+  <!-- Sector 06: The Armory -->
+  <url><loc>https://securityallround.com/armory/</loc><priority>0.8</priority></url>
 
   <!-- Compliance & Legal -->
   <url><loc>https://securityallround.com/privacy.html</loc><priority>0.3</priority></url>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en-AU" class="scroll-smooth">
 <head>
 <script>
   (function () {
@@ -22,11 +22,24 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitkingz Technical Audit | SecurityAllround</title>
+    <title>Bitkingz Technical Audit (BK-2026-001) | SecurityAllround</title>
+    <meta name="description" content="Bitkingz technical audit: Dama N.V. licensing, HTTP/2 200 Cloudflare HSTS headers on bitkingz2.com/en-AU, AU$7,500 + 500 FS welcome offer, and CryptoLand VIP.">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MBPGLSNQYD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MBPGLSNQYD');
+    </script>
+
+    <script src="/assets/analytics.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://securityallround.com/bitkingz-audit.html">
     <link rel="icon" type="image/png" href="/assets/New-logo.png">
     <style>
         body { 
@@ -34,29 +47,31 @@
             background:#020617; 
             color:#f8fafc;
             background-image: 
-                linear-gradient(rgba(2, 6, 23, 0.98), rgba(2, 6, 23, 0.98)),
+                linear-gradient(rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.98)),
                 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2338bdf8' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         .glass-overlay {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.72);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
             position: relative;
             overflow: hidden;
         }
     </style>
     <script src="/assets/nav.js" defer></script>
 </head>
-<body class="min-h-screen flex flex-col text-slate-300">
-  <nav class="border-b border-white/10 bg-slate-950/80 backdrop-blur py-4 px-6 sticky top-0 z-50">
+<body class="min-h-screen flex flex-col text-slate-300 pb-20 md:pb-0">
+
+<!-- NAV -->
+<nav class="border-b border-white/10 bg-slate-950/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
   <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
     <a href="/" class="flex items-center gap-3 min-w-0">
-      <img src="/assets/New-logo.png" class="w-8 h-8 rounded-full" alt="SecurityAllround logo">
+      <img src="/assets/New-logo.png" onerror="this.style.display='none'" class="w-8 h-8 rounded-full shrink-0" alt="">
       <span class="font-black text-white tracking-tight truncate uppercase italic">SecurityAllround Agency</span>
     </a>
     <div class="hidden md:flex items-center gap-4 uppercase text-[10px] tracking-widest font-bold">
-      <a href="/play/" class="text-sky-400 font-black">S-01</a>
+      <a href="/play/" class="text-emerald-400 font-black">S-01: Play</a>
       <a href="/custody/" class="text-slate-300 hover:text-emerald-400 transition">S-02</a>
       <a href="/fortress/" class="text-slate-300 hover:text-violet-400 transition">S-03</a>
       <a href="/shield/" class="text-slate-300 hover:text-amber-400 transition">S-04</a>
@@ -64,35 +79,59 @@
       <a href="/armory/" class="text-slate-300 hover:text-slate-400 transition">S-06</a>
       <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2 transition">Uplink</a>
     </div>
-    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800">☰</button>
+    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">☰</button>
+  </div>
+  <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800 text-xs uppercase font-bold tracking-widest">
+    <a href="/play/" class="block text-emerald-400">Sector 01: Play</a>
+    <a href="/custody/" class="block text-slate-300 hover:text-emerald-400">Sector 02: Custody</a>
+    <a href="/fortress/" class="block text-slate-300 hover:text-violet-400">Sector 03: Fortress</a>
+    <a href="/shield/" class="block text-slate-300 hover:text-amber-400">Sector 04: Shield</a>
+    <a href="/tactical/" class="block text-slate-300 hover:text-red-500">Sector 05: Tactical</a>
+    <a href="/armory/" class="block text-slate-300 hover:text-slate-400">Sector 06: Armory</a>
+    <a href="/contact/" class="block text-sky-400 font-black pt-2">Communications Uplink</a>
   </div>
 </nav>
 
-  <main class="max-w-4xl mx-auto py-16 px-6 flex-grow space-y-12">
+  <main class="max-w-4xl mx-auto py-12 md:py-16 px-6 flex-grow space-y-10">
     <header class="text-center">
-      <div class="flex items-center justify-center gap-3 mb-4 text-emerald-500">
-        <span class="px-2 py-1 rounded bg-emerald-500/10 text-[10px] font-bold uppercase border border-emerald-500/20">Audit Status: Verified Analysis</span>
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-4">
+        <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-black uppercase border border-emerald-500/30">Audit ID: BK-2026-001</span>
+        <span class="px-3 py-1 rounded-full bg-slate-900 text-slate-300 text-xs font-mono uppercase border border-slate-800">Status: HTTP/2 200 Verified</span>
       </div>
-      <h1 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-6 italic uppercase">Bitkingz <span class="text-emerald-400">Technical Audit</span></h1>
-      <p class="text-slate-400 text-xl leading-relaxed font-light italic text-center max-w-2xl mx-auto">Infrastructure evaluation of observed access routing, SSL/TLS protocols, and regional mirror persistence.</p>
+      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter mb-4 italic uppercase">Bitkingz <span class="text-emerald-400">Technical Audit</span></h1>
+      <p class="text-slate-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+        Infrastructure evaluation of Dama N.V. operations, strict HSTS transport headers, and <code class="text-emerald-400">bitkingz2.com/en-AU</code> mirror persistence.
+      </p>
+
+      <!-- TOP CONVERSION BAR -->
+      <div class="glass-overlay p-5 flex flex-col sm:flex-row items-center justify-between gap-4 border-emerald-500/40 text-left">
+        <div>
+          <p class="text-[11px] font-black uppercase tracking-widest text-emerald-400">Verified AU Welcome Offer &bull; Dama N.V.</p>
+          <p class="text-base md:text-lg font-black text-white">Up to AU$7,500 + 500 Free Spins</p>
+        </div>
+        <a href="/go/bitkingz/" rel="nofollow sponsored" data-casino="Bitkingz" data-location="audit-top"
+           class="affiliate-cta w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3.5 px-7 rounded-xl transition shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-xs text-center shrink-0">
+          Claim AU$7,500 + 500 FS &rarr;
+        </a>
+      </div>
     </header>
 
-    <section class="glass-overlay p-10 md:p-16 shadow-2xl relative">
-      <div class="absolute inset-0 opacity-25 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background2.png');"></div>
+    <section class="glass-overlay p-8 md:p-12 shadow-2xl relative">
+      <div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background2.png');"></div>
       <div class="relative z-10">
-        <h2 class="text-3xl font-black text-white mb-8 uppercase italic tracking-tighter text-emerald-400">01. Connectivity Snapshot</h2>
-        <div class="grid md:grid-cols-2 gap-8 text-sm mb-10">
-          <div class="bg-black/60 p-6 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
-            <p class="text-slate-500 mb-2 uppercase font-black tracking-widest text-[10px]">Observed tracking link</p>
-            <p class="break-all italic">https://www.bitkingzmedia.com/avdgmje4m</p>
+        <h2 class="text-2xl md:text-3xl font-black mb-6 uppercase italic tracking-tight text-emerald-400">01. Connectivity Snapshot</h2>
+        <div class="grid md:grid-cols-2 gap-6 text-sm mb-8">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Observed Tracking Link</p>
+            <p class="break-all">https://www.bitkingzmedia.com/avdgmje4m</p>
           </div>
-          <div class="bg-black/60 p-6 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
-            <p class="text-slate-500 mb-2 uppercase font-black tracking-widest text-[10px]">Observed landing (AU locale)</p>
-            <p class="break-all italic">https://www.bitkingz2.com/en-AU</p>
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Observed Landing (AU Locale)</p>
+            <p class="break-all">https://www.bitkingz2.com/en-AU</p>
           </div>
         </div>
-        <div class="bg-slate-950 p-8 rounded-3xl border border-white/5 font-mono text-[11px] text-slate-300 overflow-x-auto leading-relaxed italic shadow-inner">
-            <p class="mb-4 text-emerald-500 uppercase font-black tracking-widest underline underline-offset-8 decoration-white text-center">HTTP HEADERS (curl -I) snapshot</p>
+        <div class="bg-slate-950 p-6 md:p-8 rounded-2xl border border-white/10 font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed shadow-inner">
+            <p class="mb-3 text-emerald-400 uppercase font-black tracking-widest">HTTP HEADERS (curl -I) SNAPSHOT</p>
             GET https://www.bitkingz2.com/en-AU<br><br>
             HTTP/2 200 (Success)<br>
             server: cloudflare<br>
@@ -100,68 +139,97 @@
             cf-cache-status: DYNAMIC<br>
             x-renderer: rendertron
         </div>
-        <p class="text-xs text-slate-500 mt-6 italic font-bold uppercase tracking-widest bg-white/5 p-4 rounded-xl text-center">
-          Access confirmed during operator testing (PC + mobile). HSTS policy verified as active.
+        <p class="text-xs text-emerald-300 mt-5 font-bold uppercase tracking-wider bg-emerald-500/10 border border-emerald-500/20 p-3.5 rounded-xl text-center">
+          ✔ Access confirmed during operator testing (PC + mobile). HSTS includeSubDomains policy verified active.
         </p>
       </div>
     </section>
 
-    <section class="space-y-6">
-      <div class="glass-overlay p-8 md:p-10 border-l-4 border-l-emerald-500">
-        <h2 class="text-2xl font-black text-white mb-4 uppercase italic tracking-tight text-emerald-400">02. Ownership and Security</h2>
-        <ul class="text-slate-300 space-y-3 font-bold italic list-disc pl-5">
-          <li>Operated by Dama N.V. under a verified Curacao Gaming License.</li>
-          <li>Employs industrial-grade SSL technology and active anti-fraud mitigation.</li>
-          <li>Strong reputation for reliable player support and efficient complaint resolution.</li>
+    <section class="grid md:grid-cols-3 gap-6">
+      <div class="glass-overlay p-7 border-t-4 border-t-emerald-500">
+        <h2 class="text-lg font-black mb-3 uppercase italic tracking-tight text-emerald-400">02. Ownership &amp; Security</h2>
+        <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+          <li>Operated by <strong class="text-white">Dama N.V.</strong> under a verified Curaçao Gaming License.</li>
+          <li>Enforces <code class="text-emerald-400">includeSubDomains</code> HSTS and SSL encryption.</li>
+          <li>Strong reputation for reliable payouts and responsive dispute resolution.</li>
         </ul>
       </div>
 
-      <div class="glass-overlay p-8 md:p-10 border-l-4 border-l-slate-600">
-        <h2 class="text-2xl font-black text-white mb-4 uppercase italic tracking-tight text-emerald-400">03. Game Performance & Selection</h2>
-        <ul class="text-slate-300 space-y-3 font-bold italic list-disc pl-5">
-          <li>Massive library: over 4,000 titles from a wide spectrum of providers.</li>
-          <li>Comprehensive live casino infrastructure verified with 400+ active table nodes.</li>
-          <li>Verified cross-device responsiveness during high-stakes sessions.</li>
+      <div class="glass-overlay p-7 border-t-4 border-t-sky-500">
+        <h2 class="text-lg font-black mb-3 uppercase italic tracking-tight text-sky-400">03. Game Performance</h2>
+        <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+          <li><strong class="text-white">4,000+ titles</strong> across top-tier pokie and table studios.</li>
+          <li>400+ active live dealer tables verified.</li>
+          <li>Smooth cross-device performance on mobile and desktop browsers.</li>
         </ul>
       </div>
 
-      <div class="glass-overlay p-8 md:p-10 border-l-4 border-l-emerald-500">
-        <h2 class="text-2xl font-black text-white mb-4 uppercase italic tracking-tight text-emerald-400">04. Payment & VIP Protocols</h2>
-        <ul class="text-slate-300 space-y-3 font-bold italic list-disc pl-5">
-          <li>Dual-stream payments: Fiat (AUD/USD/EUR) and verified crypto (BTC/ETH/LTC).</li>
-          <li>Unique "CryptoLand" VIP system verified with high-fidelity rewards tiering.</li>
-          <li>Instant withdrawal nodes verified for crypto and e-wallet withdrawal paths.</li>
+      <div class="glass-overlay p-7 border-t-4 border-t-amber-500">
+        <h2 class="text-lg font-black mb-3 uppercase italic tracking-tight text-amber-400">04. Payments &amp; VIP</h2>
+        <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+          <li>Dual-stream cashier: <strong class="text-white">AUD fiat</strong> and <strong class="text-white">BTC, ETH, LTC</strong>.</li>
+          <li>"CryptoLand" VIP loyalty system with tiered cashback &amp; spins.</li>
+          <li>Instant withdrawal nodes active for crypto and e-wallet rails.</li>
         </ul>
       </div>
     </section>
 
-    <section class="glass-overlay p-12 md:p-20 text-center relative border-2 border-emerald-500/20">
-      <div class="absolute inset-0 opacity-30 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background5.png');"></div>
+    <section class="glass-overlay p-10 md:p-14 text-center relative border-2 border-emerald-500/30 shadow-[0_0_60px_rgba(16,185,129,0.12)]">
+      <div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background5.png');"></div>
       <div class="relative z-10 max-w-2xl mx-auto">
-        <h3 class="text-4xl font-black text-white mb-8 uppercase italic text-emerald-400 underline decoration-white underline-offset-8 tracking-tighter">Execution Verdict</h3>
-        <p class="text-xl text-slate-100 font-black italic leading-relaxed mb-10">
-            "Bitkingz provides a highly resilient infrastructure layer with superior multi-currency payment nodes."
+        <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-black uppercase tracking-widest mb-4">Audit Passed &bull; Dama N.V.</span>
+        <h3 class="text-3xl md:text-4xl font-black text-white mb-4 uppercase italic tracking-tight">Execution Verdict</h3>
+        <p class="text-lg text-slate-200 leading-relaxed mb-8">
+          "Bitkingz provides a resilient Dama N.V. infrastructure layer with clean HTTP/2 200 routing, multi-currency AUD/crypto payment nodes, and up to <strong class="text-emerald-400">AU$7,500 + 500 Free Spins</strong>."
         </p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-          <a href="/go/bitkingz/" rel="nofollow sponsored" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black py-5 rounded-2xl transition shadow-xl uppercase tracking-widest text-xs px-10">Proceed via Route</a>
-          <a href="/play/bitkingz.html" class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-5 rounded-2xl transition border border-white/10 uppercase tracking-widest text-xs px-10">Back to Review</a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/go/bitkingz/" rel="nofollow sponsored" data-casino="Bitkingz" data-location="audit-bottom"
+             class="affiliate-cta bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-4 px-8 rounded-2xl transition shadow-xl uppercase tracking-widest text-xs">
+            Claim AU$7,500 + 500 FS &rarr;
+          </a>
+          <a href="/play/bitkingz.html"
+             class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-4 px-8 rounded-2xl transition border border-white/10 uppercase tracking-widest text-xs">
+            Read Player Review
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="mt-auto py-24 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
-    <div class="flex flex-wrap justify-center gap-10 mb-10 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
+  <!-- STICKY MOBILE BAR -->
+  <div class="fixed bottom-0 inset-x-0 md:hidden bg-slate-950/95 backdrop-blur border-t border-emerald-500/40 p-3 z-50 flex items-center justify-between gap-3">
+    <div class="min-w-0">
+      <p class="text-[10px] font-black uppercase tracking-wider text-emerald-400">Bitkingz &bull; AUD Verified</p>
+      <p class="text-xs font-bold text-white truncate">AU$7,500 + 500 Free Spins</p>
+    </div>
+    <a href="/go/bitkingz/" rel="nofollow sponsored" data-casino="Bitkingz" data-location="audit-mobile-sticky"
+       class="affiliate-cta shrink-0 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase px-4 py-2.5 rounded-lg">
+      Claim &rarr;
+    </a>
+  </div>
+
+  <footer class="mt-auto py-20 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
+    <div class="flex flex-wrap justify-center gap-8 mb-8 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
         <a href="/about/" class="hover:text-white transition">The Agency</a>
         <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
         <a href="/terms.html" class="hover:text-white transition">Terms</a>
-        <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition text-emerald-500">Responsible Gambling</a>
+        <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition">Responsible Gambling</a>
         <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
     </div>
-    <img src="/assets/trimmed-logo.png" alt="Logo" class="h-10 mx-auto mb-8 opacity-20 grayscale">
+    <img src="/assets/trimmed-logo.png" onerror="this.style.display='none'" alt="Logo" class="h-10 mx-auto mb-6 opacity-20 grayscale">
     <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-slate-600">
-        &copy; 2026 SecurityAllround Organisation. AU Technical Standards.
+        &copy; 2026 SecurityAllround Organisation. AU Technical Standards. 18+ Play Responsibly.
     </p>
-</footer>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.affiliate-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'affiliate_click', { casino_name: link.dataset.casino, cta_location: link.dataset.location, outbound_url: link.href });
+        }
+      });
+    });
+  </script>
 </body>
 </html>

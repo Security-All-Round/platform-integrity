@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en-AU" class="scroll-smooth">
 <head>
 <script>
   (function () {
@@ -22,11 +22,24 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinwinera Technical Audit | SecurityAllround</title>
+    <title>Spinwinera Technical Audit (SW-2026-004) | SecurityAllround</title>
+    <meta name="description" content="Spinwinera technical audit: Cloudflare WAF challenge headers, Anjouan license verification, min A$30 entry bonus (100% up to A$500 + 50 FS), and crypto cashouts.">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MBPGLSNQYD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MBPGLSNQYD');
+    </script>
+
+    <script src="/assets/analytics.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://securityallround.com/spinwinera-audit.html">
     <link rel="icon" type="image/png" href="/assets/New-logo.png">
     <style>
         body { 
@@ -34,65 +47,91 @@
             background:#020617; 
             color:#f8fafc;
             background-image: 
-                linear-gradient(rgba(2, 6, 23, 0.98), rgba(2, 6, 23, 0.98)),
+                linear-gradient(rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.98)),
                 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2338bdf8' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         .glass-overlay {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.72);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
             position: relative;
             overflow: hidden;
         }
     </style>
     <script src="/assets/nav.js" defer></script>
 </head>
-<body class="min-h-screen flex flex-col">
-  <nav class="border-b border-white/10 bg-slate-950/80 backdrop-blur py-4 px-6 sticky top-0 z-50">
+<body class="min-h-screen flex flex-col text-slate-300 pb-20 md:pb-0">
+
+<!-- NAV -->
+<nav class="border-b border-white/10 bg-slate-950/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
   <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
     <a href="/" class="flex items-center gap-3 min-w-0">
-      <img src="/assets/New-logo.png" class="w-8 h-8 rounded-full" alt="SecurityAllround logo">
-      <span class="font-black text-white tracking-tight truncate">SecurityAllround Agency</span>
+      <img src="/assets/New-logo.png" onerror="this.style.display='none'" class="w-8 h-8 rounded-full shrink-0" alt="">
+      <span class="font-black text-white tracking-tight truncate uppercase italic">SecurityAllround Agency</span>
     </a>
     <div class="hidden md:flex items-center gap-4 uppercase text-[10px] tracking-widest font-bold">
-      <a href="/play/" class="text-slate-300 hover:text-sky-400 font-black text-sky-400">S-01</a>
-      <a href="/custody/" class="text-slate-300 hover:text-emerald-400">S-02</a>
-      <a href="/fortress/" class="text-slate-300 hover:text-violet-400">S-03</a>
-      <a href="/shield/" class="text-slate-300 hover:text-amber-400">S-04</a>
-      <a href="/tactical/" class="text-slate-300 hover:text-red-500">S-05</a>
-      <a href="/armory/" class="text-slate-300 hover:text-slate-400">S-06</a>
-      <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2">Uplink</a>
+      <a href="/play/" class="text-emerald-400 font-black">S-01: Play</a>
+      <a href="/custody/" class="text-slate-300 hover:text-emerald-400 transition">S-02</a>
+      <a href="/fortress/" class="text-slate-300 hover:text-violet-400 transition">S-03</a>
+      <a href="/shield/" class="text-slate-300 hover:text-amber-400 transition">S-04</a>
+      <a href="/tactical/" class="text-slate-300 hover:text-red-500 transition">S-05</a>
+      <a href="/armory/" class="text-slate-300 hover:text-slate-400 transition">S-06</a>
+      <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2 transition">Uplink</a>
     </div>
-    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800">☰</button>
+    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">☰</button>
+  </div>
+  <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800 text-xs uppercase font-bold tracking-widest">
+    <a href="/play/" class="block text-emerald-400">Sector 01: Play</a>
+    <a href="/custody/" class="block text-slate-300 hover:text-emerald-400">Sector 02: Custody</a>
+    <a href="/fortress/" class="block text-slate-300 hover:text-violet-400">Sector 03: Fortress</a>
+    <a href="/shield/" class="block text-slate-300 hover:text-amber-400">Sector 04: Shield</a>
+    <a href="/tactical/" class="block text-slate-300 hover:text-red-500">Sector 05: Tactical</a>
+    <a href="/armory/" class="block text-slate-300 hover:text-slate-400">Sector 06: Armory</a>
+    <a href="/contact/" class="block text-sky-400 font-black pt-2">Communications Uplink</a>
   </div>
 </nav>
 
-  <main class="max-w-4xl mx-auto py-16 px-6 flex-grow space-y-12">
+  <main class="max-w-4xl mx-auto py-12 md:py-16 px-6 flex-grow space-y-10">
     <header class="text-center">
-      <div class="flex items-center justify-center gap-3 mb-4">
-        <span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold uppercase border border-emerald-500/20">Audit Status: Field Verified</span>
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-4">
+        <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-black uppercase border border-emerald-500/30">Audit ID: SW-2026-004</span>
+        <span class="px-3 py-1 rounded-full bg-slate-900 text-slate-300 text-xs font-mono uppercase border border-slate-800">Status: Field Verified</span>
       </div>
-      <h1 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-6 italic uppercase">Spinwinera <span class="text-emerald-400">Technical Audit</span></h1>
-      <p class="text-slate-400 text-xl leading-relaxed">Evaluation of Anjouan gaming infrastructure, regional mirror persistence, and financial routing nodes.</p>
+      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter mb-4 italic uppercase">Spinwinera <span class="text-emerald-400">Technical Audit</span></h1>
+      <p class="text-slate-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+        Evaluation of Anjouan gaming infrastructure, Cloudflare bot-mitigation behavior, and low-minimum A$30 AUD cashier routing.
+      </p>
+
+      <!-- TOP CONVERSION BAR -->
+      <div class="glass-overlay p-5 flex flex-col sm:flex-row items-center justify-between gap-4 border-emerald-500/40 text-left">
+        <div>
+          <p class="text-[11px] font-black uppercase tracking-widest text-emerald-400">Verified Entry Offer &bull; Min Deposit A$30</p>
+          <p class="text-base md:text-lg font-black text-white">100% up to A$500 + 50 FS (Up to €3,000 Package)</p>
+        </div>
+        <a href="/go/spinwinera/" rel="nofollow sponsored" data-casino="Spinwinera" data-location="audit-top"
+           class="affiliate-cta w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3.5 px-7 rounded-xl transition shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-xs text-center shrink-0">
+          Claim 100% + 150 Spins &rarr;
+        </a>
+      </div>
     </header>
 
-    <section class="glass-overlay p-10 md:p-16 shadow-2xl relative">
-      <div class="absolute inset-0 opacity-25 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background2.png');"></div>
+    <section class="glass-overlay p-8 md:p-12 shadow-2xl relative">
+      <div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background2.png');"></div>
       <div class="relative z-10">
-        <h2 class="text-3xl font-black text-white mb-8 uppercase italic tracking-tighter text-emerald-400">01. Connectivity Snapshot</h2>
-        <div class="grid md:grid-cols-2 gap-8 text-sm mb-10 text-emerald-400">
-          <div class="bg-black/60 p-6 rounded-2xl border border-white/10 font-mono leading-relaxed shadow-xl overflow-hidden">
-            <p class="text-slate-500 mb-2 uppercase font-black tracking-widest text-[10px]">Tracking Infrastructure</p>
-            <p class="break-all italic">https://track.betmenaff.com/visit/</p>
+        <h2 class="text-2xl md:text-3xl font-black mb-6 uppercase italic tracking-tight text-emerald-400">01. Connectivity &amp; Edge Snapshot</h2>
+        <div class="grid md:grid-cols-2 gap-6 text-sm mb-8 text-emerald-400">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Tracking Infrastructure</p>
+            <p class="break-all">https://track.betmenaff.com/visit/</p>
           </div>
-          <div class="bg-black/60 p-6 rounded-2xl border border-white/10 font-mono leading-relaxed shadow-xl overflow-hidden">
-            <p class="text-slate-500 mb-2 uppercase font-black tracking-widest text-[10px]">Landing Deep Link</p>
-            <p class="break-all italic">https://8-spinwinera41.com/</p>
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Landing Deep Link</p>
+            <p class="break-all">https://8-spinwinera41.com/</p>
           </div>
         </div>
-        <div class="bg-slate-950 p-8 rounded-3xl border border-white/5 font-mono text-[11px] text-slate-300 overflow-x-auto leading-relaxed italic">
-            <p class="mb-4 text-emerald-500 uppercase font-black tracking-widest underline underline-offset-8 decoration-white">HTTP HEADERS (curl -I) snapshot</p>
+        <div class="bg-slate-950 p-6 md:p-8 rounded-2xl border border-white/10 font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed">
+            <p class="mb-3 text-emerald-400 uppercase font-black tracking-widest">HTTP HEADERS (curl -I) SNAPSHOT</p>
             GET https://8-spinwinera41.com/<br><br>
             HTTP/2 403 (Challenge)<br>
             server: cloudflare<br>
@@ -100,59 +139,101 @@
             x-frame-options: SAMEORIGIN<br>
             cache-control: private, max-age=0
         </div>
+        <p class="text-xs text-slate-300 mt-5 bg-white/5 border border-white/10 p-3.5 rounded-xl text-center">
+          <strong class="text-emerald-400">Technical Note:</strong> Headless <code class="text-emerald-300">curl</code> requests receive a standard Cloudflare JS challenge (<code class="text-emerald-300">cf-mitigated: challenge</code>); standard browsers pass automatically into the AUD cashier.
+        </p>
       </div>
     </section>
 
-    <section class="space-y-6">
-      <div class="glass-overlay p-8 md:p-10">
-        <h2 class="text-2xl font-black text-white mb-4 uppercase italic tracking-tight text-emerald-400">02. Licensing & Management</h2>
-        <p class="text-slate-300 leading-relaxed font-bold italic bg-black/30 p-6 rounded-2xl border border-white/5">Operates under an Anjouan Gaming License. Our probes confirm professional management infrastructure focused on high-fidelity user sessions and regional stability.</p>
-      </div>
-
-      <div class="glass-overlay p-8 md:p-10">
-        <h2 class="text-2xl font-black text-white mb-4 uppercase italic tracking-tight text-emerald-400">03. Repository & Scale</h2>
-        <ul class="text-slate-300 space-y-3 font-bold italic list-disc pl-5">
-          <li>Massive library: 7,000+ titles from 53 top-tier providers.</li>
-          <li>Live casino infrastructure verified with 400+ active tables.</li>
-          <li>Integrated sportsbook module observed with full market depth.</li>
+    <section class="grid md:grid-cols-3 gap-6">
+      <div class="glass-overlay p-7 border-t-4 border-t-emerald-500">
+        <h2 class="text-lg font-black mb-3 uppercase italic tracking-tight text-emerald-400">02. Licensing &amp; Ops</h2>
+        <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+          <li>Operates under an <strong class="text-white">Anjouan Gaming License</strong>.</li>
+          <li>Clickjacking protection active (<code class="text-emerald-400">SAMEORIGIN</code>).</li>
+          <li>Converts EUR headline offers cleanly to <strong class="text-white">AUD inside cashier</strong>.</li>
         </ul>
       </div>
 
-      <div class="glass-overlay p-8 md:p-10">
-        <h2 class="text-2xl font-black text-white mb-4 uppercase italic tracking-tight text-emerald-400">04. Financial Infrastructure</h2>
-        <ul class="text-slate-300 space-y-3 font-bold italic list-disc pl-5">
-          <li>Supports 11 verified payment nodes including BTC, LTC, and ETH.</li>
-          <li>Average withdrawal turnaround: 72 hours via crypto nodes.</li>
-          <li>Standard wagering requirements verified at 40x.</li>
+      <div class="glass-overlay p-7 border-t-4 border-t-sky-500">
+        <h2 class="text-lg font-black mb-3 uppercase italic tracking-tight text-sky-400">03. Repository &amp; Scale</h2>
+        <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+          <li><strong class="text-white">7,000+ titles</strong> across 53 software providers.</li>
+          <li>400+ active live casino dealer tables.</li>
+          <li>Full integrated sportsbook module included.</li>
+        </ul>
+      </div>
+
+      <div class="glass-overlay p-7 border-t-4 border-t-amber-500">
+        <h2 class="text-lg font-black mb-3 uppercase italic tracking-tight text-amber-400">04. Cashier &amp; Wagering</h2>
+        <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+          <li>Low <strong class="text-white">A$30 minimum deposit</strong> for 100% up to A$500 + 50 FS.</li>
+          <li>11 payment rails including BTC, LTC &amp; ETH (~72h payout window).</li>
+          <li>Standard 40x bonus wagering requirement verified.</li>
         </ul>
       </div>
     </section>
 
-    <section class="glass-overlay p-12 md:p-20 text-center relative text-emerald-400">
-      <div class="absolute inset-0 opacity-30 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background3.png');"></div>
+    <section class="glass-overlay p-10 md:p-14 text-center relative border-2 border-emerald-500/30 shadow-[0_0_60px_rgba(16,185,129,0.12)]">
+      <div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background3.png');"></div>
       <div class="relative z-10 max-w-2xl mx-auto">
-        <h3 class="text-4xl font-black text-white mb-10 uppercase italic text-emerald-400 underline decoration-white underline-offset-8 tracking-tighter">Execution Verdict</h3>
-        <p class="text-xl text-slate-100 font-black italic leading-relaxed mb-8">"Spinwinera provides an enterprise-scale gaming environment with robust regional routing nodes."</p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-          <a href="/go/spinwinera/" rel="nofollow sponsored" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black py-5 rounded-2xl transition shadow-xl uppercase tracking-widest text-xs px-10">Proceed via Route</a>
-          <a href="/play/spinwinera.html" class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-5 rounded-2xl transition border border-white/10 uppercase tracking-widest text-xs px-10">Back to Review</a>
+        <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-black uppercase tracking-widest mb-4">Audit Passed &bull; Low Min Deposit</span>
+        <h3 class="text-3xl md:text-4xl font-black text-white mb-4 uppercase italic tracking-tight">Execution Verdict</h3>
+        <p class="text-lg text-slate-200 leading-relaxed mb-8">
+          "Spinwinera combines an enterprise-scale 7,000-game + sportsbook lobby with an accessible <strong class="text-emerald-400">A$30 entry deposit</strong> and reliable regional mirror routing."
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/go/spinwinera/" rel="nofollow sponsored" data-casino="Spinwinera" data-location="audit-bottom"
+             class="affiliate-cta bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-4 px-8 rounded-2xl transition shadow-xl uppercase tracking-widest text-xs">
+            Claim 100% + 150 Spins &rarr;
+          </a>
+          <a href="/play/spinwinera.html"
+             class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-4 px-8 rounded-2xl transition border border-white/10 uppercase tracking-widest text-xs">
+            Read Player Review
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="mt-auto py-24 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
-    <div class="flex flex-wrap justify-center gap-10 mb-10 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
+  <!-- STICKY MOBILE CONVERSION BAR -->
+  <div class="fixed bottom-0 inset-x-0 md:hidden bg-slate-950/95 backdrop-blur border-t border-emerald-500/40 p-3 z-50 flex items-center justify-between gap-3">
+    <div class="min-w-0">
+      <p class="text-[10px] font-black uppercase tracking-wider text-emerald-400">Spinwinera &bull; Min A$30</p>
+      <p class="text-xs font-bold text-white truncate">100% up to A$500 + 50 FS</p>
+    </div>
+    <a href="/go/spinwinera/" rel="nofollow sponsored" data-casino="Spinwinera" data-location="audit-mobile-sticky"
+       class="affiliate-cta shrink-0 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase px-4 py-2.5 rounded-lg">
+      Claim &rarr;
+    </a>
+  </div>
+
+  <footer class="mt-auto py-20 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
+    <div class="flex flex-wrap justify-center gap-8 mb-8 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
         <a href="/about/" class="hover:text-white transition">The Agency</a>
         <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
         <a href="/terms.html" class="hover:text-white transition">Terms</a>
-        <a href="/responsible-gambling.html" class="hover:text-white transition text-emerald-500">Responsible Gambling</a>
+        <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition">Responsible Gambling</a>
         <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
     </div>
-    <img src="/assets/trimmed-logo.png" alt="Logo" class="h-10 mx-auto mb-8 opacity-20 grayscale">
+    <img src="/assets/trimmed-logo.png" onerror="this.style.display='none'" alt="Logo" class="h-10 mx-auto mb-6 opacity-20 grayscale">
     <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-slate-600">
-        &copy; 2026 SecurityAllround Organisation. AU Technical Standards.
+        &copy; 2026 SecurityAllround Organisation. AU Technical Standards. 18+ Play Responsibly.
     </p>
-</footer>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.affiliate-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'affiliate_click', {
+            casino_name: link.dataset.casino,
+            cta_location: link.dataset.location,
+            outbound_url: link.href
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>

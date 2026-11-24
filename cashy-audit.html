@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-AU" class="scroll-smooth">
+<head>
+<script>
+  (function () {
+    var webSdkScript = document.createElement("script");
+    webSdkScript.src = "https://unpkg.com/@grafana/faro-web-sdk@2/dist/bundle/faro-web-sdk.iife.js";
+    webSdkScript.onload = () => {
+      window.GrafanaFaroWebSdk.initializeFaro({
+        url: "https://faro-collector-prod-au-southeast-1.grafana.net/collect/f6be7e3c6e419b18bd4d0d5c9766c4fa",
+        app: { name: "site traffic", version: "1.0.0", environment: "production" },
+      });
+      var webTracingScript = document.createElement("script");
+      webTracingScript.src = "https://unpkg.com/@grafana/faro-web-tracing@2/dist/bundle/faro-web-tracing.iife.js";
+      webTracingScript.onload = () => {
+        window.GrafanaFaroWebSdk.faro.instrumentations.add(new window.GrafanaFaroWebTracing.TracingInstrumentation());
+      };
+      document.head.appendChild(webTracingScript);
+    };
+    document.head.appendChild(webSdkScript);
+  })();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cashy Technical Audit (CSH-2026-001) | SecurityAllround</title>
+    <meta name="description" content="Cashy Casino technical audit: 0x wagering real-cash 25% cashback mechanics, direct gocashy.com routing, non-sticky deposit structure, and crypto/instant cashier analysis.">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MBPGLSNQYD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MBPGLSNQYD');
+    </script>
+
+    <script src="/assets/analytics.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://securityallround.com/cashy-audit.html">
+    <link rel="icon" type="image/png" href="/assets/New-logo.png">
+    <style>
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            background:#020617; 
+            color:#f8fafc;
+            background-image: 
+                linear-gradient(rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.98)),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2338bdf8' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .glass-overlay {
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+    <script src="/assets/nav.js" defer></script>
+</head>
+<body class="min-h-screen flex flex-col text-slate-300 pb-20 md:pb-0">
+
+<!-- NAV -->
+<nav class="border-b border-white/10 bg-slate-950/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-3 min-w-0">
+      <img src="/assets/New-logo.png" onerror="this.style.display='none'" class="w-8 h-8 rounded-full shrink-0" alt="">
+      <span class="font-black text-white tracking-tight truncate uppercase italic">SecurityAllround Agency</span>
+    </a>
+    <div class="hidden md:flex items-center gap-4 uppercase text-[10px] tracking-widest font-bold">
+      <a href="/play/" class="text-emerald-400 font-black">S-01: Play</a>
+      <a href="/custody/" class="text-slate-300 hover:text-emerald-400 transition">S-02</a>
+      <a href="/fortress/" class="text-slate-300 hover:text-violet-400 transition">S-03</a>
+      <a href="/shield/" class="text-slate-300 hover:text-amber-400 transition">S-04</a>
+      <a href="/tactical/" class="text-slate-300 hover:text-red-500 transition">S-05</a>
+      <a href="/armory/" class="text-slate-300 hover:text-slate-400 transition">S-06</a>
+      <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2 transition">Uplink</a>
+    </div>
+    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">☰</button>
+  </div>
+  <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800 text-xs uppercase font-bold tracking-widest">
+    <a href="/play/" class="block text-emerald-400">Sector 01: Play</a>
+    <a href="/custody/" class="block text-slate-300 hover:text-emerald-400">Sector 02: Custody</a>
+    <a href="/fortress/" class="block text-slate-300 hover:text-violet-400">Sector 03: Fortress</a>
+    <a href="/shield/" class="block text-slate-300 hover:text-amber-400">Sector 04: Shield</a>
+    <a href="/tactical/" class="block text-slate-300 hover:text-red-500">Sector 05: Tactical</a>
+    <a href="/armory/" class="block text-slate-300 hover:text-slate-400">Sector 06: Armory</a>
+    <a href="/contact/" class="block text-sky-400 font-black pt-2">Communications Uplink</a>
+  </div>
+</nav>
+
+  <main class="max-w-4xl mx-auto py-12 md:py-16 px-6 flex-grow space-y-10">
+    <header class="text-center">
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-4">
+        <span class="px-3 py-1 rounded-full bg-sky-500/15 text-sky-400 text-xs font-black uppercase border border-sky-500/30">Audit ID: CSH-2026-001</span>
+        <span class="px-3 py-1 rounded-full bg-slate-900 text-emerald-400 text-xs font-mono uppercase border border-slate-800">Rollover Lock: 0x (Zero Wagering)</span>
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter mb-4 italic uppercase">Cashy <span class="text-sky-400">Technical Audit</span></h1>
+      <p class="text-slate-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+        Structural evaluation of Cashy's zero-rollover cashback mechanics, non-sticky deposit architecture, and direct <code class="text-emerald-400">gocashy.com</code> routing.
+      </p>
+
+      <!-- TOP CONVERSION BAR -->
+      <div class="glass-overlay p-5 flex flex-col sm:flex-row items-center justify-between gap-4 border-sky-500/40 text-left">
+        <div>
+          <p class="text-[11px] font-black uppercase tracking-widest text-sky-400">Zero Wagering Protection &bull; First 24 Hours</p>
+          <p class="text-base md:text-lg font-black text-white">25% Real-Cash Cashback up to $250 (0x Rollover)</p>
+        </div>
+        <a href="https://gocashy.com/bb3bxnp7q" target="_blank" rel="nofollow sponsored" data-casino="Cashy" data-location="audit-top"
+           class="affiliate-cta w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3.5 px-7 rounded-xl transition shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-xs text-center shrink-0">
+          Activate 25% Cashback &rarr;
+        </a>
+      </div>
+    </header>
+
+    <section class="glass-overlay p-8 md:p-12 shadow-2xl relative">
+      <div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background1.png');"></div>
+      <div class="relative z-10">
+        <h2 class="text-2xl md:text-3xl font-black mb-6 uppercase italic tracking-tight text-sky-400">01. Routing &amp; Bonus Mechanics</h2>
+        <div class="grid md:grid-cols-2 gap-6 text-sm mb-8">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Verified Partner Endpoint</p>
+            <p class="break-all">https://gocashy.com/bb3bxnp7q</p>
+          </div>
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono text-sky-400 leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Bonus Settlement Engine</p>
+            <p class="break-all">0x Wagering Real-Cash Rebate (24h Window)</p>
+          </div>
+        </div>
+        <div class="bg-slate-950 p-6 md:p-8 rounded-2xl border border-white/10 font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed">
+            <p class="mb-3 text-sky-400 uppercase font-black tracking-widest">REWARD &amp; BALANCE ISOLATION LOGIC</p>
+            Deposit State: Pure Cash Balance (No Sticky Bonus Lock)<br>
+            Early Win Exit: Immediate Withdrawal Permitted (0x Rollover)<br>
+            Loss Rebate Trigger: 25% of Net First-24h Losses (Up to $250)<br>
+            Rebate Payout Type: Withdrawable Real Cash (0x Wagering)
+        </div>
+      </div>
+    </section>
+
+    <section class="grid md:grid-cols-3 gap-6">
+      <div class="glass-overlay p-7 border-t-4 border-t-sky-500">
+        <h2 class="text-lg font-black mb-3 uppercase italic tracking-tight text-sky-400">02. Zero-Lock Architecture</h2>
+        <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+          <li>Eliminates traditional 35x–45x bonus rollover traps on your initial deposit.</li>
+          <li>No max-bet restrictions or restricted-slot forfeiture clauses on cash play.</li>
+          <li>Cashback is credited as real withdrawable funds after 24 hours.</li>
+        </ul>
+      </div>
+
+      <div class="glass-overlay p-7 border-t-4 border-t-emerald-500">
+        <h2 class="text-lg font-black mb-3 uppercase italic tracking-tight text-emerald-400">03. Lobby &amp; Providers</h2>
+        <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+          <li>Modern, fast-loading interface built for instant mobile and desktop play.</li>
+          <li>Curated high-RTP pokies, crash games, and live dealer tables.</li>
+          <li>Streamlined onboarding with minimal registration friction.</li>
+        </ul>
+      </div>
+
+      <div class="glass-overlay p-7 border-t-4 border-t-amber-500">
+        <h2 class="text-lg font-black mb-3 uppercase italic tracking-tight text-amber-400">04. Cashier &amp; Security</h2>
+        <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+          <li>TLS-encrypted cashier supporting crypto and instant payment rails.</li>
+          <li>Fast withdrawal processing without bonus-audit delays.</li>
+          <li>Direct HTTPS routing via <code class="text-emerald-400">gocashy.com</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="glass-overlay p-10 md:p-14 text-center relative border-2 border-sky-500/30 shadow-[0_0_60px_rgba(56,189,248,0.12)]">
+      <div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background2.png');"></div>
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <span class="inline-block px-3 py-1 rounded-full bg-sky-500/15 text-sky-400 text-xs font-black uppercase tracking-widest mb-4">Audit Passed &bull; Best 0x Wagering</span>
+        <h3 class="text-3xl md:text-4xl font-black text-white mb-4 uppercase italic tracking-tight">Execution Verdict</h3>
+        <p class="text-lg text-slate-200 leading-relaxed mb-8">
+          "Cashy offers the cleanest bonus math on our board: <strong class="text-sky-400">25% cashback up to $250 with 0x wagering</strong>, letting players withdraw big wins immediately while cushioning first-day variance."
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://gocashy.com/bb3bxnp7q" target="_blank" rel="nofollow sponsored" data-casino="Cashy" data-location="audit-bottom"
+             class="affiliate-cta bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-4 px-8 rounded-2xl transition shadow-xl uppercase tracking-widest text-xs">
+            Activate 25% Cashback &rarr;
+          </a>
+          <a href="/play/cashy.html"
+             class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-4 px-8 rounded-2xl transition border border-white/10 uppercase tracking-widest text-xs">
+            Read Player Review
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- STICKY MOBILE BAR -->
+  <div class="fixed bottom-0 inset-x-0 md:hidden bg-slate-950/95 backdrop-blur border-t border-sky-500/40 p-3 z-50 flex items-center justify-between gap-3">
+    <div class="min-w-0">
+      <p class="text-[10px] font-black uppercase tracking-wider text-sky-400">Cashy &bull; 0x Wagering</p>
+      <p class="text-xs font-bold text-white truncate">25% Cashback up to $250</p>
+    </div>
+    <a href="https://gocashy.com/bb3bxnp7q" target="_blank" rel="nofollow sponsored" data-casino="Cashy" data-location="audit-mobile-sticky"
+       class="affiliate-cta shrink-0 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase px-4 py-2.5 rounded-lg">
+      Activate &rarr;
+    </a>
+  </div>
+
+  <footer class="mt-auto py-20 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
+    <div class="flex flex-wrap justify-center gap-8 mb-8 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
+        <a href="/about/" class="hover:text-white transition">The Agency</a>
+        <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
+        <a href="/terms.html" class="hover:text-white transition">Terms</a>
+        <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition">Responsible Gambling</a>
+        <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
+    </div>
+    <img src="/assets/trimmed-logo.png" onerror="this.style.display='none'" alt="Logo" class="h-10 mx-auto mb-6 opacity-20 grayscale">
+    <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-slate-600">
+        &copy; 2026 SecurityAllround Organisation. AU Technical Standards. 18+ Play Responsibly.
+    </p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.affiliate-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'affiliate_click', { casino_name: link.dataset.casino, cta_location: link.dataset.location, outbound_url: link.href });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

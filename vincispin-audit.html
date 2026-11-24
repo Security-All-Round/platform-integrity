@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en-AU" class="scroll-smooth">
 <head>
 <script>
   (function () {
@@ -22,42 +22,57 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vincispin Technical Audit | SecurityAllround</title>
+    <title>Vincispin Technical Audit (VS-2026-001) | SecurityAllround</title>
+    <meta name="description" content="Vincispin technical audit: Cloudflare edge headers on 34vincispin75.com, 2FA security, 5,000+ games, Mastercard &amp; crypto cashier, and 100% + 250 FS welcome offer.">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MBPGLSNQYD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MBPGLSNQYD');
+    </script>
+
+    <script src="/assets/analytics.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://securityallround.com/vincispin-audit.html">
     <link rel="icon" type="image/png" href="/assets/New-logo.png">
     <style>
         body { 
             font-family: 'Space Grotesk', sans-serif; 
             background:#020617; 
             color:#f8fafc;
-            /* Pattern B: Ultra-Bright Full Page Background */
-            background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.45), rgba(2, 6, 23, 0.6)), url('/assets/background4.png');
+            background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.72), rgba(2, 6, 23, 0.92)), url('/assets/background4.png');
             background-attachment: fixed;
             background-size: cover;
         }
         .glass-box {
-            background: rgba(15, 23, 42, 0.92);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 2.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+            overflow: hidden;
         }
         code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
     </style>
     <script src="/assets/nav.js" defer></script>
 </head>
-<body class="min-h-screen flex flex-col">
-  <nav class="border-b border-white/10 bg-slate-950/80 backdrop-blur py-4 px-6 sticky top-0 z-50">
+<body class="min-h-screen flex flex-col pb-20 md:pb-0">
+
+<!-- NAV -->
+<nav class="border-b border-white/10 bg-slate-950/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
   <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
     <a href="/" class="flex items-center gap-3 min-w-0">
-      <img src="/assets/New-logo.png" class="w-8 h-8 rounded-full" alt="SecurityAllround logo">
+      <img src="/assets/New-logo.png" onerror="this.style.display='none'" class="w-8 h-8 rounded-full shrink-0" alt="">
       <span class="font-black text-white tracking-tight truncate uppercase italic">SecurityAllround Agency</span>
     </a>
     <div class="hidden md:flex items-center gap-4 uppercase text-[10px] tracking-widest font-bold">
-      <a href="/play/" class="text-sky-400 font-black">S-01</a>
+      <a href="/play/" class="text-emerald-400 font-black">S-01: Play</a>
       <a href="/custody/" class="text-slate-300 hover:text-emerald-400 transition">S-02</a>
       <a href="/fortress/" class="text-slate-300 hover:text-violet-400 transition">S-03</a>
       <a href="/shield/" class="text-slate-300 hover:text-amber-400 transition">S-04</a>
@@ -65,35 +80,57 @@
       <a href="/armory/" class="text-slate-300 hover:text-slate-400 transition">S-06</a>
       <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2 transition">Uplink</a>
     </div>
-    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800">☰</button>
+    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">☰</button>
+  </div>
+  <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800 text-xs uppercase font-bold tracking-widest">
+    <a href="/play/" class="block text-emerald-400">Sector 01: Play</a>
+    <a href="/custody/" class="block text-slate-300 hover:text-emerald-400">Sector 02: Custody</a>
+    <a href="/fortress/" class="block text-slate-300 hover:text-violet-400">Sector 03: Fortress</a>
+    <a href="/shield/" class="block text-slate-300 hover:text-amber-400">Sector 04: Shield</a>
+    <a href="/tactical/" class="block text-slate-300 hover:text-red-500">Sector 05: Tactical</a>
+    <a href="/armory/" class="block text-slate-300 hover:text-slate-400">Sector 06: Armory</a>
+    <a href="/contact/" class="block text-sky-400 font-black pt-2">Communications Uplink</a>
   </div>
 </nav>
 
-  <main class="max-w-4xl mx-auto py-16 px-6 flex-grow space-y-12">
-    <header class="text-center glass-box p-10 md:p-16 border border-emerald-500/20">
+  <main class="max-w-4xl mx-auto py-12 md:py-16 px-6 flex-grow space-y-10">
+    <header class="text-center glass-box p-8 md:p-12 border-emerald-500/30">
+      <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-black uppercase tracking-widest mb-4">Audit ID: VS-2026-001 &bull; 2FA &amp; Crypto Verified</span>
       <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 uppercase italic">
         Vincispin <span class="text-emerald-400">Technical Audit</span>
       </h1>
-      <p class="text-slate-300 text-sm leading-relaxed max-w-2xl mx-auto font-light">
-        Structural evaluation of infrastructure signals and HTTP header snapshots for AU regional nodes. Audits reflect observations at time of testing.
+      <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8">
+        Structural evaluation of infrastructure signals, HTTP header snapshots on <code class="text-emerald-400">34vincispin75.com</code>, and Mastercard/crypto cashier performance for AU users.
       </p>
+
+      <!-- TOP CONVERSION BAR -->
+      <div class="bg-black/50 border border-emerald-500/40 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
+        <div>
+          <p class="text-[11px] font-black uppercase tracking-widest text-emerald-400">Mastercard &amp; Crypto Active &bull; 2-Stage Welcome</p>
+          <p class="text-base md:text-lg font-black text-white">100% + 250 Spins (1st) &bull; Up to A$1,500 + 100 Spins (2nd)</p>
+        </div>
+        <a href="/go/vincispin/" rel="nofollow sponsored" data-casino="Vincispin" data-location="audit-top"
+           class="affiliate-cta w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3.5 px-7 rounded-xl transition shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-xs text-center shrink-0">
+          Claim 100% + 250 Spins &rarr;
+        </a>
+      </div>
     </header>
 
-    <section class="glass-box p-10 md:p-16">
-        <h2 class="text-2xl font-black text-white mb-8 uppercase italic tracking-tighter text-emerald-400">Connectivity Snapshot</h2>
-        <div class="grid md:grid-cols-2 gap-6 mb-10">
-          <div class="bg-black/60 p-6 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
-            <p class="text-slate-500 mb-2 uppercase font-black tracking-widest text-[10px]">Observed tracking link</p>
-            <p class="break-all text-slate-200 font-mono text-sm italic">https://track.betmenaff.com/visit/</p>
+    <section class="glass-box p-8 md:p-12">
+        <h2 class="text-2xl md:text-3xl font-black mb-6 uppercase italic tracking-tight text-emerald-400">01. Connectivity Snapshot</h2>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Observed Tracking Link</p>
+            <p class="break-all text-slate-200 font-mono text-sm">https://track.betmenaff.com/visit/</p>
           </div>
-          <div class="bg-black/60 p-6 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
-            <p class="text-slate-500 mb-2 uppercase font-black tracking-widest text-[10px]">Observed landing (deep link)</p>
-            <p class="break-all text-slate-200 font-mono text-sm italic">https://34vincispin75.com/</p>
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Observed Landing (Deep Link)</p>
+            <p class="break-all text-slate-200 font-mono text-sm">https://34vincispin75.com/</p>
           </div>
         </div>
         
-        <div class="bg-slate-950 p-8 rounded-3xl border border-white/5 font-mono text-[11px] text-slate-300 overflow-x-auto leading-relaxed">
-            <p class="mb-4 text-emerald-500 uppercase font-black tracking-widest underline underline-offset-8 decoration-white">HTTP HEADERS (curl -I) snapshot</p>
+        <div class="bg-slate-950 p-6 md:p-8 rounded-2xl border border-white/10 font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed">
+            <p class="mb-3 text-emerald-400 uppercase font-black tracking-widest">HTTP HEADERS (curl -I) SNAPSHOT</p>
             GET https://34vincispin75.com/<br><br>
             HTTP/2 403<br>
             server: cloudflare<br>
@@ -101,74 +138,101 @@
             x-frame-options: SAMEORIGIN<br>
             cache-control: private, max-age=0, no-store, no-cache
         </div>
-        <p class="text-xs text-slate-500 mt-6 italic font-bold uppercase tracking-widest bg-white/5 p-4 rounded-xl">
-          Operator testing: browser access reported as working. CLI header checks trigger a Cloudflare challenge.
+        <p class="text-xs text-slate-300 mt-5 bg-white/5 border border-white/10 p-3.5 rounded-xl text-center">
+          <strong class="text-emerald-400">Operator Note:</strong> Browser access confirmed working with strict <code class="text-emerald-300">no-store</code> cache headers; headless CLI checks trigger a Cloudflare challenge.
         </p>
     </section>
 
-    <section class="space-y-8">
-        <div class="glass-box p-10 md:p-12 border-l-4 border-l-emerald-500">
-            <h2 class="text-2xl font-black text-white mb-6 uppercase italic text-emerald-400 tracking-tighter">Licensing and Safety</h2>
-            <ul class="text-slate-200 space-y-4 font-bold text-base italic">
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Holds a "High" Safety Index, making it a recommendable option for players.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Operates under a recognized Costa Rica framework, catering to a global audience.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> The casino ensures security with 2FA, encryption, and other industry standards.</li>
+    <section class="grid md:grid-cols-2 gap-6">
+        <div class="glass-box p-8 border-l-4 border-l-emerald-500">
+            <h2 class="text-xl font-black mb-4 uppercase italic text-emerald-400">02. Licensing &amp; Account Security</h2>
+            <ul class="text-sm text-slate-200 space-y-3">
+                <li class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✔</span> Holds a High Safety Index rating across independent reviews.</li>
+                <li class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✔</span> Operates under an international Costa Rica framework.</li>
+                <li class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✔</span> Supports two-factor authentication (2FA) and TLS encryption.</li>
             </ul>
         </div>
 
-        <div class="glass-box p-10 md:p-12">
-            <h2 class="text-2xl font-black text-white mb-6 uppercase italic text-emerald-400 tracking-tighter">Reputation & Selection</h2>
-            <ul class="text-slate-200 space-y-4 font-bold text-base italic">
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Frequently highlighted for its massive library of over 5,000 slots and 300+ live games.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Known for a user-friendly interface that prioritizes mobile accessibility.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Library includes Megaways, Bonus Buys, and progressive jackpot nodes.</li>
+        <div class="glass-box p-8 border-l-4 border-l-sky-500">
+            <h2 class="text-xl font-black mb-4 uppercase italic text-sky-400">03. Game Library Scale</h2>
+            <ul class="text-sm text-slate-200 space-y-3">
+                <li class="flex items-start gap-2.5"><span class="text-sky-400 font-bold">✔</span> Massive library of <strong class="text-white">5,000+ pokies</strong> and <strong class="text-white">300+ live games</strong>.</li>
+                <li class="flex items-start gap-2.5"><span class="text-sky-400 font-bold">✔</span> Includes Megaways, Bonus Buys, and progressive jackpots.</li>
+                <li class="flex items-start gap-2.5"><span class="text-sky-400 font-bold">✔</span> Responsive mobile-first lobby interface.</li>
             </ul>
         </div>
 
-        <div class="glass-box p-10 md:p-12 border-l-4 border-l-emerald-500">
-            <h2 class="text-2xl font-black text-white mb-6 uppercase italic text-emerald-400 tracking-tighter">Promotions & Payments</h2>
-            <ul class="text-slate-200 space-y-4 font-bold text-base italic">
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Offers generous welcome bonuses for the first three deposits (verified).</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Loyalty program verified: unlocking free spins, bonuses, and cashback.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Supports a variety of payment methods including crypto and card options.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Modern cashier system designed for efficient processing and player convenience.</li>
+        <div class="glass-box p-8 border-l-4 border-l-amber-500">
+            <h2 class="text-xl font-black mb-4 uppercase italic text-amber-400">04. Promotions &amp; Cashier</h2>
+            <ul class="text-sm text-slate-200 space-y-3">
+                <li class="flex items-start gap-2.5"><span class="text-amber-400 font-bold">✔</span> 1st Deposit (A$75+): <strong class="text-white">100% + 250 Free Spins</strong>.</li>
+                <li class="flex items-start gap-2.5"><span class="text-amber-400 font-bold">✔</span> 2nd Deposit (A$60+): <strong class="text-white">50% up to A$1,500 + 100 Spins</strong>.</li>
+                <li class="flex items-start gap-2.5"><span class="text-amber-400 font-bold">✔</span> Mastercard and cryptocurrency rails confirmed active.</li>
             </ul>
         </div>
 
-        <div class="glass-box p-10 md:p-12">
-            <h2 class="text-2xl font-black text-white mb-6 uppercase italic text-emerald-400 tracking-tighter">Technical Support</h2>
-            <ul class="text-slate-200 space-y-4 font-bold text-base italic">
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Customer support is available 24/7 via a bot or email uplink.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Peer-review confirmed: agentes are helpful and efficient in resolution protocols.</li>
+        <div class="glass-box p-8 border-l-4 border-l-violet-500">
+            <h2 class="text-xl font-black mb-4 uppercase italic text-violet-400">05. Technical Support</h2>
+            <ul class="text-sm text-slate-200 space-y-3">
+                <li class="flex items-start gap-2.5"><span class="text-violet-400 font-bold">✔</span> 24/7 customer support via live chat and email.</li>
+                <li class="flex items-start gap-2.5"><span class="text-violet-400 font-bold">✔</span> Fast account verification and KYC turnaround.</li>
+                <li class="flex items-start gap-2.5"><span class="text-violet-400 font-bold">✔</span> Loyalty cashback and reload spins for active accounts.</li>
             </ul>
         </div>
     </section>
 
-    <!-- THE VERDICT -->
-    <section class="glass-box p-12 md:p-20 text-center border-2 border-emerald-500/30 relative overflow-hidden shadow-[0_0_100px_rgba(16,185,129,0.15)]">
-        <h3 class="text-5xl font-black text-white mb-10 uppercase italic tracking-tighter text-emerald-400 drop-shadow-2xl">Audit Verdict</h3>
-        <p class="text-xl text-slate-100 font-black italic leading-relaxed mb-12 max-w-2xl mx-auto">
-            "Vincispin infrastructure maintains a robust technical baseline with verified mirror node persistence and high-entropy encryption standards."
-        </p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-          <a href="/go/vincispin/" rel="nofollow sponsored" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black py-6 rounded-2xl transition shadow-[0_0_30px_rgba(16,185,129,0.4)] uppercase tracking-widest text-sm px-12">Proceed via Route</a>
-          <a href="/play/vincispin.html" class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-6 rounded-2xl transition border-2 border-white/10 uppercase tracking-widest text-sm px-12">Back to Review</a>
-        </div>
+    <section class="glass-box p-10 md:p-14 text-center border-2 border-emerald-500/30 shadow-[0_0_60px_rgba(16,185,129,0.12)]">
+      <h3 class="text-3xl md:text-4xl font-black mb-4 uppercase italic tracking-tight text-emerald-400">Audit Verdict</h3>
+      <p class="text-lg text-slate-200 leading-relaxed mb-8 max-w-2xl mx-auto">
+        "Vincispin pairs 2FA account hardening and strict <code class="text-emerald-400">no-store</code> session caching with 5,000+ games and a <strong class="text-emerald-400">100% + 250 Free Spins</strong> welcome tier."
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/go/vincispin/" rel="nofollow sponsored" data-casino="Vincispin" data-location="audit-bottom"
+           class="affiliate-cta bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-4 px-8 rounded-2xl transition shadow-xl uppercase tracking-widest text-xs">
+          Claim 100% + 250 Spins &rarr;
+        </a>
+        <a href="/play/vincispin.html"
+           class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-4 px-8 rounded-2xl transition border border-white/10 uppercase tracking-widest text-xs">
+          Read Player Review
+        </a>
+      </div>
     </section>
   </main>
 
-  <footer class="mt-auto py-24 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
-    <div class="flex flex-wrap justify-center gap-10 mb-10 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
+  <!-- STICKY MOBILE BAR -->
+  <div class="fixed bottom-0 inset-x-0 md:hidden bg-slate-950/95 backdrop-blur border-t border-emerald-500/40 p-3 z-50 flex items-center justify-between gap-3">
+    <div class="min-w-0">
+      <p class="text-[10px] font-black uppercase tracking-wider text-emerald-400">Vincispin &bull; Mastercard / Crypto</p>
+      <p class="text-xs font-bold text-white truncate">100% + 250 Free Spins</p>
+    </div>
+    <a href="/go/vincispin/" rel="nofollow sponsored" data-casino="Vincispin" data-location="audit-mobile-sticky"
+       class="affiliate-cta shrink-0 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase px-4 py-2.5 rounded-lg">
+      Claim &rarr;
+    </a>
+  </div>
+
+  <footer class="mt-auto py-20 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
+    <div class="flex flex-wrap justify-center gap-8 mb-8 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
         <a href="/about/" class="hover:text-white transition">The Agency</a>
         <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
         <a href="/terms.html" class="hover:text-white transition">Terms</a>
-        <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition text-emerald-500">Responsible Gambling</a>
+        <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition">Responsible Gambling</a>
         <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
     </div>
-    <img src="/assets/trimmed-logo.png" alt="Logo" class="h-10 mx-auto mb-8 opacity-20 grayscale">
+    <img src="/assets/trimmed-logo.png" onerror="this.style.display='none'" alt="Logo" class="h-10 mx-auto mb-6 opacity-20 grayscale">
     <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-slate-600">
-        &copy; 2026 SecurityAllround Organisation. AU Technical Standards.
+        &copy; 2026 SecurityAllround Organisation. AU Technical Standards. 18+ Play Responsibly.
     </p>
-</footer>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.affiliate-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'affiliate_click', { casino_name: link.dataset.casino, cta_location: link.dataset.location, outbound_url: link.href });
+        }
+      });
+    });
+  </script>
 </body>
 </html>

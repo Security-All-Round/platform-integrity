@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  (function () {
+    var webSdkScript = document.createElement("script");
+    webSdkScript.src = "https://unpkg.com/@grafana/faro-web-sdk@2/dist/bundle/faro-web-sdk.iife.js";
+    webSdkScript.onload = () => {
+      window.GrafanaFaroWebSdk.initializeFaro({
+        url: "https://faro-collector-prod-au-southeast-1.grafana.net/collect/f6be7e3c6e419b18bd4d0d5c9766c4fa",
+        app: { name: "site traffic", version: "1.0.0", environment: "production" },
+      });
+      var webTracingScript = document.createElement("script");
+      webTracingScript.src = "https://unpkg.com/@grafana/faro-web-tracing@2/dist/bundle/faro-web-tracing.iife.js";
+      webTracingScript.onload = () => {
+        window.GrafanaFaroWebSdk.faro.instrumentations.add(new window.GrafanaFaroWebTracing.TracingInstrumentation());
+      };
+      document.head.appendChild(webTracingScript);
+    };
+    document.head.appendChild(webSdkScript);
+  })();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S-01 Hub | SecurityAllround Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="../assets/New-logo.png">
+    <style>
+        body { 
+          background:#020617; color:#f8fafc;
+          background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.92)), url('/assets/background2.png');
+          background-attachment: fixed; background-size: cover;
+        }
+        .warning-pulse { border-color: #ef4444; animation: pulse-red 2s infinite; }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+<div class="bg-red-950/90 backdrop-blur-md border-b-2 border-red-500 text-white p-4 sticky top-0 z-[60]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <span class="bg-red-600 text-[10px] font-black px-2 py-1 rounded animate-pulse">CRITICAL</span>
+            <p class="text-xs font-bold tracking-tight uppercase">
+                ENTITY BLACKLISTED: <span class="text-red-400">MrPacho</span> (mrpacho-1122.com) flagging for aggressive Mail-Bombing.
+            </p>
+        </div>
+        <div class="text-[10px] font-mono text-red-300 uppercase tracking-widest bg-red-900/40 px-3 py-1 rounded">
+            Defcon Level: 2 // Targeted Automation Detected
+        </div>
+    </div>
+</div>
+
+<main class="max-w-7xl mx-auto py-12 px-6">
+
+    <section class="mb-16 bg-slate-900/80 border border-slate-800 p-8 rounded-[2rem] shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 opacity-10">
+            <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        </div>
+        <h2 class="text-2xl font-black text-white mb-6 italic uppercase tracking-tighter">Tactical Brief: <span class="text-sky-400">Counter-Spam Operations</span></h2>
+        
+        <div class="grid md:grid-cols-3 gap-8 text-sm">
+            <div class="space-y-3">
+                <h3 class="text-emerald-400 font-bold uppercase text-[10px] tracking-widest">01. Identity Masking</h3>
+                <p class="text-slate-400 leading-relaxed">Never use a primary uplink (main email) for gambling registrations. Utilize <strong>Firefox Relay</strong> or <strong>SimpleLogin</strong> to generate unique alias masks. If a node starts bombing, kill the alias instantly.</p>
+            </div>
+            <div class="space-y-3">
+                <h3 class="text-emerald-400 font-bold uppercase text-[10px] tracking-widest">02. Salted Signups</h3>
+                <p class="text-slate-400 leading-relaxed">Using Gmail? Append a "plus" tag (e.g., <code>user+mrpacho@gmail.com</code>). If the spam hits that specific address, you can create one single filter to delete everything sent to that exact alias.</p>
+            </div>
+            <div class="space-y-3">
+                <h3 class="text-emerald-400 font-bold uppercase text-[10px] tracking-widest">03. Mitigation</h3>
+                <p class="text-slate-400 leading-relaxed">If currently under fire from 1,000+ addresses: Switch your inbox to "Exclusive" mode (only contacts allowed) for 48 hours. Most automated scripts exhaust their retry-cycle within this window.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-20">
+        <div class="flex items-center gap-4 mb-10">
+            <h3 class="text-xs font-black text-slate-500 uppercase tracking-[0.5em] whitespace-nowrap">S-01-B: Referral Nodes</h3>
+            <div class="h-[1px] w-full bg-slate-800"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="group bg-slate-900/40 border border-slate-800 p-6 rounded-2xl hover:border-emerald-500/50 transition relative overflow-hidden">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <p class="text-[10px] font-mono text-emerald-500 mb-1 uppercase tracking-widest">[Verified Referral]</p>
+                        <h4 class="text-xl font-bold text-white uppercase italic">SlotMafia</h4>
+                    </div>
+                    <div class="text-[10px] text-slate-600 font-mono">NODE_REF: CfdMFDB</div>
+                </div>
+                <p class="text-xs text-slate-400 mb-6">Mobile performance verified via <code class="text-slate-300">slotmafia1.com</code>. Referral path remains active for AU network users.</p>
+                <div class="flex gap-3">
+                    <a href="https://slotmafia.live?ref_code=CfdMFDBTpE" rel="nofollow" class="flex-1 bg-emerald-600/10 hover:bg-emerald-600 text-emerald-400 hover:text-white border border-emerald-600/30 text-center py-2 rounded-lg text-xs font-black transition">ACTIVATE LINK</a>
+                </div>
+            </div>
+
+            <div class="group bg-slate-900/40 border border-slate-800 p-6 rounded-2xl hover:border-sky-500/50 transition relative overflow-hidden">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <p class="text-[10px] font-mono text-sky-500 mb-1 uppercase tracking-widest">[Verified Referral]</p>
+                        <h4 class="text-xl font-bold text-white uppercase italic">Fair Go Casino</h4>
+                    </div>
+                    <div class="text-[10px] text-slate-600 font-mono">NODE_REF: 12541</div>
+                </div>
+                <p class="text-xs text-slate-400 mb-6">Legacy infrastructure node. Access confirmed via <code class="text-slate-300">fairg0games.club</code> skin node.</p>
+                <div class="flex gap-3">
+                    <a href="http://www.referafriend.club/fairgo/refer?friend=12541" rel="nofollow" class="flex-1 bg-sky-600/10 hover:bg-sky-600 text-sky-400 hover:text-white border border-sky-600/30 text-center py-2 rounded-lg text-xs font-black transition">ACTIVATE LINK</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>

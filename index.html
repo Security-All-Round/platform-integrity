@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en-AU" class="scroll-smooth">
 <head>
 <script>
   (function () {
@@ -21,8 +21,10 @@
   })();
 </script>
     <meta charset="UTF-8">
-    <meta name='impact-site-verification' value='undefined'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SecurityAllround Agency — Independent technical audits for online casinos, crypto custody, VPNs, password managers, defensive hardware, and the Hacker2.0 escrow bug bounty pilot.">
+    <meta name="impact-site-verification" value="1d5a1966-e787-4016-a270-fec64a493435">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MBPGLSNQYD"></script>
     <script>
@@ -32,8 +34,10 @@
       gtag('config', 'G-MBPGLSNQYD');
     </script>
     <script src="/assets/analytics.js" defer></script>
+    <script src="/assets/nav.js" defer></script>
 
     <title>Universal Security Hub | SecurityAllround Agency</title>
+    <link rel="canonical" href="https://securityallround.com/">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,16 +64,16 @@
         }
 
         .glass {
-            background: rgba(15, 23, 42, 0.4);
+            background: rgba(15, 23, 42, 0.45);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass:hover {
-            background: rgba(15, 23, 42, 0.6);
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-8px);
+            background: rgba(15, 23, 42, 0.65);
+            border-color: rgba(255, 255, 255, 0.16);
+            transform: translateY(-6px);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
@@ -81,35 +85,62 @@
             box-shadow: 0 0 15px var(--glow-color);
         }
     </style>
-    <meta name='impact-site-verification' value='1d5a1966-e787-4016-a270-fec64a493435'>
 </head>
 <body class="min-h-screen flex flex-col">
     <!-- Impact-Site-Verification: ebfa0e80-da7a-4ce8-a44f-acb5c87e8ba3 -->
 
+    <!-- NAV -->
+    <nav class="border-b border-white/10 bg-slate-950/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <a href="/" class="flex items-center gap-3 min-w-0">
+          <img src="/assets/New-logo.png" onerror="this.style.display='none'" class="w-8 h-8 rounded-full shrink-0" alt="SecurityAllround logo">
+          <span class="font-black text-white tracking-tight truncate uppercase italic">SecurityAllround Agency</span>
+        </a>
+        <div class="hidden md:flex items-center gap-4 uppercase text-[10px] tracking-widest font-bold">
+          <a href="/play/" class="text-slate-300 hover:text-sky-400 transition">S-01: Play</a>
+          <a href="/custody/" class="text-slate-300 hover:text-emerald-400 transition">S-02: Custody</a>
+          <a href="/fortress/" class="text-slate-300 hover:text-violet-400 transition">S-03: Fortress</a>
+          <a href="/shield/" class="text-slate-300 hover:text-amber-400 transition">S-04: Shield</a>
+          <a href="/tactical/" class="text-slate-300 hover:text-red-500 transition">S-05: Tactical</a>
+          <a href="/armory/" class="text-slate-300 hover:text-slate-400 transition">S-06: Armory</a>
+          <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2 transition">Uplink</a>
+        </div>
+        <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">☰</button>
+      </div>
+      <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800 text-xs uppercase font-bold tracking-widest">
+        <a href="/play/" class="block text-sky-400">Sector 01: Play</a>
+        <a href="/custody/" class="block text-slate-300 hover:text-emerald-400">Sector 02: Custody</a>
+        <a href="/fortress/" class="block text-slate-300 hover:text-violet-400">Sector 03: Fortress</a>
+        <a href="/shield/" class="block text-slate-300 hover:text-amber-400">Sector 04: Shield</a>
+        <a href="/tactical/" class="block text-slate-300 hover:text-red-500">Sector 05: Tactical</a>
+        <a href="/armory/" class="block text-slate-300 hover:text-slate-400">Sector 06: Armory</a>
+        <a href="/contact/" class="block text-sky-400 font-black pt-2">Communications Uplink</a>
+      </div>
+    </nav>
+
     <!-- Agency Header -->
-    <header class="pt-24 pb-20 px-6 text-center border-b border-white/5 bg-slate-950/50 backdrop-blur-sm">
+    <header class="pt-20 pb-16 px-6 text-center border-b border-white/5 bg-slate-950/50 backdrop-blur-sm">
         <img src="/assets/New-logo.png" alt="Agency Logo" class="h-16 mx-auto mb-8 drop-shadow-[0_0_20px_rgba(56,189,248,0.4)]">
         <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none italic">
             Universal <span class="text-sky-400">Security</span> Hub
         </h1>
         <p class="max-w-3xl mx-auto text-lg md:text-2xl text-slate-400 font-light leading-relaxed">
-            Total Security & Infrastructure Agency. A centralised technical portal for digital entertainment, asset custody, and defensive hardware.
+            Total Security &amp; Infrastructure Agency. A centralised technical portal for digital entertainment, asset custody, and defensive hardware.
         </p>
     </header>
-    <div class="bg-gray-800 border-l-4 border-amber-500 text-gray-100 p-4 shadow-lg" role="alert">
-      <div class="flex items-center">
-        <div class="mr-4">
-            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-        </div>
+
+    <div class="bg-slate-900/90 border-y border-amber-500/30 border-l-4 border-l-amber-500 text-gray-100 px-6 py-4 shadow-lg" role="alert">
+      <div class="max-w-7xl mx-auto flex items-center gap-4">
+        <svg class="w-6 h-6 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
         <div>
-          <p class="font-bold">New Additions Coming Soon</p>
-          <p class="text-sm text-gray-300">We are always looking for safe and reliable products to add. Only tried and tested get a spot, if it's empty we are working on testing new additions.</p>
+          <p class="font-bold text-sm">New Additions Coming Soon</p>
+          <p class="text-xs md:text-sm text-slate-300">We only list tried and tested platforms that pass our baseline infrastructure checks.</p>
         </div>
       </div>
     </div>
 
     <!-- Operational Grid -->
-    <main class="max-w-7xl mx-auto px-6 py-20 w-full grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <main class="max-w-7xl mx-auto px-6 py-16 w-full grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         
         <!-- HACKER2.0 Banner - Spans Full Width -->
         <div class="glass p-10 rounded-[2.5rem] sm:col-span-2 lg:col-span-3 text-center border-2 border-red-500/30" style="--glow-color: #ef4444;">
@@ -122,7 +153,7 @@
             </p>
             
             <p class="text-amber-400 text-xs md:text-sm font-bold uppercase tracking-wide mb-4 max-w-5xl mx-auto">
-                No more 5-day disclosure blockades • No duplicate denials after silent patches • No circular resolution traps
+                No more 5-day disclosure blockades &bull; No duplicate denials after silent patches &bull; No circular resolution traps
             </p>
             
             <p class="text-emerald-400 text-xs md:text-sm font-medium mb-6 leading-relaxed max-w-4xl mx-auto">
@@ -131,23 +162,21 @@
             
             <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
                 <a href="/HACKER2.0/origin.html" class="inline-block px-8 py-3 bg-gradient-to-r from-amber-500 to-red-500 hover:from-amber-400 hover:to-red-400 text-white font-black uppercase text-xs tracking-widest rounded-full transition shadow-[0_0_20px_rgba(239,68,68,0.3)]">
-                    Read Full Case Study →
+                    Read Full Case Study &rarr;
                 </a>
                 <a href="/HACKER2.0/founding.html" class="inline-block px-8 py-3 border-2 border-emerald-400 hover:bg-emerald-400/10 text-emerald-400 font-black uppercase text-xs tracking-widest rounded-full transition">
-                    Join Founding Pilot →
+                    Join Founding Pilot &rarr;
                 </a>
             </div>
         </div>
         
         <!-- Sector 01: Digital Play -->
-        
-        <!-- Sector 01: Digital Play -->
         <a href="/play/" class="glass p-10 rounded-[2.5rem] flex flex-col relative group overflow-hidden" style="--glow-color: var(--play);">
             <div class="accent-tab"></div>
             <span class="font-mono text-[10px] tracking-[0.4em] text-sky-400 mb-4 uppercase font-bold">SYSTEM SECTOR // 01</span>
-            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-sky-400 transition">Online Casino's</h2>
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-sky-400 transition">Online Casinos</h2>
             <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
-                Verified casino audits and access routes. Features our tested portfolio of 7 high-stakes platforms including Bitstarz, Spinmama, and VinciSpin.
+                Verified casino audits, bonus breakdowns, and direct AU access routes. Features our tested portfolio of 8 platforms including BitStarz, Crocoslots, Bitkingz, StayCasino, and Cashy.
             </p>
             <div class="text-sky-400 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
                 Launch Audit Hub &rarr;
@@ -158,9 +187,9 @@
         <a href="/custody/" class="glass p-10 rounded-[2.5rem] flex flex-col relative group overflow-hidden" style="--glow-color: var(--custody);">
             <div class="accent-tab"></div>
             <span class="font-mono text-[10px] tracking-[0.4em] text-emerald-400 mb-4 uppercase font-bold">SYSTEM SECTOR // 02</span>
-            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-emerald-400 transition text-white">Cypto & FIAT Online</h2>
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-emerald-400 transition text-white">Crypto &amp; FIAT Online</h2>
             <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
-                Provides a range of safe and secure options to use or store your money online. Technical reviews of Ledger and Trezor hardware wallets for verified asset protection.
+                Safe and secure options to store or move funds online. Technical reviews of Ledger and Trezor hardware wallets for verified self-custody protection.
             </p>
             <div class="text-emerald-400 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
                 Verify Assets &rarr;
@@ -171,9 +200,9 @@
         <a href="/fortress/" class="glass p-10 rounded-[2.5rem] flex flex-col relative group overflow-hidden" style="--glow-color: var(--fortress);">
             <div class="accent-tab"></div>
             <span class="font-mono text-[10px] tracking-[0.4em] text-violet-400 mb-4 uppercase font-bold">SYSTEM SECTOR // 03</span>
-            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-violet-400 transition text-white">Online Privacy & Access</h2>
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-violet-400 transition text-white">Online Privacy &amp; Access</h2>
             <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
-                VPN hardening and encrypted communication. Access the Dark Web. Technical audits on the Proton Ecosystem, Surfshark, and ExpressVPN.
+                VPN hardening and encrypted communications. Technical audits on the Proton Ecosystem, Surfshark, and NordVPN.
             </p>
             <div class="text-violet-400 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
                 Network Fortress &rarr;
@@ -186,7 +215,7 @@
             <span class="font-mono text-[10px] tracking-[0.4em] text-amber-500 mb-4 uppercase font-bold">SYSTEM SECTOR // 04</span>
             <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-amber-500 transition text-white">Password Protection</h2>
             <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
-                Credential security and digital hygiene. Auditing NordPass and ProtonPass for resilient password management.
+                Credential security and digital hygiene. Auditing NordPass and ProtonPass for resilient zero-knowledge password management.
             </p>
             <div class="text-amber-500 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
                 Deploy Shield &rarr;
@@ -199,7 +228,7 @@
             <span class="font-mono text-[10px] tracking-[0.4em] text-red-500 mb-4 uppercase font-bold">SYSTEM SECTOR // 05</span>
             <h2 class="text-3xl font-black uppercase mb-4 tracking-tight group-hover:text-red-500 transition text-white">Tactical Gear</h2>
             <p class="text-slate-400 text-sm font-light flex-grow leading-relaxed mb-8">
-                Defensive hardware and situational awareness. Performance audits on high-output torches (Olight), tasers, and field tools.
+                Defensive hardware and situational awareness. Performance audits on high-output torches (Olight) and field tools.
             </p>
             <div class="text-red-500 font-bold uppercase text-xs tracking-widest mt-auto flex items-center gap-2">
                 Operational View &rarr;
@@ -222,20 +251,18 @@
     </main>
 
     <!-- Global Footer -->
-    <footer class="mt-auto py-24 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
-    <div class="flex flex-wrap justify-center gap-10 mb-10 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
-        <a href="/about/" class="hover:text-white transition">The Agency</a>
-        <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
-        <a href="/privacy.html" class="hover:text-white transition">Privacy Protocol</a>
-        <a href="/terms.html" class="hover:text-white transition">Terms of Service</a>
-    </div>
-    <img src="/assets/trimmed-logo.png" alt="Logo" class="h-10 mx-auto mb-8 opacity-20 grayscale">
-    <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-slate-600">
-        &copy; 2026 SecurityAllround Organisation. AU Technical Standards.
-    </p>
-</footer>
-
-
-
+    <footer class="mt-auto py-20 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
+        <div class="flex flex-wrap justify-center gap-8 mb-8 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
+            <a href="/about/" class="hover:text-white transition">The Agency</a>
+            <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
+            <a href="/privacy.html" class="hover:text-white transition">Privacy Protocol</a>
+            <a href="/terms.html" class="hover:text-white transition">Terms of Service</a>
+            <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition">Responsible Gambling</a>
+        </div>
+        <img src="/assets/trimmed-logo.png" alt="Logo" class="h-10 mx-auto mb-6 opacity-20 grayscale">
+        <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-slate-600">
+            &copy; 2026 SecurityAllround Organisation. AU Technical Standards. 18+ Play Responsibly.
+        </p>
+    </footer>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en-AU" class="scroll-smooth">
 <head>
 <script>
   (function () {
@@ -22,42 +22,57 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinmama Technical Audit | SecurityAllround</title>
+    <title>Spinmama Technical Audit (SM-2026-001) | SecurityAllround</title>
+    <meta name="description" content="Spinmama technical audit: mobile User-Agent mirror routing (14spinmama74.com), Cloudflare challenge headers, AU$5,000 + 150 Spins + 3 Bonus Rounds, and crypto payouts.">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MBPGLSNQYD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MBPGLSNQYD');
+    </script>
+
+    <script src="/assets/analytics.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://securityallround.com/spinmama-audit.html">
     <link rel="icon" type="image/png" href="/assets/New-logo.png">
     <style>
         body { 
             font-family: 'Space Grotesk', sans-serif; 
             background:#020617; 
             color:#f8fafc;
-            /* Pattern B: Ultra-Bright Full Page Background */
-            background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.45), rgba(2, 6, 23, 0.6)), url('/assets/background6.png');
+            background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.72), rgba(2, 6, 23, 0.92)), url('/assets/background6.png');
             background-attachment: fixed;
             background-size: cover;
         }
         .glass-box {
-            background: rgba(15, 23, 42, 0.92);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 2.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+            overflow: hidden;
         }
         code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
     </style>
     <script src="/assets/nav.js" defer></script>
 </head>
-<body class="min-h-screen flex flex-col text-slate-300">
-  <nav class="border-b border-white/10 bg-slate-950/80 backdrop-blur py-4 px-6 sticky top-0 z-50">
+<body class="min-h-screen flex flex-col text-slate-300 pb-20 md:pb-0">
+
+<!-- NAV -->
+<nav class="border-b border-white/10 bg-slate-950/90 backdrop-blur py-4 px-6 sticky top-0 z-50">
   <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
     <a href="/" class="flex items-center gap-3 min-w-0">
-      <img src="/assets/New-logo.png" class="w-8 h-8 rounded-full" alt="SecurityAllround logo">
+      <img src="/assets/New-logo.png" onerror="this.style.display='none'" class="w-8 h-8 rounded-full shrink-0" alt="">
       <span class="font-black text-white tracking-tight truncate uppercase italic">SecurityAllround Agency</span>
     </a>
     <div class="hidden md:flex items-center gap-4 uppercase text-[10px] tracking-widest font-bold">
-      <a href="/play/" class="text-sky-400 font-black">S-01</a>
+      <a href="/play/" class="text-emerald-400 font-black">S-01: Play</a>
       <a href="/custody/" class="text-slate-300 hover:text-emerald-400 transition">S-02</a>
       <a href="/fortress/" class="text-slate-300 hover:text-violet-400 transition">S-03</a>
       <a href="/shield/" class="text-slate-300 hover:text-amber-400 transition">S-04</a>
@@ -65,35 +80,58 @@
       <a href="/armory/" class="text-slate-300 hover:text-slate-400 transition">S-06</a>
       <a href="/contact/" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg ml-2 transition">Uplink</a>
     </div>
-    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800">☰</button>
+    <button id="menuBtn" class="md:hidden shrink-0 text-slate-200 text-2xl leading-none px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">☰</button>
+  </div>
+  <div id="mobileMenu" class="hidden px-6 pt-4 pb-6 space-y-3 bg-slate-900 border-t border-slate-800 text-xs uppercase font-bold tracking-widest">
+    <a href="/play/" class="block text-emerald-400">Sector 01: Play</a>
+    <a href="/custody/" class="block text-slate-300 hover:text-emerald-400">Sector 02: Custody</a>
+    <a href="/fortress/" class="block text-slate-300 hover:text-violet-400">Sector 03: Fortress</a>
+    <a href="/shield/" class="block text-slate-300 hover:text-amber-400">Sector 04: Shield</a>
+    <a href="/tactical/" class="block text-slate-300 hover:text-red-500">Sector 05: Tactical</a>
+    <a href="/armory/" class="block text-slate-300 hover:text-slate-400">Sector 06: Armory</a>
+    <a href="/contact/" class="block text-sky-400 font-black pt-2">Communications Uplink</a>
   </div>
 </nav>
 
-  <main class="max-w-4xl mx-auto py-16 px-6 flex-grow space-y-12">
-    <header class="text-center glass-box p-10 md:p-16">
-      <div class="flex items-center justify-center gap-3 mb-4">
-        <span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold uppercase border border-emerald-500/20">Audit ID: SM-2026-001</span>
-        <span class="text-slate-600 text-[10px] font-mono uppercase font-bold">Status: Verified Analysis</span>
+  <main class="max-w-4xl mx-auto py-12 md:py-16 px-6 flex-grow space-y-10">
+    <header class="text-center glass-box p-8 md:p-12 border-emerald-500/30">
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-4">
+        <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-black uppercase border border-emerald-500/30">Audit ID: SM-2026-001</span>
+        <span class="px-3 py-1 rounded-full bg-violet-500/15 text-violet-300 text-xs font-bold uppercase border border-violet-500/30">Mobile UA Auto-Routed</span>
       </div>
-      <h1 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-6 italic uppercase">Spinmama <span class="text-emerald-400">Technical Audit</span></h1>
-      <p class="text-slate-400 text-xl leading-relaxed font-light italic text-center max-w-2xl mx-auto">Observed access routing, infrastructure signals (DNS/TLS/HTTP behavior), and platform stability for AU network deployments.</p>
+      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter mb-4 italic uppercase">Spinmama <span class="text-emerald-400">Technical Audit</span></h1>
+      <p class="text-slate-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+        Observed access routing, HTTP/2 Cloudflare headers, and mobile User-Agent mirror resolution for AU network deployments.
+      </p>
+
+      <!-- TOP CONVERSION BAR -->
+      <div class="bg-black/50 border border-emerald-500/40 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
+        <div>
+          <p class="text-[11px] font-black uppercase tracking-widest text-violet-300">Best Opened on Mobile Browser &bull; AUD Native</p>
+          <p class="text-base md:text-lg font-black text-white">Up to AU$5,000 + 150 Spins + 3 Bonus Rounds</p>
+        </div>
+        <a href="/go/spinmama/" rel="nofollow sponsored" data-casino="Spinmama" data-location="audit-top"
+           class="affiliate-cta w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3.5 px-7 rounded-xl transition shadow-lg shadow-emerald-500/20 uppercase tracking-wider text-xs text-center shrink-0">
+          Claim AU$5,000 + 150 Spins &rarr;
+        </a>
+      </div>
     </header>
 
-    <section class="glass-box p-10 md:p-16 shadow-2xl">
-        <h2 class="text-3xl font-black text-white mb-8 uppercase italic tracking-tighter text-emerald-400">01. Connectivity Snapshot</h2>
-        <div class="grid md:grid-cols-2 gap-8 text-sm mb-10">
-          <div class="bg-black/60 p-6 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
-            <p class="text-slate-500 mb-2 uppercase font-black tracking-widest text-[10px]">Tracking Infrastructure</p>
-            <p class="break-all italic">https://track.betmenaff.com/visit/</p>
+    <section class="glass-box p-8 md:p-12 shadow-2xl">
+        <h2 class="text-2xl md:text-3xl font-black mb-6 uppercase italic tracking-tight text-emerald-400">01. Connectivity Snapshot</h2>
+        <div class="grid md:grid-cols-2 gap-6 text-sm mb-8">
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Tracking Infrastructure</p>
+            <p class="break-all">https://track.betmenaff.com/visit/</p>
           </div>
-          <div class="bg-black/60 p-6 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
-            <p class="text-slate-500 mb-2 uppercase font-black tracking-widest text-[10px]">Landing Deep Link (AU)</p>
-            <p class="break-all italic">https://14spinmama74.com/</p>
+          <div class="bg-black/60 p-5 rounded-2xl border border-white/10 font-mono text-emerald-400 leading-relaxed shadow-xl overflow-hidden">
+            <p class="text-slate-400 mb-1.5 uppercase font-black tracking-widest text-[10px]">Landing Deep Link (AU)</p>
+            <p class="break-all">https://14spinmama74.com/</p>
           </div>
         </div>
         
-        <div class="bg-slate-950 p-8 rounded-3xl border border-white/5 font-mono text-[11px] text-slate-300 overflow-x-auto leading-relaxed italic shadow-inner">
-            <p class="mb-4 text-emerald-500 uppercase font-black tracking-widest underline underline-offset-8 decoration-white text-center">HTTP HEADERS (curl -I) snapshot</p>
+        <div class="bg-slate-950 p-6 md:p-8 rounded-2xl border border-white/10 font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed">
+            <p class="mb-3 text-emerald-400 uppercase font-black tracking-widest">HTTP HEADERS (curl -I) SNAPSHOT</p>
             GET https://14spinmama74.com/<br><br>
             HTTP/2 403 (Challenge)<br>
             server: cloudflare<br>
@@ -101,68 +139,92 @@
             x-frame-options: SAMEORIGIN<br>
             cache-control: private, max-age=0
         </div>
-        <p class="text-xs text-slate-500 mt-6 italic font-bold uppercase tracking-widest bg-white/5 p-4 rounded-xl text-center">
-          Operator testing: browser access reported as working. CLI header checks trigger an automated Cloudflare challenge.
+        <p class="text-xs text-slate-300 mt-5 bg-violet-500/10 border border-violet-500/25 p-3.5 rounded-xl text-center">
+          <strong class="text-violet-300">Routing Insight:</strong> Mobile User-Agents resolve directly into the AU mirror (<code class="text-emerald-300">34-spinmama-8.com</code>), whereas desktop NBN IPs or CLI tools may encounter geo/WAF filtering.
         </p>
     </section>
 
-    <section class="space-y-8">
-        <div class="glass-box p-10 md:p-12 border-l-4 border-l-emerald-500 shadow-2xl">
-            <h2 class="text-2xl font-black text-white mb-6 uppercase italic text-emerald-400 tracking-tighter">02. Game Selection & Scale</h2>
-            <ul class="text-slate-200 space-y-4 font-bold text-base italic">
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Boasts a large library of over 3,000 games, including slots and original SpinMama titles.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> The live casino offers over 400 games from top-tier providers.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Includes an integrated sportsbook with a variety of betting markets.</li>
+    <section class="grid md:grid-cols-3 gap-6">
+        <div class="glass-box p-7 border-t-4 border-t-emerald-500">
+            <h2 class="text-lg font-black mb-3 uppercase italic text-emerald-400">02. Game Selection</h2>
+            <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+                <li><strong class="text-white">3,000+ games</strong> including pokies and Spinmama Originals.</li>
+                <li>400+ live dealer casino tables.</li>
+                <li>Integrated sportsbook with pre-match and live markets.</li>
             </ul>
         </div>
 
-        <div class="glass-box p-10 md:p-12 shadow-2xl border-l-4 border-l-slate-600">
-            <h2 class="text-2xl font-black text-white mb-6 uppercase italic text-emerald-400 tracking-tighter">03. Promotions & Loyalty Nodes</h2>
-            <ul class="text-slate-200 space-y-4 font-bold text-base italic">
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Offers a welcome package for the first three deposits plus reload promotions.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Features a four-tier loyalty program with cashback, rakeback, and personalized offers.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Regular tournaments and prize drops ensure a rewarding experience node.</li>
+        <div class="glass-box p-7 border-t-4 border-t-violet-500">
+            <h2 class="text-lg font-black mb-3 uppercase italic text-violet-400">03. Promotions &amp; VIP</h2>
+            <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+                <li>3-deposit welcome package up to <strong class="text-white">AU$5,000 + 150 FS + 3 Bonus Rounds</strong>.</li>
+                <li>Four-tier loyalty program with cashback &amp; rakeback.</li>
+                <li>Daily slot tournaments and prize drops.</li>
             </ul>
         </div>
 
-        <div class="glass-box p-10 md:p-12 shadow-2xl border-l-4 border-l-emerald-500">
-            <h2 class="text-2xl font-black text-white mb-6 uppercase italic text-emerald-400 tracking-tighter">04. Payment & Support Infrastructure</h2>
-            <ul class="text-slate-200 space-y-4 font-bold text-base italic">
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Supports encrypted payment methods including BTC, ETH, and USDT.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Standard withdrawal limits verified: €1,000 per day and €10,000 per month.</li>
-                <li class="flex items-start gap-3"><span class="text-emerald-500 mt-1">✔</span> Provides 24/7 technical support via live chat and email uplink.</li>
+        <div class="glass-box p-7 border-t-4 border-t-amber-500">
+            <h2 class="text-lg font-black mb-3 uppercase italic text-amber-400">04. Cashier &amp; Limits</h2>
+            <ul class="text-sm text-slate-300 space-y-2.5 list-disc pl-4">
+                <li>Supports <strong class="text-white">BTC, ETH, USDT</strong> plus AUD card deposits.</li>
+                <li>Standard withdrawal limits: €1,000/day &amp; €10,000/month.</li>
+                <li>24/7 live chat and email support uplink.</li>
             </ul>
         </div>
     </section>
 
-    <!-- THE VERDICT -->
-    <section class="glass-box p-12 md:p-20 text-center relative border-2 border-emerald-500/20 shadow-[0_0_80px_rgba(16,185,129,0.1)]">
-      <div class="absolute inset-0 opacity-30 pointer-events-none bg-cover bg-center" style="background-image: url('/assets/background4.png');"></div>
-      <div class="relative z-10 max-w-2xl mx-auto text-emerald-400">
-        <h3 class="text-4xl font-black text-white mb-8 uppercase italic text-emerald-400 underline decoration-white underline-offset-8 tracking-tighter">Execution Verdict</h3>
-        <p class="text-xl text-slate-100 font-black italic leading-relaxed mb-10">
-            "Spinmama maintains high infrastructure stability with optimal performance nodes for AU mobile deployments."
-        </p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-          <a href="/go/spinmama/" rel="nofollow sponsored" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black py-5 rounded-2xl transition shadow-xl uppercase tracking-widest text-xs px-10">Proceed via Route</a>
-          <a href="/play/spinmama.html" class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-5 rounded-2xl transition border border-white/10 uppercase tracking-widest text-xs px-10">Back to Review</a>
-        </div>
+    <section class="glass-box p-10 md:p-14 text-center border-2 border-emerald-500/30 shadow-[0_0_60px_rgba(16,185,129,0.12)]">
+      <h3 class="text-3xl md:text-4xl font-black mb-4 uppercase italic text-emerald-400 tracking-tight">Execution Verdict</h3>
+      <p class="text-lg text-slate-200 leading-relaxed mb-8 max-w-2xl mx-auto">
+        "Spinmama maintains strong mobile infrastructure performance and a generous <strong class="text-emerald-400">AU$5,000 + 150 Free Spins + 3 Bonus Rounds</strong> package for Australian mobile players."
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/go/spinmama/" rel="nofollow sponsored" data-casino="Spinmama" data-location="audit-bottom"
+           class="affiliate-cta bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-4 px-8 rounded-2xl transition shadow-xl uppercase tracking-widest text-xs">
+          Claim AU$5,000 + 150 Spins &rarr;
+        </a>
+        <a href="/play/spinmama.html"
+           class="bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold py-4 px-8 rounded-2xl transition border border-white/10 uppercase tracking-widest text-xs">
+          Read Player Review
+        </a>
       </div>
     </section>
   </main>
 
-  <footer class="mt-auto py-24 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
-    <div class="flex flex-wrap justify-center gap-10 mb-10 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
+  <!-- STICKY MOBILE BAR -->
+  <div class="fixed bottom-0 inset-x-0 md:hidden bg-slate-950/95 backdrop-blur border-t border-emerald-500/40 p-3 z-50 flex items-center justify-between gap-3">
+    <div class="min-w-0">
+      <p class="text-[10px] font-black uppercase tracking-wider text-emerald-400">Spinmama &bull; Mobile Verified</p>
+      <p class="text-xs font-bold text-white truncate">Up to AU$5,000 + 150 Spins</p>
+    </div>
+    <a href="/go/spinmama/" rel="nofollow sponsored" data-casino="Spinmama" data-location="audit-mobile-sticky"
+       class="affiliate-cta shrink-0 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase px-4 py-2.5 rounded-lg">
+      Claim &rarr;
+    </a>
+  </div>
+
+  <footer class="mt-auto py-20 px-6 text-center border-t border-white/5 bg-slate-950/50 backdrop-blur-md">
+    <div class="flex flex-wrap justify-center gap-8 mb-8 uppercase text-[10px] tracking-[0.4em] font-black text-slate-500">
         <a href="/about/" class="hover:text-white transition">The Agency</a>
         <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
         <a href="/terms.html" class="hover:text-white transition">Terms</a>
-        <a href="/responsible-gambling.html" class="hover:text-white transition text-emerald-500">Responsible Gambling</a>
+        <a href="/responsible-gambling.html" class="hover:text-emerald-400 transition">Responsible Gambling</a>
         <a href="/contact/" class="hover:text-white transition text-sky-600 font-black">Communications</a>
     </div>
-    <img src="/assets/trimmed-logo.png" alt="Logo" class="h-10 mx-auto mb-8 opacity-20 grayscale">
+    <img src="/assets/trimmed-logo.png" onerror="this.style.display='none'" alt="Logo" class="h-10 mx-auto mb-6 opacity-20 grayscale">
     <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-slate-600">
-        &copy; 2026 SecurityAllround Organisation. AU Technical Standards.
+        &copy; 2026 SecurityAllround Organisation. AU Technical Standards. 18+ Play Responsibly.
     </p>
-</footer>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.affiliate-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'affiliate_click', { casino_name: link.dataset.casino, cta_location: link.dataset.location, outbound_url: link.href });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
